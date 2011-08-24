@@ -18,7 +18,7 @@ speed.
 * SSL support.
 * Blob GET/PUT operations implement Node [Readable][ReadStream] and
   [Writable][WriteStream] Stream interfaces.
-  
+
 [ReadStream]: http://nodejs.org/docs/v0.4.9/api/streams.html#readable_Stream
 [WriteStream]: http://nodejs.org/docs/v0.4.9/api/streams.html#writable_Stream
 
@@ -44,7 +44,7 @@ Future support is planned for:
 Install Sunny directly from its [GitHub][SGH] repository::
 
     $ git clone git@github.com:ryan-roemer/node-sunny.git
-    $ npm install node-sunny
+    $ npm install ./node-sunny
 
 [SGH]: https://github.com/ryan-roemer/node-sunny
 
