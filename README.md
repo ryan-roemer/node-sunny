@@ -36,11 +36,16 @@ Future support is planned for:
 [OS]: http://openstack.org/projects/storage/
 
 ## Installation / Getting Started
-Install Sunny directly from its [GitHub][SGH] repository::
+Install Sunny directly from [npm][NPM]:
+
+    $ npm install sunny
+
+or its [GitHub][SGH] repository::
 
     $ git clone git@github.com:ryan-roemer/node-sunny.git
     $ npm install ./node-sunny
 
+[NPM]: http://npmjs.org/
 [SGH]: https://github.com/ryan-roemer/node-sunny
 
 Sunny will be added to [NPM](http://npmjs.org) soon.
