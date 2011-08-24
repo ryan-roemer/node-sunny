@@ -45,7 +45,7 @@ Install Sunny directly from [npm][NPM]:
 
     $ npm install sunny
 
-or its [GitHub][SGH] repository::
+or the [GitHub][SGH] repository:
 
     $ git clone git@github.com:ryan-roemer/node-sunny.git
     $ npm install ./node-sunny
