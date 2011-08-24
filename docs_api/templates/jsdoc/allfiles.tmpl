@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset={+IO.encoding+}" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    {! Link.base = ""; /* all generated links will be relative to this */ !}
+    <title>
+      Sunny.js - Files
+      <if test="JSDOC.opt.D.version">
+        - v{+JSDOC.opt.D.version+}
+      </if>
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="{+Link.base+}../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="{+Link.base+}../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    {+includeTmpl("header.tmpl")+}
+
+    <div id="content">
+      <h1 class="classTitle">
+        Files
+        <if test="JSDOC.opt.D.version">
+          - v{+JSDOC.opt.D.version+}
+        </if>
+      </h1>
+
+      <table class="summaryTable" cellspacing="0">
+        <caption>File Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">File Name</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        <for each="item" in="data">
+          <tr>
+            <td class="fileName">
+              {+new Link().toSrc(item.alias).withText(item.name)+}
+            </td>
+            <td class="nameDescription">
+              <if test="item.desc">{+resolveLinks(item.desc)+}</if>
+              <dl>
+                <if test="item.author">
+                  <dt class="heading">Author:</dt>
+                  <dd>{+item.author+}</dd>
+                </if>
+                <if test="item.version">
+                  <dt class="heading">Version:</dt>
+                    <dd>{+item.version+}</dd>
+                </if>
+                {! var locations = item.comment.getTag('location').map(function($){return $.toString().replace(/(^\$ ?| ?\$$)/g, '').replace(/^HeadURL: https:/g, 'http:');}) !}
+                <if test="locations.length">
+                  <dt class="heading">Location:</dt>
+                    <for each="location" in="locations">
+                    <dd><a href="{+location+}">{+location+}</a></dd>
+                    </for>
+                </if>
+              </dl>
+            </td>
+          </tr>
+        </for>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </body>
+</html>

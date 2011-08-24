@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset={+IO.encoding+}" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    <title>
+      Sunny.js - API
+      <if test="JSDOC.opt.D.version">
+        - v{+JSDOC.opt.D.version+}
+      </if>
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="{+Link.base+}../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="{+Link.base+}../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    {+includeTmpl("header.tmpl")+}
+
+    <div id="index">
+      {! /*+publish.classesIndex+*/ !}
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        Classes
+        <if test="JSDOC.opt.D.version">
+          - v{+JSDOC.opt.D.version+}
+        </if>
+      </h1>
+
+      <table class="summaryTable" cellspacing="0">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Class</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        <for each="item" in="data">
+          <tr>
+            <td class="className">
+              {+(new Link().toSymbol(item.alias))+}
+            </td>
+            <td class="nameDescription">
+              {+resolveLinks(summarize(item.desc))+}
+            </td>
+          </tr>
+        </for>
+      </table>
+    </div>
+  </div>
+  </body>
+</html>
