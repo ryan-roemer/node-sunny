@@ -71,7 +71,11 @@ in development). So, developers may end up having to manually cleanup a
 cloud account and delete all "``sunnyjs-livetest-*``" containers.
 
 Note that live tests *can* randomly fail due to cloud provider service,
-network, throttling, etc. issues.
+network, throttling, etc. issues. For example, sometimes Google Storage
+will return "bucket not found" for containers that clearly exist (in a manner
+that other cloud clients like CyberDuck throw a similar error). Make sure
+to check your appropriate cloud status if the tests are failing in unusual
+or unexpected ways.
 
 To run the live tests, first create a configuration JavaScript file to be
 ``require``'ed by Node:
