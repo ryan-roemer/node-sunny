@@ -1,0 +1,33 @@
+{
+  "name": "sunny",
+  "description": "Multi-cloud datastore client.",
+  "version": "0.0.1",
+  "author": "Ryan Roemer <ryan@loose-bits.com>",
+  "url": "http://ryan-roemer.github.com/node-sunny",
+  "main": "index",
+  "engines": {
+    "node": ">=0.4.5"
+  },
+  "dependencies": {
+    "xml2js": "0.1.9"
+  },
+  "devDependencies": {
+    "jake": "0.1.14",
+    "findit": "0.1.1",
+    "jslint": "0.1.0",
+    "nodeunit": "0.5.3",
+    "node-uuid": "1.2.0",
+    "showdown": "0.0.1",
+    "async": "0.1.9",
+    "stylus": "0.15.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ryan-roemer/node-sunny.git"
+  },
+  "keywords": [
+    "sunny", "cloud",
+    "amazon", "aws", "amazon web services", "s3", "simple storage service",
+    "google storage for developers"
+  ]
+}

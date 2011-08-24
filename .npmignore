@@ -1,0 +1,12 @@
+\.DS_Store
+\.project
+npm-debug\.log
+
+docs*/**
+local/**
+node_modules/**
+test/**
+
+jake\.sh
+Jakefile
+TODO\.md

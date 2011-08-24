@@ -1,0 +1,82 @@
+/**
+ * Site (jekyll) styles.
+ */
+@import "common"
+
+body
+  font-family: 'Trebuchet MS', Trebuchet, sans-serif
+  font-size: 13px
+  color: #333333
+
+link-color = #f09000
+a
+  color: link-color
+  text-decoration: none
+  font-weight: bold
+  &:hover
+    text-decoration: underline
+
+h1,
+h2,
+h3
+  font-weight: bold
+  text-shadow: #cccccc 0.1em 0.1em 0.2em
+
+h1
+  font-size: 28px
+
+h2
+  font-size: 24px
+  margin-left: 5px
+
+h3
+  font-size: 20px
+  margin-left: 10px
+
+#container
+  margin: 0 auto
+  width: 550px
+
+#header
+  margin: 0 auto
+  #title
+    margin-bottom: 15px
+    text-align: center
+    text-shadow: #cfcfcf 0.1em 0.1em 0.1em
+    font-size: 32px
+    font-weight: bold
+    color: #333333
+  #menu
+    padding: 0px
+    padding-bottom: 30px
+    margin-bottom: 10px
+    ul
+      margin-left: 55px
+      display: block
+      list-style: none
+      li
+        display: inline
+        a
+          display: block
+          color: #ffffff
+          background-color: #333333
+          border: 1px solid #cccccc
+          border-radius(3px)
+          box-shadow(4px, 6px, 10px, #999999)
+          margin: 0 2px
+          padding: 4px 15px
+          float: left
+          font-weight: bold
+          &:hover
+            text-decoration: none
+            color: #000000
+            background-color: #ffffff
+            border: 1px solid #333333
+
+pre
+  background-color: #f9f9f9
+  padding: 10px 15px
+  margin-bottom: 15px
+  border: 1px solid #333333
+  border-radius(3px)
+  box-shadow(2px, 5px, 5px, #999999)

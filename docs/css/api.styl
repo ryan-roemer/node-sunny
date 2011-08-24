@@ -1,0 +1,102 @@
+/**
+ * API (jsdoc-toolkit) styles.
+ */
+@import "common"
+
+// Variables
+table-border = 1px #333333 solid
+
+// Mixed Styles
+#index hr,
+#content hr
+  border: none 0
+  border-top: 1px solid #7F8FB1
+  height: 1px
+
+.summaryTable caption,
+div.sectionTitle
+  background-color: #cccccc
+  color: #333333
+  font-size: 130%
+  text-align: left
+  padding: 2px 6px 2px 6px
+  border: table-border
+
+div.sectionTitle
+  margin-bottom: 10px
+
+div.fixedFont,
+.summaryTable td.attributes
+  line-height: 15px
+  font-family: "Courier New",Courier,monospace
+  font-size: 16px
+  margin-bottom: 10px
+
+// Style trees
+#index
+  ul.classList
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    margin: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #dddddd;
+    border-radius(5px);
+    box-shadow(0px, 4px, 4px, rgba(34,34,34,0.1))
+    text-align: left;
+    list-style: none
+
+.details,
+.description
+  h1
+    font-size: 18px
+  h2, .detailList .heading
+    font-size: 16px
+  h3
+    font-size: 14px
+
+  div.sectionTitle
+    margin-bottom: 8px
+
+.detailList
+  .heading
+    font-weight: bold
+    margin-left: 5px
+    margin-bottom: 5px
+    font-size: 16px
+    text-shadow: #cccccc 0.1em 0.1em 0.2em
+  dt
+    margin-left: 20px
+    line-height: 15px
+    margin-left: 20px
+  dt, dd
+    .fixedFont
+      font-style: italic
+      font-family: "Courier New",Courier,monospace
+
+.summaryTable
+  margin-bottom: 8px
+
+  thead
+    display: none
+
+  td
+    vertical-align: top
+    border-bottom: table-border
+    border-right: table-border
+    padding: 5px
+
+    p
+      margin-top: 0px
+      padding-top: 0px
+
+    &.attributes, &.fileName, &.className
+      border-left: table-border
+      width: 100px
+      text-align: right
+      font-size: 13px
+
+    &.nameDescription, div.fixedFont
+      text-align: left
+      font-size: 13px

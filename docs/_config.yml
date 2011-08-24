@@ -1,0 +1,16 @@
+version:     0.0.1
+safe:        false
+auto:        false
+server:      false
+base-url:    .
+
+source:      .
+destination: ../docs_html
+plugins:     ./_plugins
+exclude:     ["css"]
+
+future:      true
+lsi:         false
+pygments:    true
+markdown:    maruku
+permalink:   date

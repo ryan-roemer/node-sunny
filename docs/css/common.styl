@@ -1,0 +1,20 @@
+/**
+ * Common functions and definitions.
+ */
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  {prop} args
+
+border-radius()
+  vendor('border-radius', arguments)
+
+border-radius-part(topBottom, leftRight, val)
+  -webkit-border-{topBottom}-{leftRight}-radius: val
+  -moz-border-radius-{topBottom}{leftRight}: val
+  border-{topBottom}-{leftRight}-radius: val
+
+box-shadow(hor, vert, blur, color)
+  vendor('box-shadow', arguments)
+  filter: unquote("progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='" + color + "')")
+  -ms-filter: unquote('"' + "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='" + color + "')" + '"')
