@@ -83,11 +83,20 @@ so Sunny can make calls with validation (e.g., checking a bucket exists first).
 ### Supported
 Sunny currently supports the following cloud operations:
 
-* List containers: (``connection.getContainers()``)
-* PUT / DELETE container: (``container.put()``, ``container.del()``)
-* List blobs in a container: (``container.getBlobs()``)
-* PUT / HEAD / GET / DELETE blob: (``blob.put()``, ``blob.head()``,
-  ``blob.get()``, ``blob.del()``)
+* List containers:
+  ``connection.getContainers()``
+* PUT / DELETE container:
+  ``container.put()``,
+  ``container.del()``
+* List blobs in a container:
+  ``container.getBlobs()``
+* PUT / HEAD / GET / DELETE blob:
+  ``blob.put()``,
+  ``blob.putFromFile()``,
+  ``blob.head()``,
+  ``blob.get()``,
+  ``blob.getToFile()``,
+  ``blob.del()``
 
 ### Future
 Sunny is under rapid development. Some areas for enhancements:
