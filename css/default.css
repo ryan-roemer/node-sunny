@@ -1,0 +1,99 @@
+/**
+ * Site (jekyll) styles.
+ */
+body {
+  font-family: "Trebuchet MS", Trebuchet, sans-serif;
+  font-size: 13px;
+  color: #333;
+}
+a {
+  color: #f09000;
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  text-shadow: #ccc 0.1em 0.1em 0.2em;
+}
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 24px;
+  margin-left: 5px;
+}
+h3 {
+  font-size: 20px;
+  margin-left: 10px;
+}
+#container {
+  margin: 0 auto;
+  width: 550px;
+}
+#header {
+  margin: 0 auto;
+}
+#header #title {
+  margin-bottom: 15px;
+  text-align: center;
+  text-shadow: #cfcfcf 0.1em 0.1em 0.1em;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+#header #menu {
+  padding: 0px;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+}
+#header #menu ul {
+  margin-left: 55px;
+  display: block;
+  list-style: none;
+}
+#header #menu ul li {
+  display: inline;
+}
+#header #menu ul li a {
+  display: block;
+  color: #fff;
+  background-color: #333;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 4px 6px 10px #999;
+  -moz-box-shadow: 4px 6px 10px #999;
+  box-shadow: 4px 6px 10px #999;
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
+  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
+  margin: 0 2px;
+  padding: 4px 15px;
+  float: left;
+  font-weight: bold;
+}
+#header #menu ul li a:hover {
+  text-decoration: none;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #333;
+}
+pre {
+  background-color: #f9f9f9;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 2px 5px 5px #999;
+  -moz-box-shadow: 2px 5px 5px #999;
+  box-shadow: 2px 5px 5px #999;
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
+  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
+}

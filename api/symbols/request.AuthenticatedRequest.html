@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - request.AuthenticatedRequest
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class request.AuthenticatedRequest
+      </h1>
+
+      <p class="description">
+        
+        <br />Extends
+          <a href="../symbols/request.Request.html">request.Request</a>.<br />
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_request.js.html">request.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class request.AuthenticatedRequest.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/request.AuthenticatedRequest.html#constructor">request.AuthenticatedRequest</a></b>(auth, options)
+              </div>
+              <div class="description"><p>Authenticated request wrapper class.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class request.AuthenticatedRequest.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/request.AuthenticatedRequest.html#processResults">processResults</a></b>(data, response)
+                </div>
+                <div class="description"><p>Process data.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+        <dl class="inheritsList">
+        <dt>Methods borrowed from class <a href="../symbols/request.Request.html">request.Request</a>: </dt><dd><a href="../symbols/request.Request.html#end">end</a></dd>
+        </dl>
+        
+      
+
+      
+        
+        
+
+        
+        <dl class="inheritsList">
+        <dt>Events borrowed from class <a href="../symbols/request.Request.html">request.Request</a>: </dt><dd><a href="../symbols/request.Request.html#event:end">end</a>, <a href="../symbols/request.Request.html#event:error">error</a></dd>
+        </dl>
+        
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>request.AuthenticatedRequest</b>(auth, options)
+        </div>
+
+        <div class="description">
+          <p>Authenticated request wrapper class.</p>
+
+<p><strong>Note</strong>: Accumulates data for final 'end' event instead of passing
+through via typical 'data' events.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{<a href="../symbols/base.Authentication.html">base.Authentication</a>}</span>  <b>auth</b>
+                
+              </dt>
+                <dd>Authentication object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options</b>
+                
+              </dt>
+                <dd>Options object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.method</b>
+                <i>Optional</i>
+              </dt>
+                <dd>HTTP method (verb).</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.path</b>
+                <i>Optional</i>
+              </dt>
+                <dd>HTTP path.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options.params</b>
+                <i>Optional</i>
+              </dt>
+                <dd>HTTP path parameters.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options.headers</b>
+                <i>Optional</i>
+              </dt>
+                <dd>HTTP headers.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options.cloudHeaders</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Cloud provider headers to add.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options.metadata</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Cloud metadata to add.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.encoding</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Response encoding.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Function}</span>  <b>options.errorFn</b>
+                <i>Optional</i>
+              </dt>
+                <dd>errorFn(err, request, [response])
+                               Error handler (stops further emission).</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Function}</span>  <b>options.resultsFn</b>
+                <i>Optional</i>
+              </dt>
+                <dd>resultsFn(results, request, [response])
+                               Successful results data transform.</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="processResults"> </a>
+          <div class="fixedFont">
+
+          
+          <b>processResults</b>(data, response)
+
+          </div>
+          <div class="description">
+            <p>Process data.</p>
+
+<p>Also emits '<code>end</code>' event on processed data.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <b>data</b>
+                  
+                </dt>
+                <dd></dd>
+              
+                <dt>
+                  <b>response</b>
+                  
+                </dt>
+                <dd></dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+    </div>
+  </div>
+  </body>
+</html>

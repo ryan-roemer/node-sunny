@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - Configuration
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class Configuration
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_config.js.html">config.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Configuration.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/Configuration.html#constructor">Configuration</a></b>(options)
+              </div>
+              <div class="description"><p>Configuration class.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Configuration.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/Configuration.html#connection">connection</a></b>
+                </div>
+                <div class="description"><p>Connection object.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/Configuration.html#provider">provider</a></b>
+                </div>
+                <div class="description"><p>Provider string.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                Configuration.<b><a href="../symbols/Configuration.html#.PROVIDERS">PROVIDERS</a></b>
+                </div>
+                <div class="description"><p>Provider dictionary with delayed object creation.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Configuration.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">Configuration.<b><a href="../symbols/Configuration.html#.fromEnv">fromEnv</a></b>()
+                </div>
+                <div class="description"><p>Get configuration from environment.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">Configuration.<b><a href="../symbols/Configuration.html#.fromObj">fromObj</a></b>(options)
+                </div>
+                <div class="description"><p>Get configuration from options (settings) object.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/Configuration.html#isAws">isAws</a></b>()
+                </div>
+                <div class="description"><p>Test provider (AWS).</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/Configuration.html#isGoogle">isGoogle</a></b>()
+                </div>
+                <div class="description"><p>Test provider (Google Storage).</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>Configuration</b>(options)
+        </div>
+
+        <div class="description">
+          <p>Configuration class.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options</b>
+                
+              </dt>
+                <dd>Options object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.provider</b>
+                
+              </dt>
+                <dd>Cloud provider enum.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.account</b>
+                
+              </dt>
+                <dd>Account name.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.secretKey</b>
+                
+              </dt>
+                <dd>Secret key.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.ssl</b>
+                <i>Optional, Default: false</i>
+              </dt>
+                <dd>Use SSL?</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.authUrl</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Authentication URL.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{number}</span>  <b>options.timeout</b>
+                <i>Optional</i>
+              </dt>
+                <dd>HTTP timeout in seconds.</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name="connection"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/base.Connection.html">base.Connection</a>}</span>
+          <b>connection</b>
+
+          </div>
+          <div class="description">
+            <p>Connection object.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="provider"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{string}</span>
+          <b>provider</b>
+
+          </div>
+          <div class="description">
+            <p>Provider string.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name=".PROVIDERS"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          
+          <span class="light">Configuration.</span><b>PROVIDERS</b>
+
+          </div>
+          <div class="description">
+            <p>Provider dictionary with delayed object creation.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name=".fromEnv"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          <span class="light">{<a href="../symbols/Configuration.html">Configuration</a>}</span>
+          <span class="light">Configuration.</span><b>fromEnv</b>()
+
+          </div>
+          <div class="description">
+            <p>Get configuration from environment.</p>
+
+<h2 id="environmentvariables">Environment Variables</h2>
+
+<p>Sunny uses the following environment variables:</p>
+
+<ul>
+<li><strong>SUNNY_PROVIDER</strong>: <code>"aws"</code> or <code>"google"</code></li>
+<li><strong>SUNNY_ACCOUNT</strong>: <code>"ACCOUNT_NAME"</code></li>
+<li><strong>SUNNY<em>SECRET</em>KEY</strong>: <code>"ACCOUNT_SECRET_KEY"</code></li>
+<li><strong>SUNNY_SSL</strong>: <code>true</code> or <code>false</code></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/Configuration.html">Configuration</a>}</span> Configuration object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name=".fromObj"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          <span class="light">{<a href="../symbols/Configuration.html">Configuration</a>}</span>
+          <span class="light">Configuration.</span><b>fromObj</b>(options)
+
+          </div>
+          <div class="description">
+            <p>Get configuration from options (settings) object.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.provider</b>
+                  
+                </dt>
+                <dd>Cloud provider enum.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.account</b>
+                  
+                </dt>
+                <dd>Account name.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.secretKey</b>
+                  
+                </dt>
+                <dd>Secret key.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.ssl</b>
+                  <i>Optional, Default: false</i>
+                </dt>
+                <dd>Use SSL?</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.authUrl</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Authentication URL.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{number}</span> <b>options.timeout</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP timeout in seconds.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/Configuration.html">Configuration</a>}</span> Configuration object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="isAws"> </a>
+          <div class="fixedFont">
+
+          
+          <b>isAws</b>()
+
+          </div>
+          <div class="description">
+            <p>Test provider (AWS).</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="isGoogle"> </a>
+          <div class="fixedFont">
+
+          
+          <b>isGoogle</b>()
+
+          </div>
+          <div class="description">
+            <p>Test provider (Google Storage).</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+    </div>
+  </div>
+  </body>
+</html>

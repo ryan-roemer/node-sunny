@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - test.live
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Namespace test.live
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/test_live.test.js.html">live.test.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class test.live.">
+        <caption>Namespace Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/test.live.html#constructor">test.live</a></b>
+              </div>
+              <div class="description"><p>Live cloud tests.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class test.live.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                test.live.<b><a href="../symbols/test.live.html#.blob">blob</a></b>
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                test.live.<b><a href="../symbols/test.live.html#.connection">connection</a></b>
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                test.live.<b><a href="../symbols/test.live.html#.container">container</a></b>
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                test.live.<b><a href="../symbols/test.live.html#.utils">utils</a></b>
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Namespace Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>test.live</b>
+        </div>
+
+        <div class="description">
+          <p>Live cloud tests.</p>
+
+<h2 id="warningmutatesdatastore">Warning - Mutates Datastore!</h2>
+
+<p>This actually <strong>adds/deletes</strong> containers / files on a live cloud
+account. Care has been taken to not collide with any real data, but you
+are strongly advised to <strong>not</strong> run the tests against a production cloud
+storage account.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Tests require a configuration in the format of:</p>
+
+<pre><code>Configuration = [
+  {
+    provider: 'aws',
+    acount: '&lt;ACCOUNT NAME&gt;',
+    secretKey: '&lt;SECRET KEY&gt;',
+    [ssl: false]
+  },
+  {  // ... other providers ...
+  }
+];
+</code></pre>
+
+<p>Taken from a file. Tests are run against each configuration provided.
+Currently supported providers are:
+- 'aws' AWS Simple Storage Service (S3)
+- 'google': Google Storage For Developers</p>
+
+<h2 id="setupteardownandwrappersdev">Setup/Teardown and Wrappers (Dev)</h2>
+
+<p>The nodeunit tests are wrapped to inject cloud-specific information and
+to run suites against each different cloud configuration. The underlying
+test prototypes look pretty similar to ordinary nodeunit tests, except
+the function signature is:</p>
+
+<pre><code>function (test, opts)
+</code></pre>
+
+<p>instead of:</p>
+
+<pre><code>function (test)
+</code></pre>
+
+<p>where <code>opts</code> are injected cloud information.</p>
+
+<p>Several tests use a setup/teardown wrapper that creates a (hopefully)
+unique and non-existent test container, optionally adds blobs, and wipes
+out everything on teardown.  See <code>test.live.utils.createTestSetup()</code>
+for more information.</p>
+          
+        </div>
+
+        
+
+
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name=".blob"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          
+          <span class="light">test.live.</span><b>blob</b>
+
+          </div>
+          <div class="description">
+            
+            
+              <br />
+              <i>Defined in: </i> <a href="../symbols/src/test_live_blob.js.html">blob.js</a>.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name=".connection"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          
+          <span class="light">test.live.</span><b>connection</b>
+
+          </div>
+          <div class="description">
+            
+            
+              <br />
+              <i>Defined in: </i> <a href="../symbols/src/test_live_connection.js.html">connection.js</a>.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name=".container"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          
+          <span class="light">test.live.</span><b>container</b>
+
+          </div>
+          <div class="description">
+            
+            
+              <br />
+              <i>Defined in: </i> <a href="../symbols/src/test_live_container.js.html">container.js</a>.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name=".utils"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          
+          <span class="light">test.live.</span><b>utils</b>
+
+          </div>
+          <div class="description">
+            
+            
+              <br />
+              <i>Defined in: </i> <a href="../symbols/src/test_live_utils.js.html">utils.js</a>.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+
+      
+    </div>
+  </div>
+  </body>
+</html>

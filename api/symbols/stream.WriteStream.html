@@ -1,0 +1,740 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - stream.WriteStream
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class stream.WriteStream
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_stream.js.html">stream.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class stream.WriteStream.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/stream.WriteStream.html#constructor">stream.WriteStream</a></b>(request, options)
+              </div>
+              <div class="description"><p>Writable cloud stream.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class stream.WriteStream.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                stream.WriteStream.<b><a href="../symbols/stream.WriteStream.html#.writable">writable</a></b>
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.writable"><code>writable</code></a></strong>
+"A boolean that is true by default, but turns false after an 'error'
+occurred or end() / destroy() was called.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class stream.WriteStream.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#destroy">destroy</a></b>()
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroy"><code>destroy</code></a></strong>
+"Closes the underlying file descriptor.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#destroySoon">destroySoon</a></b>()
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroySoon"><code>destroySoon</code></a></strong>
+"After the write queue is drained, close the file descriptor.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#end">end</a></b>(value, encoding)
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.end"><code>end</code></a></strong></p>
+
+<p>Terminates the stream with EOF or FIN.Argument based options:</p>
+
+<ul>
+<li><code>end()</code></li>
+<li><code>end(string, encoding)</code></li>
+<li><code>end(buffer)</code></li>
+</ul></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#write">write</a></b>(value, encoding)
+                </div>
+                <div class="description"><p>Write string/buffer to stream.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the events documented in the class stream.WriteStream.">
+          <caption>Event Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Event Attributes</th>
+              <th scope="col">Event Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#event:close">close</a></b>()
+                </div>
+                <div class="description"><p>Close event ('<code>close</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#event:drain">drain</a></b>()
+                </div>
+                <div class="description"><p>Drain event ('<code>drain</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#event:end">end</a></b>(results, meta)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#event:error">error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.WriteStream.html#event:pipe">pipe</a></b>(src)
+                </div>
+                <div class="description"><p>Pipe event ('<code>pipe</code>').</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>stream.WriteStream</b>(request, options)
+        </div>
+
+        <div class="description">
+          <p>Writable cloud stream.</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#writable_Stream"><code>Writable Stream</code></a></strong> interface.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{<a href="../symbols/request.AuthenticatedRawRequest.html">request.AuthenticatedRawRequest</a>}</span>  <b>request</b>
+                
+              </dt>
+                <dd>Request object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Options object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Function}</span>  <b>options.errorFn</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Function to call with error.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Function}</span>  <b>options.endFn</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Function to call with results. Called:
+                                 endFn(response).</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name=".writable"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          <span class="light">{boolean}</span>
+          <span class="light">stream.WriteStream.</span><b>writable</b>
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.writable"><code>writable</code></a></strong>
+"A boolean that is true by default, but turns false after an 'error'
+occurred or end() / destroy() was called."</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="destroy"> </a>
+          <div class="fixedFont">
+
+          
+          <b>destroy</b>()
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroy"><code>destroy</code></a></strong>
+"Closes the underlying file descriptor. Stream will not emit any more
+events."</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="destroySoon"> </a>
+          <div class="fixedFont">
+
+          
+          <b>destroySoon</b>()
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroySoon"><code>destroySoon</code></a></strong>
+"After the write queue is drained, close the file descriptor.
+destroySoon() can still destroy straight away, as long as there is no
+data left in the queue for writes."</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>end</b>(value, encoding)
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.end"><code>end</code></a></strong></p>
+
+<p>Terminates the stream with EOF or FIN.Argument based options:</p>
+
+<ul>
+<li><code>end()</code></li>
+<li><code>end(string, encoding)</code></li>
+<li><code>end(buffer)</code></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Buffer|string}</span> <b>value</b>
+                  
+                </dt>
+                <dd>Buffer / string to write.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string='utf8'}</span> <b>encoding</b>
+                  
+                </dt>
+                <dd>Encoding to use if string value.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="write"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>write</b>(value, encoding)
+
+          </div>
+          <div class="description">
+            <p>Write string/buffer to stream.</p>
+
+<p>Argument based options:</p>
+
+<ul>
+<li><code>write(string, encoding='utf8', [fd])</code></li>
+<li><code>write(buffer)</code></li>
+</ul>
+
+<p><strong>Note</strong>: <code>fd</code> parameter is not currently supported.</p>
+
+<p><strong>Note</strong>: AWS/GSFD does not support <code>Transfer-Encoding: chunked</code>, so
+we accumulate buffers and write it all in one shot at the <code>end()</code> call.
+In the future, parallel upload might be supported.</p>
+
+<p>This also means that nothing actually happens on the network until an
+<code>end()</code> is called.</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.write"><code>write</code></a></strong>
+"Writes string with the given encoding to the stream. Returns true if the
+string has been flushed to the kernel buffer. Returns false to indicate
+that the kernel buffer is full, and the data will be sent out in the
+future. The 'drain' event will indicate when the kernel buffer is empty
+again. The encoding defaults to 'utf8'.</p>
+
+<p>If the optional fd parameter is specified, it is interpreted as an
+integral file descriptor to be sent over the stream. This is only
+supported for UNIX streams, and is silently ignored otherwise. When
+writing a file descriptor in this manner, closing the descriptor before
+the stream drains risks sending an invalid (closed) FD."</p>
+
+<p>... and ...</p>
+
+<p>"Same as the above except with a raw buffer."</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Buffer|string}</span> <b>value</b>
+                  
+                </dt>
+                <dd>Buffer / string to write.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string='utf8'}</span> <b>encoding</b>
+                  
+                </dt>
+                <dd>Encoding to use if string value.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{boolean}</span> If buffer is available (always true).</dd>
+              
+              </dl>
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Event Detail
+        </div>
+        
+          <a name="event:close"> </a>
+          <div class="fixedFont">
+
+          
+          <b>close</b>()
+
+          </div>
+          <div class="description">
+            <p>Close event ('<code>close</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_close_"><code>Event 'close'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:drain"> </a>
+          <div class="fixedFont">
+
+          
+          <b>drain</b>()
+
+          </div>
+          <div class="description">
+            <p>Drain event ('<code>drain</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_drain_"><code>Event 'drain'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>end</b>(results, meta)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+
+<p>Extra event to allow caller to know that writing has been completed.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_error_"><code>Event 'error'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:pipe"> </a>
+          <div class="fixedFont">
+
+          
+          <b>pipe</b>(src)
+
+          </div>
+          <div class="description">
+            <p>Pipe event ('<code>pipe</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_pipe_"><code>Event 'pipe'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>src</b>
+                  
+                </dt>
+                <dd>A Readable Stream object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+    </div>
+  </div>
+  </body>
+</html>

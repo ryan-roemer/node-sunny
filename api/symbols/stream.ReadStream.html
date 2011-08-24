@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - stream.ReadStream
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class stream.ReadStream
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_stream.js.html">stream.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class stream.ReadStream.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/stream.ReadStream.html#constructor">stream.ReadStream</a></b>(request, options)
+              </div>
+              <div class="description"><p>Readable cloud stream.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class stream.ReadStream.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/stream.ReadStream.html#readable">readable</a></b>
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.readable"><code>readable</code></a></strong>
+"A boolean that is true by default, but turns false after an 'error'
+occurred, the stream came to an 'end', or destroy() was called.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class stream.ReadStream.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#destroy">destroy</a></b>()
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroy"><code>destroy</code></a></strong>
+"Closes the underlying file descriptor.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#destroySoon">destroySoon</a></b>()
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroySoon"><code>destroySoon</code></a></strong></p>
+
+<p>After the write queue is drained, close the file descriptor.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#end">end</a></b>()
+                </div>
+                <div class="description"><p>End the underlying cloud request.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#pause">pause</a></b>()
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.pause"><code>pause</code></a></strong></p>
+
+<p>Pauses the incoming 'data' events.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#resume">resume</a></b>()
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.resume"><code>resume</code></a></strong></p>
+
+<p>Resumes the incoming 'data' events after a pause().</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#setEncoding">setEncoding</a></b>(encoding)
+                </div>
+                <div class="description"><p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.setEncoding"><code>setEncoding</code></a></strong>
+"Makes the data event emit a string instead of a Buffer.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the events documented in the class stream.ReadStream.">
+          <caption>Event Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Event Attributes</th>
+              <th scope="col">Event Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#event:data">data</a></b>(data)
+                </div>
+                <div class="description"><p>Data event ('<code>data</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#event:end">end</a></b>(results, meta)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/stream.ReadStream.html#event:error">error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>stream.ReadStream</b>(request, options)
+        </div>
+
+        <div class="description">
+          <p>Readable cloud stream.</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#readable_Stream"><code>Readable Stream</code></a></strong> interface.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{<a href="../symbols/request.AuthenticatedRawRequest.html">request.AuthenticatedRawRequest</a>}</span>  <b>request</b>
+                
+              </dt>
+                <dd>Request object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Options object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Function}</span>  <b>options.errorFn</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Function to call with error.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Function}</span>  <b>options.endFn</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Function to call with results. Called:
+                                 endFn(response).</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name="readable"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>readable</b>
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.readable"><code>readable</code></a></strong>
+"A boolean that is true by default, but turns false after an 'error'
+occurred, the stream came to an 'end', or destroy() was called."</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="destroy"> </a>
+          <div class="fixedFont">
+
+          
+          <b>destroy</b>()
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroy"><code>destroy</code></a></strong>
+"Closes the underlying file descriptor. Stream will not emit any more
+events."</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="destroySoon"> </a>
+          <div class="fixedFont">
+
+          
+          <b>destroySoon</b>()
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.destroySoon"><code>destroySoon</code></a></strong></p>
+
+<p>After the write queue is drained, close the file descriptor.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>end</b>()
+
+          </div>
+          <div class="description">
+            <p>End the underlying cloud request.</p>
+
+<p>Typically starts the async code execution.</p>
+
+<p><em>Note</em>: This function can be called multiple times without bad effect.
+Calling code has the option to call <code>end()</code> once the request is set
+up, or leave it to the end user.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="pause"> </a>
+          <div class="fixedFont">
+
+          
+          <b>pause</b>()
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.pause"><code>pause</code></a></strong></p>
+
+<p>Pauses the incoming 'data' events.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="resume"> </a>
+          <div class="fixedFont">
+
+          
+          <b>resume</b>()
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.resume"><code>resume</code></a></strong></p>
+
+<p>Resumes the incoming 'data' events after a pause().</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="setEncoding"> </a>
+          <div class="fixedFont">
+
+          
+          <b>setEncoding</b>(encoding)
+
+          </div>
+          <div class="description">
+            <p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#stream.setEncoding"><code>setEncoding</code></a></strong>
+"Makes the data event emit a string instead of a Buffer. encoding can be
+'utf8', 'ascii', or 'base64'."</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <b>encoding</b>
+                  
+                </dt>
+                <dd></dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Event Detail
+        </div>
+        
+          <a name="event:data"> </a>
+          <div class="fixedFont">
+
+          
+          <b>data</b>(data)
+
+          </div>
+          <div class="description">
+            <p>Data event ('<code>data</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_data_"><code>Event 'data'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>data</b>
+                  
+                </dt>
+                <dd>Data chunk.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>end</b>(results, meta)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_end_"><code>Event 'end'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+
+<p><em>Implements</em> <strong><a href="http://nodejs.org/docs/v0.4.9/api/streams.html#event_error_"><code>Event 'error'</code></a></strong></p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+    </div>
+  </div>
+  </body>
+</html>

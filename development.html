@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="description" content="Multi-cloud data store client." />
+  <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+  <title>Sunny.js - Development - v0.0.1</title>
+  <link rel="stylesheet" type="text/css" 
+    href="./css/syntax.css"  />
+  <link rel="stylesheet" type="text/css" 
+    href="./css/default.css"  />
+</head>
+<body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./guide.html">Guide</a></li>
+      <li><a href="./development.html">Development</a></li>
+      <li><a href="./api/index.html">API</a></li>
+      <li><a href="./api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+    <div id="content">
+      <h1 id='development_guide'>Development Guide</h1>
+
+<p>Sunny development is mostly controlled by <a href='https://github.com/mde/jake'>Jake</a> tasks, uses <a href='https://github.com/caolan/nodeunit'>NodeUnit</a> and <a href='https://github.com/reid/node-jslint'>JsLint</a> for testing, and has a horribly contrived document build system.</p>
+
+<p>Development help is most welcome! There is a long task list in source at &#8220;./TODO.md&#8221; of improvements and enhancements that would be great to get going.</p>
+
+<p>This guide is for Sunny version: <strong>v0.0.1</strong>.</p>
+
+<h2 id='dev_installation'>Dev. Installation</h2>
+
+<p>To start developing on Sunny, just clone the repository and NPM install the dev. dependencies:</p>
+
+<pre><code>$ git clone git@github.com:ryan-roemer/node-sunny.git
+$ cd node-sunny
+$ npm install</code></pre>
+
+<p>which should install all the required node packages to &#8220;./node_modules&#8221;.</p>
+
+<p>By default, no packages are installed globally (makes for a cleaner environment). The Jake targets all assume a &#8220;./node_modules&#8221; based path. And there is a simple shell wrapper script for invoking Jake:</p>
+
+<pre><code>$ ./jake.sh &lt;OPTIONS&gt;</code></pre>
+
+<p>If you globally installed Jake, you can just use <code>jake &lt;OPTIONS&gt;</code> instead.</p>
+
+<h2 id='jake_targets'>Jake Targets</h2>
+
+<p>Here are some relevant Jake targets:</p>
+
+<pre><code>$ ./jake.sh -T
+jake dev:cruft            # Check for debugging snippets and
+                            bad code style.
+jake dev:jslint           # Run style checks.
+jake test:all             # Run all tests.
+jake test:core            # Run core module tests.
+jake test:live            # Run unit tests on real datastores
+                            (requires configuration(s)).
+jake build:clean          # Clean all build files.
+jake build:docs           # Build all documentation.
+...</code></pre>
+
+<h2 id='tests_and_checks'>Tests and Checks</h2>
+
+<p>The Sunny codebase should pass all tests and quality checks.</p>
+
+<h3 id='core_tests'>Core Tests</h3>
+
+<p>The core unit tests do not require a configuration or network connection, and can be run with:</p>
+
+<pre><code>$ ./jake.sh test:core</code></pre>
+
+<h3 id='live_tests'>Live Tests</h3>
+
+<p>The live unit tests perform cloud operations against <strong>real datastores</strong>. While unlikely to cause harm, you should <strong>not</strong> run the live tests against a production datastore. The live tests create test containers of the form: &#8221;<code>sunnyjs-livetest-&lt;RANDOM_GUID&gt;</code>&#8221; in a setup phase. These containers should be deleted on teardown, regardless of whether or not the unit tests passed, but the whole test framework sometimes breaks down on failures (particularly in development). So, developers may end up having to manually cleanup a cloud account and delete all &#8221;<code>sunnyjs-livetest-*</code>&#8221; containers.</p>
+
+<p>Note that live tests <em>can</em> randomly fail due to cloud provider service, network, throttling, etc. issues. For example, sometimes Google Storage will return &#8220;bucket not found&#8221; for containers that clearly exist (in a manner that other cloud clients like CyberDuck throw a similar error). Make sure to check your appropriate cloud status if the tests are failing in unusual or unexpected ways.</p>
+
+<p>To run the live tests, first create a configuration JavaScript file to be <code>require</code>&#8216;ed by Node:</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>module</span><span class='p'>.</span><span class='nx'>exports</span><span class='p'>.</span><span class='nx'>Configuration</span> <span class='o'>=</span> <span class='p'>[</span>
+  <span class='p'>{</span>
+    <span class='nx'>provider</span><span class='o'>:</span> <span class='s1'>&#39;aws&#39;</span><span class='p'>,</span>
+    <span class='nx'>account</span><span class='o'>:</span> <span class='s2'>&quot;ACCOUNT_NAME&quot;</span><span class='p'>,</span>
+    <span class='nx'>secretKey</span><span class='o'>:</span> <span class='s2'>&quot;ACCOUNT_SECRET_KEY&quot;</span><span class='p'>,</span>
+    <span class='nx'>ssl</span><span class='o'>:</span> <span class='kc'>true</span>
+  <span class='p'>},</span>
+  <span class='p'>{</span>
+    <span class='nx'>provider</span><span class='o'>:</span> <span class='s1'>&#39;google&#39;</span><span class='p'>,</span>
+    <span class='nx'>account</span><span class='o'>:</span> <span class='s2'>&quot;ACCOUNT_NAME&quot;</span><span class='p'>,</span>
+    <span class='nx'>secretKey</span><span class='o'>:</span> <span class='s2'>&quot;ACCOUNT_SECRET_KEY&quot;</span><span class='p'>,</span>
+    <span class='nx'>ssl</span><span class='o'>:</span> <span class='kc'>false</span>
+  <span class='p'>}</span>
+  <span class='cm'>/* Other account configurations... */</span>
+<span class='p'>];</span>
+</code></pre>
+</div>
+<p>By default, Sunny looks for this file in &#8220;./local/live-test-config.js&#8221;, so place it there if you can.</p>
+
+<p>Sunny will run the full suite of live tests against <em>each</em> configuration object. As this has real network back-and-forth, the live tests do take a while &#8211; a single configuration on a MacBook Pro currently takes around 50-60 seconds.</p>
+
+<p>Once you have your configuration file, try:</p>
+
+<pre><code>$ ./jake.sh test:live[PATH/TO/YOUR/test-config.js]</code></pre>
+
+<p>&#8230; or with the default path &#8220;./local/live-test-config.js&#8221;:</p>
+
+<pre><code>$ ./jake.sh test:live</code></pre>
+
+<h3 id='run_all_tests'>Run All Tests</h3>
+
+<p>If you have a live test configuration with the default path, you can run:</p>
+
+<pre><code>$ ./jake.sh test:all</code></pre>
+
+<p>to execute all tests.</p>
+
+<h3 id='jslint'>JsLint</h3>
+
+<p>We have a simple Jake target for JsLint checks:</p>
+
+<pre><code># ./jake.sh dev:jslint</code></pre>
+
+<p>The whole library and tests should pass.</p>
+
+<h2 id='documentation'>Documentation</h2>
+
+<p>Building the Sunny documentation unfortunately requires a bit of an extensive setup process.</p>
+
+<p>Sunny use <a href='http://code.google.com/p/jsdoc-toolkit/'>JsDoc Toolkit 2</a> for API documentation, run through a custom Markdown plugin (dependency handle already by NPM). For the rest of the site documentation (including this page), Sunny uses <a href='https://github.com/mojombo/jekyll'>Jekyll</a> with a <a href='http://pygments.org/'>Pygments</a> installation, with <a href='http://learnboost.github.com/stylus/'>Stylus</a> for CSS generation (dependency handled already).</p>
+
+<p>The Jekyll source docs are located in &#8220;./docs&#8221; and the JsDoc source docs are in &#8220;./docs_api&#8221;. The Jake build target cobbles everything together, processes the CSS and outputs everything to &#8220;./docs_html&#8221; in final form.</p>
+
+<h3 id='installation'>Installation</h3>
+
+<p>First, install <a href='http://code.google.com/p/jsdoc-toolkit/'>JsDoc Toolkit 2</a>. On a Mac, this can be done with:</p>
+
+<pre><code>$ brew install jsdoc-toolkit</code></pre>
+
+<p>Then, install <a href='https://github.com/mojombo/jekyll'>Jekyll</a>. (You may need <code>sudo</code> depending on if you are in a virtual Ruby environment).</p>
+
+<pre><code>$ gem install jekyll</code></pre>
+
+<p>Finally, install <a href='http://pygments.org/'>Pygments</a>. (You may need <code>sudo</code> depending on if you are in a virtual Python environment).</p>
+
+<pre><code>$ pip install pygments</code></pre>
+
+<h3 id='build_the_documents'>Build the Documents</h3>
+
+<p>To build all of the documents, run the Jake target:</p>
+
+<pre><code>$ ./jake.sh build:docs</code></pre>
+
+<p>which will output the complete documents (site and API) to &#8220;./docs_html&#8221;.</p>
+    </div>
+  </div>
+</body>
+</html>

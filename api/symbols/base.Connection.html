@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - base.Connection
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class base.Connection
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_base_connection.js.html">connection.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class base.Connection.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/base.Connection.html#constructor">base.Connection</a></b>(auth)
+              </div>
+              <div class="description"><p>Abstract base connection class.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class base.Connection.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/base.Connection.html#authentication">authentication</a></b>
+                </div>
+                <div class="description"><p>Authentication object.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/base.Connection.html#headerPrefix">headerPrefix</a></b>
+                </div>
+                <div class="description"><p>Cloud header prefix (e.g.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/base.Connection.html#metadataPrefix">metadataPrefix</a></b>
+                </div>
+                <div class="description"><p>Cloud header metadata prefix (e.g.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class base.Connection.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.Connection.html#delContainer">delContainer</a></b>(name, options)
+                </div>
+                <div class="description"><p>Create container object and DELETE.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.Connection.html#getContainer">getContainer</a></b>(name, options)
+                </div>
+                <div class="description"><p>Create container object and GET.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.Connection.html#getContainers">getContainers</a></b>(options)
+                </div>
+                <div class="description"><p>Get a list of Containers.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.Connection.html#putContainer">putContainer</a></b>(name, options)
+                </div>
+                <div class="description"><p>Create container object and PUT.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the events documented in the class base.Connection.">
+          <caption>Event Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Event Attributes</th>
+              <th scope="col">Event Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.Connection.html#event:getContainers_end">getContainers_end</a></b>(results)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.Connection.html#event:getContainers_error">getContainers_error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>base.Connection</b>(auth)
+        </div>
+
+        <div class="description">
+          <p>Abstract base connection class.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{<a href="../symbols/base.Authentication.html">base.Authentication</a>}</span>  <b>auth</b>
+                
+              </dt>
+                <dd>Authentication object.</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name="authentication"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/base.Authentication.html">base.Authentication</a>}</span>
+          <b>authentication</b>
+
+          </div>
+          <div class="description">
+            <p>Authentication object.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="headerPrefix"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{string}</span>
+          <b>headerPrefix</b>
+
+          </div>
+          <div class="description">
+            <p>Cloud header prefix (e.g., 'x-amz-').</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="metadataPrefix"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{string}</span>
+          <b>metadataPrefix</b>
+
+          </div>
+          <div class="description">
+            <p>Cloud header metadata prefix (e.g., 'x-amz-meta-').</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="delContainer"> </a>
+          <div class="fixedFont">
+
+          
+          <b>delContainer</b>(name, options)
+
+          </div>
+          <div class="description">
+            <p>Create container object and DELETE.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <b>name</b>
+                  
+                </dt>
+                <dd></dd>
+              
+                <dt>
+                  <b>options</b>
+                  
+                </dt>
+                <dd></dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">See:</dt>
+              
+                <dd><a href="../symbols/base.blob.Container.html#del">base.blob.Container#del</a></dd>
+              
+              </dl>
+            
+
+          <hr />
+        
+          <a name="getContainer"> </a>
+          <div class="fixedFont">
+
+          
+          <b>getContainer</b>(name, options)
+
+          </div>
+          <div class="description">
+            <p>Create container object and GET.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <b>name</b>
+                  
+                </dt>
+                <dd></dd>
+              
+                <dt>
+                  <b>options</b>
+                  
+                </dt>
+                <dd></dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">See:</dt>
+              
+                <dd><a href="../symbols/base.blob.Container.html#get">base.blob.Container#get</a></dd>
+              
+              </dl>
+            
+
+          <hr />
+        
+          <a name="getContainers"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{AuthenticatedRequest}</span>
+          <b>getContainers</b>(options)
+
+          </div>
+          <div class="description">
+            <p>Get a list of Containers.</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#getContainers_end"><code>end(results, meta)</code></a></li>
+<li><a href="#getContainers_error"><code>error(err)</code></a></li>
+</ul>
+
+<h2 id="note">Note</h2>
+
+<p>Both AWS and GSFD only offer listing <strong>all</strong> containers, without
+paging or prefix options.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{AuthenticatedRequest}</span> Request object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="putContainer"> </a>
+          <div class="fixedFont">
+
+          
+          <b>putContainer</b>(name, options)
+
+          </div>
+          <div class="description">
+            <p>Create container object and PUT.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <b>name</b>
+                  
+                </dt>
+                <dd></dd>
+              
+                <dt>
+                  <b>options</b>
+                  
+                </dt>
+                <dd></dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">See:</dt>
+              
+                <dd><a href="../symbols/base.blob.Container.html#put">base.blob.Container#put</a></dd>
+              
+              </dl>
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Event Detail
+        </div>
+        
+          <a name="event:getContainers_end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>getContainers_end</b>(results)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Array}</span> <b>results.containers</b>
+                  
+                </dt>
+                <dd>List of container objects.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:getContainers_error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>getContainers_error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+    </div>
+  </div>
+  </body>
+</html>

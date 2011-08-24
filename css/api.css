@@ -1,0 +1,121 @@
+/**
+ * API (jsdoc-toolkit) styles.
+ */
+#index hr,
+#content hr {
+  border: none 0;
+  border-top: 1px solid #7f8fb1;
+  height: 1px;
+}
+.summaryTable caption,
+div.sectionTitle {
+  background-color: #ccc;
+  color: #333;
+  font-size: 130%;
+  text-align: left;
+  padding: 2px 6px 2px 6px;
+  border: 1px #333 solid;
+}
+div.sectionTitle {
+  margin-bottom: 14px;
+  -webkit-box-shadow: 2px 5px 5px #999;
+  -moz-box-shadow: 2px 5px 5px #999;
+  box-shadow: 2px 5px 5px #999;
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
+  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
+}
+div.fixedFont,
+.summaryTable td.attributes {
+  line-height: 15px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+#index ul.classList {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  margin: 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.30);
+  border: 1px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 4px rgba(34,34,34,0.10);
+  -moz-box-shadow: 0px 4px 4px rgba(34,34,34,0.10);
+  box-shadow: 0px 4px 4px rgba(34,34,34,0.10);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='rgba(34,34,34,0.10)');
+  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='rgba(34,34,34,0.10)')";
+  text-align: left;
+  list-style: none;
+}
+.details h1,
+.description h1 {
+  font-size: 18px;
+}
+.details h2,
+.description h2,
+.details .detailList .heading,
+.description .detailList .heading {
+  font-size: 16px;
+}
+.details h3,
+.description h3 {
+  font-size: 14px;
+}
+.details div.sectionTitle,
+.description div.sectionTitle {
+  margin-bottom: 8px;
+}
+.detailList .heading {
+  font-weight: bold;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  text-shadow: #ccc 0.1em 0.1em 0.2em;
+}
+.detailList dt {
+  margin-left: 20px;
+  line-height: 15px;
+  margin-left: 20px;
+}
+.detailList dt .fixedFont,
+.detailList dd .fixedFont {
+  font-style: italic;
+  font-family: "Courier New", Courier, monospace;
+}
+.summaryTable {
+  margin-bottom: 18px;
+  -webkit-box-shadow: 2px 5px 5px #999;
+  -moz-box-shadow: 2px 5px 5px #999;
+  box-shadow: 2px 5px 5px #999;
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
+  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
+}
+.summaryTable thead {
+  display: none;
+}
+.summaryTable td {
+  vertical-align: top;
+  border-bottom: 1px #333 solid;
+  border-right: 1px #333 solid;
+  padding: 5px;
+}
+.summaryTable td p {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+.summaryTable td.attributes,
+.summaryTable td.fileName,
+.summaryTable td.className {
+  border-left: 1px #333 solid;
+  width: 100px;
+  text-align: right;
+  font-size: 13px;
+}
+.summaryTable td.nameDescription,
+.summaryTable td div.fixedFont {
+  text-align: left;
+  font-size: 13px;
+}

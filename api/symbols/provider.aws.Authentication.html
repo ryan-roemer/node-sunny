@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - provider.aws.Authentication
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class provider.aws.Authentication
+      </h1>
+
+      <p class="description">
+        
+        <br />Extends
+          <a href="../symbols/base.Authentication.html">base.Authentication</a>.<br />
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_provider_aws_authentication.js.html">authentication.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class provider.aws.Authentication.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/provider.aws.Authentication.html#constructor">provider.aws.Authentication</a></b>(options)
+              </div>
+              <div class="description"><p>AWS Authentication class.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+
+        
+        <dl class="inheritsList">
+        <dt>Fields borrowed from class <a href="../symbols/base.Authentication.html">base.Authentication</a>: </dt><dd><a href="../symbols/base.Authentication.html#connection">connection</a>, <a href="../symbols/base.Authentication.html#port">port</a>, <a href="../symbols/base.Authentication.html#ssl">ssl</a></dd>
+        </dl>
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class provider.aws.Authentication.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/provider.aws.Authentication.html#sign">sign</a></b>(method, path, headers)
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+        <dl class="inheritsList">
+        <dt>Methods borrowed from class <a href="../symbols/base.Authentication.html">base.Authentication</a>: </dt><dd><a href="../symbols/base.Authentication.html#authUrl">authUrl</a>, <a href="../symbols/base.Authentication.html#createRequest">createRequest</a>, <a href="../symbols/base.Authentication.html#createXmlRequest">createXmlRequest</a></dd>
+        </dl>
+        
+      
+
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>provider.aws.Authentication</b>(options)
+        </div>
+
+        <div class="description">
+          <p>AWS Authentication class.</p>
+
+<p><em>See</em>: http://docs.amazonwebservices.com/AmazonS3/latest/API/</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options</b>
+                
+              </dt>
+                <dd>Options object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.account</b>
+                
+              </dt>
+                <dd>Account name.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.secretKey</b>
+                
+              </dt>
+                <dd>Secret key.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.ssl</b>
+                <i>Optional, Default: false</i>
+              </dt>
+                <dd>Use SSL?</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>options.authUrl</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Authentication URL.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{number}</span>  <b>options.timeout</b>
+                <i>Optional</i>
+              </dt>
+                <dd>HTTP timeout in seconds.</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="sign"> </a>
+          <div class="fixedFont">
+
+          
+          <b>sign</b>(method, path, headers)
+
+          </div>
+          <div class="description">
+            
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <b>method</b>
+                  
+                </dt>
+                <dd></dd>
+              
+                <dt>
+                  <b>path</b>
+                  
+                </dt>
+                <dd></dd>
+              
+                <dt>
+                  <b>headers</b>
+                  
+                </dt>
+                <dd></dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">See:</dt>
+              
+                <dd><a href="../symbols/base.Authentication.html#sign">base.Authentication#sign</a></dd>
+              
+              </dl>
+            
+
+          
+        
+      
+
+      
+    </div>
+  </div>
+  </body>
+</html>

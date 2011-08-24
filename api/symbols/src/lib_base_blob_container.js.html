@@ -1,0 +1,264 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * @fileOverview Base Container.
+<span class='line'>  3</span>  */</span><span class="WHIT">
+<span class='line'>  4</span> 
+<span class='line'>  5</span> </span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">utils</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">require</span><span class="PUNC">(</span><span class="STRN">"../../utils"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="WHIT">    </span><span class="NAME">CloudError</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">require</span><span class="PUNC">(</span><span class="STRN">"../../errors"</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">CloudError</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="WHIT">    </span><span class="NAME">Container</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 11</span>    * Container class.
+<span class='line'> 12</span>    *
+<span class='line'> 13</span>    * @param {base.blob.Container} conn  Connection object.
+<span class='line'> 14</span>    * @param {Object}      attrs     Attributes.
+<span class='line'> 15</span>    * @config {string}     name      Name.
+<span class='line'> 16</span>    * @config {string}     created   Creation date.
+<span class='line'> 17</span>    * @exports Container as base.blob.Container
+<span class='line'> 18</span>    * @constructor
+<span class='line'> 19</span>    */</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">  </span><span class="NAME">Container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">conn</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">    </span><span class="COMM">// Validation.</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">conn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"No connection object."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">attrs</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">attrs.name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"No container name."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">    </span><span class="NAME">this._conn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">conn</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">    </span><span class="NAME">this._name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">attrs.name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">    </span><span class="NAME">this._created</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">attrs.created</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="WHIT">  </span><span class="NAME">Object.defineProperties</span><span class="PUNC">(</span><span class="NAME">Container.prototype</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 32</span>      * Connection object.
+<span class='line'> 33</span>      *
+<span class='line'> 34</span>      * @name Container#connection
+<span class='line'> 35</span>      * @type base.Connection
+<span class='line'> 36</span>      */</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">    </span><span class="NAME">connection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">      </span><span class="NAME">get</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._conn</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 42</span> 
+<span class='line'> 43</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 44</span>      * Container name.
+<span class='line'> 45</span>      *
+<span class='line'> 46</span>      * @name Container#name
+<span class='line'> 47</span>      * @type string
+<span class='line'> 48</span>      */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">    </span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">      </span><span class="NAME">get</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> 
+<span class='line'> 56</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 57</span>    * Create blob object.
+<span class='line'> 58</span>    * @private
+<span class='line'> 59</span>    */</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype._createBlob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 65</span>    * Completion event ('``end``').
+<span class='line'> 66</span>    *
+<span class='line'> 67</span>    * @name base.blob.Container#get_end
+<span class='line'> 68</span>    * @event
+<span class='line'> 69</span>    * @param  {Object}                results  Results object.
+<span class='line'> 70</span>    * @config {base.blob.Container} container  Container object.
+<span class='line'> 71</span>    * @config {boolean}        alreadyCreated  True if object already exists.
+<span class='line'> 72</span>    *                                          Note: Not all providers can tell.
+<span class='line'> 73</span>    * @param  {Object}                   meta  Headers, meta object.
+<span class='line'> 74</span>    * @config {Object}              [headers]  HTTP headers.
+<span class='line'> 75</span>    * @config {Object}         [cloudHeaders]  Cloud provider headers.
+<span class='line'> 76</span>    * @config {Object}             [metadata]  Cloud metadata.
+<span class='line'> 77</span>    */</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 79</span>    * Error event ('``error``').
+<span class='line'> 80</span>    *
+<span class='line'> 81</span>    * @name base.blob.Container#get_error
+<span class='line'> 82</span>    * @event
+<span class='line'> 83</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'> 84</span>    */</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 86</span>    * GET (or PUT) Container from cloud.
+<span class='line'> 87</span>    *
+<span class='line'> 88</span>    * ## Events
+<span class='line'> 89</span>    *  - [``end(results, meta)``](#get_end)
+<span class='line'> 90</span>    *  - [``error(err)``](#get_error)
+<span class='line'> 91</span>    *
+<span class='line'> 92</span>    * ## Note - Unvalidated GET's
+<span class='line'> 93</span>    * If both ``validate`` and ``create`` are false, there is typically
+<span class='line'> 94</span>    * no actual network operation, just a dummy (and immediate) callback.
+<span class='line'> 95</span>    * Subsequent code cannot assume the container actually exists in the
+<span class='line'> 96</span>    * cloud and must handle 404's, etc.
+<span class='line'> 97</span>    *
+<span class='line'> 98</span>    * @param   {Object}  [options]         Options object.
+<span class='line'> 99</span>    * @config  {bool}    [validate=false]  Validate?
+<span class='line'>100</span>    * @config  {bool}    [create=false]    Create (PUT) if doesn't exist?
+<span class='line'>101</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>102</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>103</span>    * @returns {request.AuthenticatedRequest} Request object.
+<span class='line'>104</span>    */</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.get</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>108</span> 
+<span class='line'>109</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>110</span>    * PUT container in cloud.
+<span class='line'>111</span>    *
+<span class='line'>112</span>    * Alias of ``get()`` with '``create=true``' option.
+<span class='line'>113</span>    * @see base.blob.Container#get
+<span class='line'>114</span>    */</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.put</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">    </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">utils.extend</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">create</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> 
+<span class='line'>120</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>121</span>    * Completion event ('``end``').
+<span class='line'>122</span>    *
+<span class='line'>123</span>    * Event emission / callback indicates the object no longer exists.
+<span class='line'>124</span>    *
+<span class='line'>125</span>    * @name base.blob.Container#del_end
+<span class='line'>126</span>    * @event
+<span class='line'>127</span>    * @param  {Object}                results  Results object.
+<span class='line'>128</span>    * @config {base.blob.Container} container  Container object.
+<span class='line'>129</span>    * @config {boolean}              notFound  True if object was not found.
+<span class='line'>130</span>    * @param  {Object}                   meta  Headers, meta object.
+<span class='line'>131</span>    * @config {Object}              [headers]  HTTP headers.
+<span class='line'>132</span>    * @config {Object}         [cloudHeaders]  Cloud provider headers.
+<span class='line'>133</span>    * @config {Object}             [metadata]  Cloud metadata.
+<span class='line'>134</span>    */</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>136</span>    * Error event ('``error``').
+<span class='line'>137</span>    *
+<span class='line'>138</span>    * @name base.blob.Container#del_error
+<span class='line'>139</span>    * @event
+<span class='line'>140</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'>141</span>    */</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>143</span>    * DELETE a container.
+<span class='line'>144</span>    *
+<span class='line'>145</span>    * ## Events
+<span class='line'>146</span>    *  - [``end(results, meta)``](#del_end)
+<span class='line'>147</span>    *  - [``error(err)``](#del_error)
+<span class='line'>148</span>    *
+<span class='line'>149</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>150</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>151</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>152</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>153</span>    * @returns {request.AuthenticatedRequest} Request object.
+<span class='line'>154</span>    */</span><span class="WHIT">
+<span class='line'>155</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.del</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>156</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>158</span> 
+<span class='line'>159</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>160</span>    * Completion event ('``end``').
+<span class='line'>161</span>    *
+<span class='line'>162</span>    * @name base.blob.Container#getBlobs_end
+<span class='line'>163</span>    * @event
+<span class='line'>164</span>    * @param  {Object}         results  Results object.
+<span class='line'>165</span>    * @config {Array}            blobs  List of blob objects.
+<span class='line'>166</span>    * @config {Array}         dirNames  List of pseudo-directory name strings.
+<span class='line'>167</span>    * @config {boolean}        hasNext  True if more results are available.
+<span class='line'>168</span>    * @param  {Object}            meta  Headers, meta object.
+<span class='line'>169</span>    * @config {Object}       [headers]  HTTP headers.
+<span class='line'>170</span>    * @config {Object}  [cloudHeaders]  Cloud provider headers.
+<span class='line'>171</span>    * @config {Object}      [metadata]  Cloud metadata.
+<span class='line'>172</span>    */</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>174</span>    * Error event ('``error``').
+<span class='line'>175</span>    *
+<span class='line'>176</span>    * @name base.blob.Container#getBlobs_error
+<span class='line'>177</span>    * @event
+<span class='line'>178</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'>179</span>    */</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>181</span>    * GET a list of blob objects.
+<span class='line'>182</span>    *
+<span class='line'>183</span>    * ## Events
+<span class='line'>184</span>    *  - [``end(results, meta)``](#getBlobs_end)
+<span class='line'>185</span>    *  - [``error(err)``](#getBlobs_error)
+<span class='line'>186</span>    *
+<span class='line'>187</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>188</span>    * @config  {string}  [prefix]          Prefix of blob namespace to filter.
+<span class='line'>189</span>    * @config  {string}  [delimiter]       Implied directory character.
+<span class='line'>190</span>    * @config  {string}  [marker]          Starting blob name for next results.
+<span class='line'>191</span>    * @config  {number}  [maxResults=1000] Max. blobs to return.
+<span class='line'>192</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>193</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>194</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>195</span>    * @returns {request.AuthenticatedRequest} Request object.
+<span class='line'>196</span>    */</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.getBlobs</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>200</span> 
+<span class='line'>201</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>202</span>    * Create blob object and GET data.
+<span class='line'>203</span>    *
+<span class='line'>204</span>    * @see base.blob.Blob#get
+<span class='line'>205</span>    */</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.getBlob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createBlob</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>209</span> 
+<span class='line'>210</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>211</span>    * Create blob object and GET data to file.
+<span class='line'>212</span>    *
+<span class='line'>213</span>    * @see base.blob.Blob#getToFile
+<span class='line'>214</span>    */</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.getBlobToFile</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createBlob</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">getToFile</span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>218</span> 
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>220</span>    * Create blob object and HEAD headers, metadata.
+<span class='line'>221</span>    *
+<span class='line'>222</span>    * @see base.blob.Blob#head
+<span class='line'>223</span>    */</span><span class="WHIT">
+<span class='line'>224</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.headBlob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>225</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createBlob</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">head</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>227</span> 
+<span class='line'>228</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>229</span>    * Create blob object and PUT data.
+<span class='line'>230</span>    *
+<span class='line'>231</span>    * @see base.blob.Blob#put
+<span class='line'>232</span>    */</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.putBlob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createBlob</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">put</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>235</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>236</span> 
+<span class='line'>237</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>238</span>    * Create blob object and PUT data from file.
+<span class='line'>239</span>    *
+<span class='line'>240</span>    * @see base.blob.Blob#putFromFile
+<span class='line'>241</span>    */</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.putBlobFromFile</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createBlob</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">putFromFile</span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>245</span> 
+<span class='line'>246</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>247</span>    * Create blob object and DELETE.
+<span class='line'>248</span>    *
+<span class='line'>249</span>    * @see base.blob.Blob#del
+<span class='line'>250</span>    */</span><span class="WHIT">
+<span class='line'>251</span> </span><span class="WHIT">  </span><span class="NAME">Container.prototype.delBlob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createBlob</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">del</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>254</span> 
+<span class='line'>255</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Container</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>257</span> </span></pre></body></html>

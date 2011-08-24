@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - errors.CloudError
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class errors.CloudError
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_errors.js.html">errors.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class errors.CloudError.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/errors.CloudError.html#constructor">errors.CloudError</a></b>(message, options)
+              </div>
+              <div class="description"><p>Base cloud error class.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class errors.CloudError.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/errors.CloudError.html#message">message</a></b>
+                </div>
+                <div class="description"><p>Error message.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/errors.CloudError.html#statusCode">statusCode</a></b>
+                </div>
+                <div class="description"><p>HTTP status code (if any).</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&lt;static&gt; &nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                errors.CloudError.<b><a href="../symbols/errors.CloudError.html#.TYPES">TYPES</a></b>
+                </div>
+                <div class="description"><p>Prototype of all available errors.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class errors.CloudError.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/errors.CloudError.html#isAlreadyOwnedByYou">isAlreadyOwnedByYou</a></b>()
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/errors.CloudError.html#isInvalidName">isInvalidName</a></b>()
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/errors.CloudError.html#isNotEmpty">isNotEmpty</a></b>()
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/errors.CloudError.html#isNotFound">isNotFound</a></b>()
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/errors.CloudError.html#isNotOwner">isNotOwner</a></b>()
+                </div>
+                <div class="description"></div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>errors.CloudError</b>(message, options)
+        </div>
+
+        <div class="description">
+          <p>Base cloud error class.</p>
+
+<h2 id="note">Note</h2>
+
+<p>A <code>CloudError</code> is generally thrown only on a failed cloud operation,
+so that calling code can make intelligent retry / failure handling
+decisions.</p>
+
+<p>Sunny throws straight <code>Error</code>'s for programming / calling errors
+(e.g., missing required parameters, invalid parameter input). Any
+<code>Error</code> indicates a code and/or Sunny library error and should be
+fixed.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{String}</span>  <b>message</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Exception message.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>options</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Options object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Error}</span>  <b>options.error</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Underlying error object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object|Array|String}</span>  <b>options.types</b>
+                <i>Optional</i>
+              </dt>
+                <dd>List/object of error types.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{HttpResponse}</span>  <b>options.response</b>
+                <i>Optional</i>
+              </dt>
+                <dd>Offending response object.</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name="message"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{string}</span>
+          <b>message</b>
+
+          </div>
+          <div class="description">
+            <p>Error message.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="statusCode"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{number}</span>
+          <b>statusCode</b>
+
+          </div>
+          <div class="description">
+            <p>HTTP status code (if any).</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name=".TYPES"> </a>
+          <div class="fixedFont">&lt;static&gt; 
+
+          
+          <span class="light">errors.CloudError.</span><b>TYPES</b>
+
+          </div>
+          <div class="description">
+            <p>Prototype of all available errors.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="isAlreadyOwnedByYou"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>isAlreadyOwnedByYou</b>()
+
+          </div>
+          <div class="description">
+            
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{boolean}</span> True if given error type.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="isInvalidName"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>isInvalidName</b>()
+
+          </div>
+          <div class="description">
+            
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{boolean}</span> True if given error type.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="isNotEmpty"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>isNotEmpty</b>()
+
+          </div>
+          <div class="description">
+            
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{boolean}</span> True if given error type.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="isNotFound"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>isNotFound</b>()
+
+          </div>
+          <div class="description">
+            
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{boolean}</span> True if given error type.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="isNotOwner"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{boolean}</span>
+          <b>isNotOwner</b>()
+
+          </div>
+          <div class="description">
+            
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{boolean}</span> True if given error type.</dd>
+              
+              </dl>
+            
+            
+            
+
+          
+        
+      
+
+      
+    </div>
+  </div>
+  </body>
+</html>

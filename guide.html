@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="description" content="Multi-cloud data store client." />
+  <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+  <title>Sunny.js - User Guide - v0.0.1</title>
+  <link rel="stylesheet" type="text/css" 
+    href="./css/syntax.css"  />
+  <link rel="stylesheet" type="text/css" 
+    href="./css/default.css"  />
+</head>
+<body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./guide.html">Guide</a></li>
+      <li><a href="./development.html">Development</a></li>
+      <li><a href="./api/index.html">API</a></li>
+      <li><a href="./api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+    <div id="content">
+      <h1 id='user_guide'>User Guide</h1>
+
+<p>Sunny provides a multi-cloud common programming interface. As the cloud providers that Sunny abstracts have all chosen different names for equivalent structures, we collapse the terms for cloud folder-like and file-like objects to:</p>
+
+<ul>
+<li><strong>Container</strong>: Equivalent to an AWS S3 / Google Storage &#8220;bucket&#8221; and a Rackspace/OpenStack &#8220;container&#8221;.</li>
+
+<li><strong>Blob</strong>: Equivalent to an AWS S3 / Google Storage &#8220;key&#8221;, and a Rackspace/OpenStack &#8220;object&#8221;.</li>
+</ul>
+
+<p>This guide is for Sunny version: <strong>v0.0.1</strong>.</p>
+
+<h2 id='configuration'>Configuration</h2>
+
+<p>Sunny needs cloud provider secrets, either via a configuration file or the process environment. The goal is to create a <code>sunny.Configuration</code> object, which has a <code>connection</code> member for starting cloud operations.</p>
+
+<p>For more information, see the <a href='./api/symbols/Configuration.html'>Configuration API documents</a>.</p>
+
+<h3 id='configuration_object__file'>Configuration Object / File</h3>
+
+<p>Sunny can be set up from a straight JavaScript object. However, for security, it is recommended that you have a separate &#8220;secrets&#8221; file that is not under version control. Here&#8217;s a basic scenario.</p>
+
+<p>First, create a separate file &#8220;my-config.js&#8221; that will be <code>require</code>&#8216;ed by node in the following format:</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>module</span><span class='p'>.</span><span class='nx'>exports</span><span class='p'>.</span><span class='nx'>MyConfiguration</span> <span class='o'>=</span> <span class='p'>{</span>
+  <span class='nx'>provider</span><span class='o'>:</span> <span class='p'>(</span><span class='s2'>&quot;aws&quot;</span><span class='o'>|</span><span class='s2'>&quot;google&quot;</span><span class='p'>),</span>
+  <span class='nx'>account</span><span class='o'>:</span> <span class='s2'>&quot;ACCOUNT_NAME&quot;</span><span class='p'>,</span>
+  <span class='nx'>secretKey</span><span class='o'>:</span> <span class='s2'>&quot;ACCOUNT_SECRET_KEY&quot;</span><span class='p'>,</span>
+  <span class='nx'>ssl</span><span class='o'>:</span> <span class='p'>(</span><span class='kc'>true</span><span class='o'>|</span><span class='kc'>false</span><span class='p'>)</span>
+<span class='p'>};</span>
+</code></pre>
+</div>
+<p>Then include the file in your application code like:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>myConfig</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s2'>&quot;./my-config.js&quot;</span><span class='p'>).</span><span class='nx'>MyConfiguration</span><span class='p'>,</span>
+  <span class='nx'>sunny</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s2'>&quot;sunny&quot;</span><span class='p'>),</span>
+  <span class='nx'>sunnyCfg</span> <span class='o'>=</span> <span class='nx'>sunny</span><span class='p'>.</span><span class='nx'>Configuration</span><span class='p'>.</span><span class='nx'>fromObj</span><span class='p'>(</span><span class='nx'>myConfig</span><span class='p'>);</span>
+</code></pre>
+</div>
+<p>See <a href='./api/symbols/Configuration.html#.fromObj'><code>Configuration.fromObj</code></a> for more.</p>
+
+<h3 id='process_environment'>Process Environment</h3>
+
+<p>Sunny can be alternatively configured from environment variables:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span><span class='nb'>export </span><span class='nv'>SUNNY_PROVIDER</span><span class='o'>=(</span><span class='s2'>&quot;aws&quot;</span>|<span class='s2'>&quot;google&quot;</span><span class='o'>)</span>
+<span class='nv'>$ </span><span class='nb'>export </span><span class='nv'>SUNNY_ACCOUNT</span><span class='o'>=</span><span class='s2'>&quot;ACCOUNT_NAME&quot;</span>
+<span class='nv'>$ </span><span class='nb'>export </span><span class='nv'>SUNNY_SECRET_KEY</span><span class='o'>=</span><span class='s2'>&quot;ACCOUNT_SECRET_KEY&quot;</span>
+<span class='nv'>$ </span><span class='nb'>export </span><span class='nv'>SUNNY_SSL</span><span class='o'>=(</span><span class='s2'>&quot;true&quot;</span>|<span class='s2'>&quot;false&quot;</span><span class='o'>)</span>
+</code></pre>
+</div>
+<p><em>Note</em>: It&#8217;s probably best to wrap the environment variable export into a script.</p>
+
+<p>Then hook the variables in your application code like:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>sunny</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s2'>&quot;sunny&quot;</span><span class='p'>),</span>
+  <span class='nx'>sunnyCfg</span> <span class='o'>=</span> <span class='nx'>sunny</span><span class='p'>.</span><span class='nx'>Configuration</span><span class='p'>.</span><span class='nx'>fromEnv</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>See <a href='./api/symbols/Configuration.html#.fromEnv'><code>Configuration.fromEnv</code></a> for more.</p>
+
+<h2 id='an_example__puting_a_file'>An Example - PUT&#8217;ing a File</h2>
+
+<p>We&#8217;ll start with a known container that already exists &#8211; let&#8217;s call it &#8220;sunnyjs&#8221;. We will take our configuration object (<code>sunnyCfg</code>), then:</p>
+
+<ol>
+<li>Get a container object through an asynchronous <code>getContainer()</code>.</li>
+
+<li>Write our file through an asynchronous <code>putBlobFromFile()</code>.</li>
+
+<li>Get the blob and check the data.</li>
+</ol>
+
+<p>Let&#8217;s start with our file:</p>
+
+<pre><code>$ echo -n &quot;Hello Sunny.js...&quot; &gt; my-file.txt</code></pre>
+
+<p>Now let&#8217;s do our cloud operations. For purposes of this example, we&#8217;ll use the (awesome) <a href='https://github.com/caolan/async'>Async.js</a> library to serialize certain operations so we don&#8217;t get into a ridiculous level of callback nesting. The library is not actually required for Sunny, as the only current install dependency is <a href='https://github.com/Leonidas-from-XIV/node-xml2js'>xml2js</a>. The takeaway point here is the <code>async.series</code> executes each function sequentially, waiting until one is done before moving to the next. Just what we want here.</p>
+
+<p>We&#8217;re assuming you have a <code>sunnyCfg</code> object from the previous section.</p>
+<div class='highlight'><pre><code class='javascript'><span class='cm'>/* &#39;sunnyCfg&#39; already assumed to exist. */</span>
+<span class='kd'>var</span> <span class='nx'>async</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s1'>&#39;async&#39;</span><span class='p'>),</span>
+  <span class='nx'>contName</span> <span class='o'>=</span> <span class='s2'>&quot;sunnyjs&quot;</span><span class='p'>,</span>
+  <span class='nx'>filePath</span> <span class='o'>=</span> <span class='s2'>&quot;./my-file.txt&quot;</span><span class='p'>,</span>
+  <span class='nx'>blobName</span> <span class='o'>=</span> <span class='s2'>&quot;my-blob.txt&quot;</span><span class='p'>,</span>
+  <span class='nx'>buf</span> <span class='o'>=</span> <span class='p'>[],</span>
+  <span class='nx'>connection</span> <span class='o'>=</span> <span class='nx'>sunnyCfg</span><span class='p'>.</span><span class='nx'>connection</span><span class='p'>,</span>
+  <span class='nx'>containerObj</span><span class='p'>,</span>
+  <span class='nx'>blobObj</span><span class='p'>,</span>
+  <span class='nx'>request</span><span class='p'>,</span>
+  <span class='nx'>stream</span><span class='p'>;</span>
+
+<span class='nx'>errHandle</span> <span class='o'>=</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>error</span><span class='p'>(</span><span class='s2'>&quot;Got error: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+<span class='p'>};</span>
+
+<span class='nx'>async</span><span class='p'>.</span><span class='nx'>series</span><span class='p'>([</span>
+  <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>callback</span><span class='p'>)</span> <span class='p'>{</span> <span class='c1'>// GET container.</span>
+    <span class='nx'>request</span> <span class='o'>=</span> <span class='nx'>connection</span><span class='p'>.</span><span class='nx'>getContainer</span><span class='p'>(</span><span class='s2'>&quot;sunnyjs&quot;</span><span class='p'>);</span>
+    <span class='nx'>request</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='nx'>errHandle</span><span class='p'>);</span>
+    <span class='nx'>request</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='c1'>// Set container object, signal async done.</span>
+      <span class='nx'>containerObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>container</span><span class='p'>;</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;GET container: %s&quot;</span><span class='p'>,</span> <span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+      <span class='nx'>callback</span><span class='p'>(</span><span class='kc'>null</span><span class='p'>);</span> <span class='c1'>// Moves async.js to next function.</span>
+    <span class='p'>});</span>
+    <span class='nx'>request</span><span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+  <span class='p'>},</span>
+  <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>callback</span><span class='p'>)</span> <span class='p'>{</span> <span class='c1'>// PUT blob from file.</span>
+    <span class='nx'>request</span> <span class='o'>=</span> <span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>putBlobFromFile</span><span class='p'>(</span>
+      <span class='nx'>blobName</span><span class='p'>,</span> <span class='nx'>filePath</span><span class='p'>,</span> <span class='p'>{</span> <span class='nx'>encoding</span><span class='o'>:</span> <span class='s2'>&quot;utf8&quot;</span> <span class='p'>});</span>
+    <span class='nx'>request</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='nx'>errHandle</span><span class='p'>);</span>
+    <span class='nx'>request</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>blobObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>blob</span><span class='p'>;</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;PUT blob: %s&quot;</span><span class='p'>,</span> <span class='nx'>blobObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+      <span class='nx'>callback</span><span class='p'>(</span><span class='kc'>null</span><span class='p'>);</span> <span class='c1'>// Moves async.js to next function.</span>
+    <span class='p'>});</span>
+    <span class='nx'>request</span><span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+  <span class='p'>},</span>
+  <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>callback</span><span class='p'>)</span> <span class='p'>{</span> <span class='c1'>// GET blob with data.</span>
+    <span class='nx'>stream</span> <span class='o'>=</span> <span class='nx'>blobObj</span><span class='p'>.</span><span class='nx'>get</span><span class='p'>({</span> <span class='nx'>encoding</span><span class='o'>:</span> <span class='s1'>&#39;utf8&#39;</span> <span class='p'>});</span>
+    <span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='nx'>errHandle</span><span class='p'>);</span>
+    <span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;data&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>chunk</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='c1'>// Accumulate data in a data.</span>
+      <span class='c1'>// We get string data because we set an encoding.</span>
+      <span class='nx'>buf</span><span class='p'>.</span><span class='nx'>push</span><span class='p'>(</span><span class='nx'>chunk</span><span class='p'>);</span>
+    <span class='p'>});</span>
+    <span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>blobObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>blob</span><span class='p'>;</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;GET blob: %s&quot;</span><span class='p'>,</span> <span class='nx'>blobObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+      <span class='nx'>callback</span><span class='p'>(</span><span class='kc'>null</span><span class='p'>);</span> <span class='c1'>// Moves async.js to completion.</span>
+    <span class='p'>});</span>
+    <span class='nx'>stream</span><span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+  <span class='p'>}</span>
+<span class='p'>],</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='c1'>// Finished all async series.</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Final GET data: \&quot;%s\&quot;&quot;</span><span class='p'>,</span> <span class='nx'>buf</span><span class='p'>.</span><span class='nx'>join</span><span class='p'>(</span><span class='s1'>&#39;&#39;</span><span class='p'>));</span>
+<span class='p'>});</span>
+</code></pre>
+</div>
+<p>which produces the following output:</p>
+
+<pre><code>GET container: sunnyjs
+PUT blob: my-blob.txt
+GET blob: my-blob.txt
+Final GET data: &quot;Hello Sunny.js&quot;</code></pre>
+
+<p>completing our round trip from local file to cloud, back to a string.</p>
+
+<h2 id='cloud_operations'>Cloud Operations</h2>
+
+<p>Sunny&#8217;s cloud API is based around event emission and listeners. All operations that actually go out on the network will return either a <code>request</code> or <code>stream</code> object that the caller then adds listeners too.</p>
+
+<p>As a side note, a great place to see a lot of examples of all the Sunny cloud operations, is in the source code &#8221;<a href='./api/symbols/test.live.html'>Live Tests</a>&#8221;, which perform test operations against real cloud datastores (links to source files are available in the descriptions for the blob, connection, and container test fields).</p>
+
+<p>Finally, its worth pointing out that these example only skim the surface of options, parameters and results that are part of the API. Read the <a href='./api/index.html'>API</a> documentation for the complete descriptions.</p>
+
+<p>Everything from this point on assumes that you have a <code>sunnyCfg</code> object available from the configuration section above.</p>
+
+<h3 id='connection'>Connection</h3>
+
+<p>The Sunny configuration object has a <code>connection</code> member that can be used to get a list of containers or a single container by name.</p>
+
+<h4 id='id1'><a href='./api/symbols/base.Connection.html#getContainers'><code>Connection.getContainers()</code></a></h4>
+
+<p>Let&#8217;s get a list of all containers and print the first five names to console:</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// List all containers in account.</span>
+<span class='kd'>var</span> <span class='nx'>request</span> <span class='o'>=</span> <span class='nx'>sunnyCfg</span><span class='p'>.</span><span class='nx'>connection</span><span class='p'>.</span><span class='nx'>getContainers</span><span class='p'>();</span>
+
+<span class='c1'>// Set our error handler.</span>
+<span class='nx'>request</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+<span class='p'>});</span>
+
+<span class='c1'>// Set our completion event.</span>
+<span class='c1'>// (The &#39;results&#39; object varies for operations).</span>
+<span class='nx'>request</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='kd'>var</span> <span class='nx'>containerObjs</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>containers</span><span class='p'>;</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;First 5 containers are:&quot;</span><span class='p'>)</span>
+  <span class='nx'>containerObjs</span><span class='p'>.</span><span class='nx'>slice</span><span class='p'>(</span><span class='mi'>0</span><span class='p'>,</span> <span class='mi'>5</span><span class='p'>).</span><span class='nx'>forEach</span><span class='p'>(</span><span class='kd'>function</span> <span class='p'>(</span><span class='nx'>container</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot; * %s&quot;</span><span class='p'>,</span> <span class='nx'>container</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+  <span class='p'>});</span>
+<span class='p'>});</span>
+
+<span class='c1'>// Ending the request actually starts the cloud request.</span>
+<span class='c1'>// If your code seems to be hanging, check that you &#39;end&#39;-ed</span>
+<span class='c1'>// the request!</span>
+<span class='nx'>request</span><span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>which produces:</p>
+
+<pre><code>First 5 containers are:
+ * bar
+ * baz
+ * foo
+ * sunny
+ * zed</code></pre>
+
+<p>(or something of the like).</p>
+
+<h4 id='id2'><a href='./api/symbols/base.Connection.html#putContainer'><code>Connection.putContainer()</code></a></h4>
+
+<p>Now, let&#8217;s create a new container. Note that for both Amazon S3 and Google Storage, there is a global bucket namespace, so you will have to choose a unique name, and might get <code>err</code> object such that <code>err.isNotOwner() === true</code>.</p>
+
+<p>Here&#8217;s an example assuming the bucket name doesn&#8217;t exist. Notice that the <code>on()</code> events are chainable (although <code>end()</code> currently is not).</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>sunnyCfg</span><span class='p'>.</span><span class='nx'>connection</span><span class='p'>.</span><span class='nx'>putContainer</span><span class='p'>(</span><span class='s1'>&#39;sunnyjs&#39;</span><span class='p'>)</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='kd'>var</span> <span class='nx'>containerObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>container</span><span class='p'>;</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Created container: &#39;%s&#39;.&quot;</span><span class='p'>,</span> <span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>If it succeeds, we get:</p>
+
+<pre><code>Created container: &#39;sunnyjs&#39;.</code></pre>
+
+<p>If you have a container object, the method is also available as <a href='./api/symbols/base.blob.Container.html#put'><code>Container.put()</code></a>.</p>
+
+<h4 id='id3'><a href='./api/symbols/base.Connection.html#getContainer'><code>Connection.getContainer()</code></a></h4>
+
+<p>Last, let&#8217;s get a single (known) container object from the datastore. Note that by default the option <code>validate</code> is <code>false</code> which means we don&#8217;t actually perform a cloud operation (since it isn&#8217;t needed). If the container doesn&#8217;t really exist, a &#8220;not found&#8221; error will be thrown on a later blob operation that actually performs a network operation.</p>
+
+<p>To force the error early, setting the options parameter <code>validate</code> to <code>true</code>, we <em>will</em> get an error if the container is not found (<code>err.isNotFound() === true</code>) or something else is invalid with the cloud request or name.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>sunnyCfg</span><span class='p'>.</span><span class='nx'>connection</span><span class='p'>.</span><span class='nx'>getContainer</span><span class='p'>(</span><span class='s1'>&#39;sunnyjs&#39;</span><span class='p'>,</span> <span class='p'>{</span> <span class='nx'>validate</span><span class='o'>:</span> <span class='kc'>true</span> <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='kd'>var</span> <span class='nx'>containerObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>container</span><span class='p'>;</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Found container: &#39;%s&#39;.&quot;</span><span class='p'>,</span> <span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>which gives us:</p>
+
+<pre><code>Found container: &#39;sunnyjs&#39;.</code></pre>
+
+<p>If you have a container object, the method is also available as <a href='./api/symbols/base.blob.Container.html#get'><code>Container.get()</code></a>.</p>
+
+<h3 id='container'>Container</h3>
+
+<p>Once we have a container object (here we&#8217;ll assume we&#8217;re up to the last callback above and have the <code>containerObj</code> object available), we can manipulate the container (perform DELETE or PUT cloud operation corresponding to the container object&#8217;s information), and list corresponding blobs.</p>
+
+<p>We&#8217;ve already seen the <code>get()</code> and <code>put()</code> operations on a cloud object from the connection object aliased methods. Let&#8217;s look at some other calls for with a container object.</p>
+
+<h4 id='id4'><a href='./api/symbols/base.blob.Container.html#del'><code>Container.del()</code></a></h4>
+
+<p>Delete a container:</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>del</span><span class='p'>()</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='kd'>var</span> <span class='nx'>containerObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>container</span><span class='p'>;</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Deleted container: &#39;%s&#39;.&quot;</span><span class='p'>,</span> <span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>which gives us:</p>
+
+<pre><code>Deleted container: &#39;sunnyjs2&#39;.</code></pre>
+
+<p><strong>Note</strong>: If the container did not already exist, there is no error returned, as not all cloud providers through a &#8220;not found&#8221; error. Instead, the <code>results</code> callback object has a <code>deleted</code> member that if <code>true</code> means that (1) the container was deleted, and (2) we could actually tell if it was deleted (which isn&#8217;t always the case).</p>
+
+<h4 id='id5'><a href='./api/symbols/base.blob.Container.html#getBlobs'><code>Container.getBlobs()</code></a></h4>
+
+<p>The <code>getBlobs</code> operation gets a list of blob objects in a container, filtered by several input parameters (see the <a href='./api/symbols/base.blob.Container.html#getBlobs'>API</a>). The call does not retrieve any actual blob <em>data</em>. Let&#8217;s say we have the following blobs in a container:</p>
+
+<ul>
+<li>&#8220;foo/blob001.txt&#8221;,</li>
+
+<li>&#8220;foo/blob002.txt&#8221;,</li>
+
+<li>&#8220;foo/blob003.txt&#8221;,</li>
+
+<li>&#8220;foo/zed/blob005.txt&#8221;</li>
+</ul>
+
+<p>We can use the <code>delimiter</code> parameter to cause the cloud service to treat the flat blob namespace as if it where &#8221;/&#8221; delimited, set a <code>prefix</code> of &#8220;foo/&#8221; which is as if we were within the &#8220;foo/&#8221; implied directory, and specify a <code>marker</code> of &#8220;foo/blob001.txt&#8221;, which means our first result should be lexicographically <em>after</em> that result.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>containerObj</span><span class='p'>.</span><span class='nx'>getBlobs</span><span class='p'>({</span>
+      <span class='nx'>prefix</span><span class='o'>:</span> <span class='s2'>&quot;foo/&quot;</span><span class='p'>,</span>
+      <span class='nx'>delimiter</span><span class='o'>:</span> <span class='s2'>&quot;/&quot;</span><span class='p'>,</span>
+      <span class='nx'>marker</span><span class='o'>:</span> <span class='s2'>&quot;foo/blob001.txt&quot;</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Blobs found:&quot;</span><span class='p'>);</span>
+    <span class='nx'>results</span><span class='p'>.</span><span class='nx'>blobs</span><span class='p'>.</span><span class='nx'>forEach</span><span class='p'>(</span><span class='kd'>function</span> <span class='p'>(</span><span class='nx'>blob</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot; * %s&quot;</span><span class='p'>,</span> <span class='nx'>blob</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+    <span class='p'>});</span>
+    <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Psuedo-directories found&quot;</span><span class='p'>);</span>
+    <span class='nx'>results</span><span class='p'>.</span><span class='nx'>dirNames</span><span class='p'>.</span><span class='nx'>forEach</span><span class='p'>(</span><span class='kd'>function</span> <span class='p'>(</span><span class='nx'>dirName</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot; * %s&quot;</span><span class='p'>,</span> <span class='nx'>dirName</span><span class='p'>);</span>
+    <span class='p'>})</span>
+  <span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>The <code>results</code> callback objects includes a <code>blobs</code> property which is an array of blob objects, as well as <code>dirNames</code>, an array of strings constituting psuedo-directories at the current &#8220;level&#8221; (here, within the &#8220;foo/&#8221; implied directory).</p>
+
+<pre><code>Blobs found:
+ * foo/blob002.txt
+ * foo/blob003.txt
+Psuedo-directories found
+ * foo/zed/</code></pre>
+
+<h4 id='id6'><a href='./api/symbols/base.blob.Container.html#putBlob'><code>Container.putBlob()</code></a></h4>
+
+<p>PUT&#8217;ing a blob allows us to create a new blob with data, as well as insert cloud metadata. Instead of a &#8220;request&#8221; object, the <code>putBlob()</code> method gives us a &#8220;stream&#8221; object instead, which is an implementation of a Node.js <a href='http://nodejs.org/docs/v0.4.9/api/streams.html#writable_Stream'>Writable Stream</a>. To add data, we can call <code>write()</code> with strings or <code>Buffer</code> objects, and then call <code>end()</code> to start the cloud request. (<em>Note</em>: <code>end()</code> also optionally takes a string or buffer).</p>
+
+<p>Let&#8217;s create a blob named &#8220;foo.txt&#8221; with some string data and a couple of metadata key / value pairs.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>stream</span> <span class='o'>=</span> <span class='nx'>self</span><span class='p'>.</span><span class='nx'>container</span><span class='p'>.</span><span class='nx'>putBlob</span><span class='p'>(</span><span class='s2'>&quot;foo.txt&quot;</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>metadata</span><span class='o'>:</span> <span class='p'>{</span>
+    <span class='s1'>&#39;foo&#39;</span><span class='o'>:</span> <span class='s2'>&quot;My foo metadata.&quot;</span><span class='p'>,</span>
+    <span class='s1'>&#39;bar&#39;</span><span class='o'>:</span> <span class='mi'>42</span>
+  <span class='p'>}</span>
+<span class='p'>});</span>
+
+<span class='c1'>// Set handlers.</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='kd'>var</span> <span class='nx'>blobObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>blob</span><span class='p'>;</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Wrote data for: &#39;%s&#39;.&quot;</span><span class='p'>,</span> <span class='nx'>blobObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+<span class='p'>});</span>
+
+<span class='c1'>// Write, then cause request to start with &#39;end()&#39;.</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>write</span><span class='p'>(</span><span class='s2'>&quot;Hello there!&quot;</span><span class='p'>);</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>which produces:</p>
+
+<pre><code>Wrote data for: &#39;foo.txt&#39;</code></pre>
+
+<p>If you have a blob object, the method is also available as <a href='./api/symbols/base.blob.Blob.html#put'><code>Blob.put()</code></a>.</p>
+
+<h4 id='id7'><a href='./api/symbols/base.blob.Container.html#getBlob'><code>Container.getBlob()</code></a></h4>
+
+<p>Now let&#8217;s get and print both the data and the metadata. In parallel to PUT, GET blob implements the <a href='http://nodejs.org/docs/v0.4.9/api/streams.html#readable_Stream'>Readable Stream</a> interface.</p>
+
+<p>Note that per the stream interface, because we set an encoding here, the &#8220;data&#8221; event passes strings instead of the default <code>Buffer</code> objects, which we accumulate into an array, then join and print on the &#8220;end&#8221; event.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>buf</span> <span class='o'>=</span> <span class='p'>[],</span>
+  <span class='nx'>stream</span> <span class='o'>=</span> <span class='nx'>self</span><span class='p'>.</span><span class='nx'>container</span><span class='p'>.</span><span class='nx'>getBlob</span><span class='p'>(</span><span class='s2'>&quot;foo.txt&quot;</span><span class='p'>,</span> <span class='p'>{</span>
+    <span class='nx'>encoding</span><span class='o'>:</span> <span class='s1'>&#39;utf8&#39;</span>
+  <span class='p'>});</span>
+
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;error&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>err</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>warn</span><span class='p'>(</span><span class='s2'>&quot;ERROR: %s&quot;</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;data&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>chunk</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>buf</span><span class='p'>.</span><span class='nx'>push</span><span class='p'>(</span><span class='nx'>chunk</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='kd'>var</span> <span class='nx'>blobObj</span> <span class='o'>=</span> <span class='nx'>results</span><span class='p'>.</span><span class='nx'>blob</span><span class='p'>;</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Got data for &#39;%s&#39;:&quot;</span><span class='p'>,</span> <span class='nx'>blobObj</span><span class='p'>.</span><span class='nx'>name</span><span class='p'>);</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='nx'>buf</span><span class='p'>.</span><span class='nx'>join</span><span class='p'>(</span><span class='s1'>&#39;&#39;</span><span class='p'>));</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Metadata:&quot;</span><span class='p'>);</span>
+  <span class='nb'>Object</span><span class='p'>.</span><span class='nx'>keys</span><span class='p'>(</span><span class='nx'>meta</span><span class='p'>.</span><span class='nx'>metadata</span><span class='p'>).</span><span class='nx'>forEach</span><span class='p'>(</span><span class='kd'>function</span> <span class='p'>(</span><span class='nx'>key</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot; * %s: %s&quot;</span><span class='p'>,</span> <span class='nx'>key</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>.</span><span class='nx'>metadata</span><span class='p'>[</span><span class='nx'>key</span><span class='p'>]);</span>
+  <span class='p'>});</span>
+<span class='p'>});</span>
+<span class='nx'>stream</span><span class='p'>.</span><span class='nx'>end</span><span class='p'>();</span>
+</code></pre>
+</div>
+<p>Every &#8220;end&#8221; event for both cloud requests and streams passes two parameters: <code>results</code> and <code>meta</code>. The <code>meta</code> object looks like:</p>
+<div class='highlight'><pre><code class='javascript'><span class='p'>{</span>
+  <span class='nx'>headers</span><span class='o'>:</span> <span class='p'>{</span>
+    <span class='cm'>/* HTTP headers. */</span>
+  <span class='p'>},</span>
+  <span class='nx'>cloudHeaders</span><span class='o'>:</span> <span class='p'>{</span>
+    <span class='cm'>/* Cloud-specific HTTP headers (e.g., &quot;x-amz-&quot;). */</span>
+  <span class='p'>},</span>
+  <span class='nx'>metadata</span><span class='o'>:</span> <span class='p'>{</span>
+    <span class='cm'>/* Metadata headers (e.g., &quot;x-amz-meta-&quot;). */</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
+<p>where the cloud-specific part (e.g., &#8221;<code>x-&lt;PROVIDER&gt;-</code>&#8221;) has been stripped off as an abstraction. In this manner, you don&#8217;t have to worry if your request headers are formatted for AWS or Google &#8211; it just works.</p>
+
+<p>Our end result from the request is:</p>
+
+<pre><code>Got data for &#39;foo.txt&#39;:
+Hello there!
+Metadata:
+ * bar: 42
+ * foo: My foo metadata.</code></pre>
+
+<p>If you have a blob object, the method is also available as <a href='./api/symbols/base.blob.Blob.html#get'><code>Blob.get()</code></a>.</p>
+
+<h3 id='blob'>Blob</h3>
+
+<p>In addition to the aliased blob <code>put()</code> and <code>get()</code> methods from the previous section, Sunny provides:</p>
+
+<ul>
+<li><strong><a href='./api/symbols/base.blob.Blob.html#del'><code>Blob.del()</code></a></strong>: Delete a Blob. (Make sure to check the API as the semantics differ slightly from the delete container operation).</li>
+
+<li><strong><a href='./api/symbols/base.blob.Blob.html#head'><code>Blob.head()</code></a></strong>: Issue HEAD request to Blob. This is the same as a <code>Blob.get()</code>, except it returns a <code>request</code> instead of a <code>stream</code> object, and there is no &#8220;data&#8221; event. Use this method for retrieving cloud headers and metadata.</li>
+</ul>
+
+<p>There are also local file convenience methods:</p>
+
+<ul>
+<li><strong><a href='./api/symbols/base.blob.Blob.html#putFromFile'><code>Blob.putFromFile()</code></a></strong>: Read a local file and PUT the data to a cloud blob. Also available as <a href='./api/symbols/base.blob.Container.html#putBlobFromFile'><code>Container.putBlobFromFile</code></a>.</li>
+
+<li><strong><a href='./api/symbols/base.blob.Blob.html#getToFile'><code>Blob.getToFile()</code></a></strong>: GET a blob from the cloud and write it to a local file. Also available as <a href='./api/symbols/base.blob.Container.html#getBlobToFile'><code>Container.getBlobToFile</code></a>.</li>
+</ul>
+
+<h2 id='errors'>Errors</h2>
+
+<p>Sunny throws two types of errors: normal <code>Error</code>&#8217;s and Sunny-specific <a href='./api/symbols/errors.CloudError.html'><code>CloudError</code></a>&#8217;s. <code>Error</code> objects are thrown when there is a programmer or library error (like a missing or invalid parameter during a method call) and should generally be tracked down and eliminated. For operations like putting a local file, etc., if the underlying operation throws a normal <code>Error</code>, then that can be passed back too (and should be handled).</p>
+
+<p><code>CloudError</code>&#8217;s should always be expected and handled by the caller. As all cloud operations are capable of throwing errors in various ways, the errors must be accounted for in program design. The <a href='./api/symbols/errors.CloudError.html'>CloudError API</a> page describes the class in full, but here are some noteworthy points about the object.</p>
+
+<h3 id='clouderror'>CloudError</h3>
+
+<p>A <code>CloudError</code> has the following useful data:</p>
+
+<ul>
+<li><strong><code>message</code></strong>: The error message (usually in XML). (from <code>Error</code>).</li>
+
+<li><strong><code>statusCode</code></strong>: HTTP status code, if any.</li>
+</ul>
+
+<p>and the following error type methods:</p>
+
+<ul>
+<li><strong><a href='./api/symbols/errors.CloudError.html#isNotFound'><code>isNotFound</code></a></strong>: Container / blob does not exist.</li>
+
+<li><strong><a href='./api/symbols/errors.CloudError.html#isInvalidName'><code>isInvalidName</code></a></strong>: Invalid name requested for container / blob.</li>
+
+<li><strong><a href='./api/symbols/errors.CloudError.html#isNotEmpty'><code>isNotEmpty</code></a></strong>: Container cannot be deleted if blobs still exist within it.</li>
+
+<li><strong><a href='./api/symbols/errors.CloudError.html#isAlreadyOwnedByYou'><code>isAlreadyOwnedByYou</code></a></strong>: Creating a container that is already owned by you.</li>
+
+<li><strong><a href='./api/symbols/errors.CloudError.html#isNotOwner'><code>isNotOwner</code></a></strong>: AWS and Google Storage have a global namespace, so if someone else owns the container name requested, your operations will fail.</li>
+</ul>
+
+<p>The methods correctly abstract differences in cloud providers, so should be used over status code / error message checks whenever possible. For example, if you try and create a container that someone else already owns, both Amazon and Google return a 409 status code, but Amazon&#8217;s error code is &#8220;BucketAlreadyExists&#8221;, while Google&#8217;s is &#8220;BucketNameUnavailable&#8221;. In both cases, Sunny allows you to detect this by calling <code>CloudError.isNotOwner()</code>.</p>
+
+<h3 id='error_handling_and_the_api'>Error Handling and the API</h3>
+
+<p>Remember to check the API documentation for the cloud operation you are invoking. Many methods actually trap and swallow <code>CloudError</code>&#8217;s to provide a consistent, cloud-agnostic interface. For instance, creating a container that already exists will get a 200 &#8220;OK&#8221; response from AWS, whereas Google Storage will return a 409 &#8220;BucketAlreadyOwnedByYou&#8221; error. Sunny handles this specific situation by swallowing the error and returning a <code>alreadyCreated</code> boolean member of the <code>results</code> object on the &#8220;end&#8221; event callback.</p>
+    </div>
+  </div>
+</body>
+</html>

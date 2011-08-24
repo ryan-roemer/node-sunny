@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="description" content="Multi-cloud data store client." />
+  <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+  <title>Sunny.js - Home - v0.0.1</title>
+  <link rel="stylesheet" type="text/css" 
+    href="./css/syntax.css"  />
+  <link rel="stylesheet" type="text/css" 
+    href="./css/default.css"  />
+</head>
+<body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./guide.html">Guide</a></li>
+      <li><a href="./development.html">Development</a></li>
+      <li><a href="./api/index.html">API</a></li>
+      <li><a href="./api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+    <div id="content">
+      <h1 id='sunnyjs'>Sunny.js</h1>
+
+<p>Sunny is a multi-cloud datastore client for <a href='http://nodejs.org'>Node.js</a>. Sunny aims for an efficient, event-based common interface to various cloud stores to enable cloud-agnostic programming that retains flexibility and speed.</p>
+
+<h2 id='features'>Features</h2>
+
+<ul>
+<li>Abstracts cloud provider differences. Focus on writing your application, not juggling &#8220;x-amz-&#8221; vs. &#8220;x-goog-&#8221; headers.</li>
+
+<li>Fully configurable headers, cloud headers, cloud metadata.</li>
+
+<li>Sensible and cloud-agnostic error handling.</li>
+
+<li>&#8220;One-shot&#8221; requests whenever possible.</li>
+
+<li>SSL support.</li>
+
+<li>Blob GET/PUT operations implement Node <a href='http://nodejs.org/docs/v0.4.9/api/streams.html#readable_Stream'>Readable</a> and <a href='http://nodejs.org/docs/v0.4.9/api/streams.html#writable_Stream'>Writable</a> Stream interfaces.</li>
+</ul>
+
+<h2 id='cloud_providers'>Cloud providers</h2>
+
+<p>Sunny has full blob support for:</p>
+
+<ul>
+<li><a href='http://aws.amazon.com/s3/'>Amazon S3</a>: Amazon Simple Storage Service.</li>
+
+<li><a href='http://code.google.com/apis/storage/'>Google Storage</a>: Google Storage for Developers.</li>
+</ul>
+
+<p>Future support is planned for:</p>
+
+<ul>
+<li><a href='http://www.rackspacecloud.com/cloud_hosting_products/files/'>Rackspace Cloud Files</a>: Rackspace Cloud Files</li>
+
+<li><a href='http://openstack.org/projects/storage/'>OpenStack Storage</a>: OpenStack Storage</li>
+
+<li>(Maybe) local file system as a dummy cloud provider.</li>
+</ul>
+
+<h2 id='installation__getting_started'>Installation / Getting Started</h2>
+
+<p>Install Sunny directly from its <a href='https://github.com/ryan-roemer/node-sunny'>GitHub</a> repository::</p>
+
+<pre><code>$ git clone git@github.com:ryan-roemer/node-sunny.git
+$ npm install ./node-sunny</code></pre>
+
+<p>Sunny will be added to <a href='http://npmjs.org'>NPM</a> soon.</p>
+
+<p>Please read the docs (in source at &#8220;docs/&#8221;) and review the &#8220;live&#8221; tests (in source at &#8220;test/live&#8221;) that perform the entire range of Sunny operations against real cloud datastores.</p>
+
+<h2 id='project_goals'>Project Goals</h2>
+
+<h3 id='a_common_cloud_interface'>A common cloud interface.</h3>
+
+<p>The cloud providers that Sunny supports (or will support) provide similar, but not quite equivalent interfaces. Amazon S3 and Google Storage share a nearly identical interface, as well as Rackspace Cloud Files and OpenStack Storage. However, there are some subtle differences, particularly with naming, errors, status codes, etc.</p>
+
+<h3 id='extensible_and_accessible'>Extensible and accessible.</h3>
+
+<p>Notwithstanding the goal for a common API, Sunny aims to provide access to as much of the internals of a given cloud datastore as possible. In the current development phase, that means exposing as many of the query / header / metadata features and functionality in the underlying store as won&#8217;t make maintaining a common interface unpalatable.</p>
+
+<h3 id='strong_bias_for_oneshot_requests'>Strong bias for &#8220;one-shot&#8221; requests.</h3>
+
+<p>Most cloud operations can be performed with a single HTTP request. However, many cloud client libraries add in extra HTTP calls along the day for say a blob file GET request (perhaps first requesting an authorization URL, checking the container path for existence, etc.).</p>
+
+<p>Sunny aims to perform the minimum amount of calls possible by default. That said, sometimes it is good to have a few sanity check intermediate operations, so Sunny can make calls with validation (e.g., checking a bucket exists first).</p>
+
+<h2 id='cloud_operations'>Cloud Operations</h2>
+
+<h3 id='supported'>Supported</h3>
+
+<p>Sunny currently supports the following cloud operations:</p>
+
+<ul>
+<li>List containers: (<code>connection.getContainers()</code>)</li>
+
+<li>PUT / DELETE container: (<code>container.put()</code>, <code>container.del()</code>)</li>
+
+<li>List blobs in a container: (<code>container.getBlobs()</code>)</li>
+
+<li>PUT / HEAD / GET / DELETE blob: (<code>blob.put()</code>, <code>blob.head()</code>, <code>blob.get()</code>, <code>blob.del()</code>)</li>
+</ul>
+
+<h3 id='future'>Future</h3>
+
+<p>Sunny is under rapid development. Some areas for enhancements:</p>
+
+<ul>
+<li>Copy blob.</li>
+
+<li>Update blob metadata without PUT.</li>
+
+<li>Set blob / container ACL, policies, etc.</li>
+</ul>
+    </div>
+  </div>
+</body>
+</html>

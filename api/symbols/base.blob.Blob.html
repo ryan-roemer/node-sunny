@@ -1,0 +1,1373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Multi-cloud data store client." />
+    <meta name="keywords" content="Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
+    
+    <title>
+      Sunny.js - base.blob.Blob
+      
+        - v0.0.1
+      
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+      href="../../css/default.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../../css/api.css" />
+  </head>
+
+  <body>
+  <div id="container">
+    
+<!-- GitHub Banner -->
+<a href="http://github.com/ryan-roemer/node-sunny"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+<!-- Header -->
+<div id="header">
+  <div id="title">
+    sunny.js
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../guide.html">Guide</a></li>
+      <li><a href="../../development.html">Development</a></li>
+      <li><a href="../../api/index.html">API</a></li>
+      <li><a href="../../api/files.html">Files</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div id="index">
+      <!-- begin publish.classesIndex -->
+      
+      <!-- end publish.classesIndex -->
+    </div>
+
+    <div id="content">
+      <h1 class="classTitle">
+        
+        Class base.blob.Blob
+      </h1>
+
+      <p class="description">
+        
+        
+
+        
+
+        
+          <br /><i>Defined in: </i> <a href="../symbols/src/lib_base_blob_blob.js.html">blob.js</a>.
+        
+      </p>
+
+      
+      <table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class base.blob.Blob.">
+        <caption>Class Summary</caption>
+        <thead>
+          <tr>
+            <th scope="col">Constructor Attributes</th>
+            <th scope="col">Constructor Name and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="attributes">&nbsp;</td>
+            <td class="nameDescription" >
+              <div class="fixedFont">
+                <b><a href="../symbols/base.blob.Blob.html#constructor">base.blob.Blob</a></b>(cont, attrs)
+              </div>
+              <div class="description"><p>Blob class.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class base.blob.Blob.">
+          <caption>Field Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Field Attributes</th>
+              <th scope="col">Field Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/base.blob.Blob.html#container">container</a></b>
+                </div>
+                <div class="description"><p>Container object.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont">
+                <b><a href="../symbols/base.blob.Blob.html#name">name</a></b>
+                </div>
+                <div class="description"><p>Blob name.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class base.blob.Blob.">
+          <caption>Method Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Method Attributes</th>
+              <th scope="col">Method Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#del">del</a></b>(options)
+                </div>
+                <div class="description"><p>Delete a blob.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#get">get</a></b>(options)
+                </div>
+                <div class="description"><p>Get blob data (and metadata).</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#getToFile">getToFile</a></b>(filePath, options)
+                </div>
+                <div class="description"><p>Get blob data to file.</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#head">head</a></b>(options)
+                </div>
+                <div class="description"><p>HEAD blob (check blob exists and return metadata).</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#put">put</a></b>(options)
+                </div>
+                <div class="description"><p>Put blob data (and metadata).</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#putFromFile">putFromFile</a></b>(filePath, options)
+                </div>
+                <div class="description"><p>Put blob data from file.</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+        
+        
+        <table class="summaryTable" cellspacing="0" summary="A summary of the events documented in the class base.blob.Blob.">
+          <caption>Event Summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Event Attributes</th>
+              <th scope="col">Event Name and Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:del_end">del_end</a></b>(results, meta)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:del_error">del_error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:get_data">get_data</a></b>(chunk)
+                </div>
+                <div class="description"><p>Data event ('<code>data</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:get_end">get_end</a></b>(results, meta)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:get_error">get_error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:head_end">head_end</a></b>(results, meta)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:head_error">head_error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:put_end">put_end</a></b>(results, meta)
+                </div>
+                <div class="description"><p>Completion event ('<code>end</code>').</div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td class="attributes">&nbsp;</td>
+              <td class="nameDescription">
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:put_error">put_error</a></b>(err)
+                </div>
+                <div class="description"><p>Error event ('<code>error</code>').</div>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+
+        
+      
+
+      
+      <div class="details"><a name="constructor"> </a>
+        <div class="sectionTitle">
+          Class Detail
+        </div>
+
+        <div class="fixedFont">
+            <b>base.blob.Blob</b>(cont, attrs)
+        </div>
+
+        <div class="description">
+          <p>Blob class.</p>
+          
+        </div>
+
+        
+
+
+          
+            <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            
+              <dt>
+                <span class="light fixedFont">{base.Container}</span>  <b>cont</b>
+                
+              </dt>
+                <dd>Container object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{Object}</span>  <b>attrs</b>
+                
+              </dt>
+                <dd>Attributes.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>attrs.name</b>
+                
+              </dt>
+                <dd>Name.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>attrs.created</b>
+                
+              </dt>
+                <dd>Creation date.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>attrs.lastModified</b>
+                
+              </dt>
+                <dd>Last modified date.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{number}</span>  <b>attrs.size</b>
+                
+              </dt>
+                <dd>Byte size of object.</dd>
+            
+              <dt>
+                <span class="light fixedFont">{string}</span>  <b>attrs.etag</b>
+                
+              </dt>
+                <dd>ETag.</dd>
+            
+            </dl>
+          
+          
+          
+          
+          
+          
+          
+
+      </div>
+      
+
+      
+        <div class="sectionTitle">
+          Field Detail
+        </div>
+        
+          <a name="container"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/base.blob.Container.html">base.blob.Container</a>}</span>
+          <b>container</b>
+
+          </div>
+          <div class="description">
+            <p>Container object.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="name"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{string}</span>
+          <b>name</b>
+
+          </div>
+          <div class="description">
+            <p>Blob name.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Method Detail
+        </div>
+        
+          <a name="del"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/request.AuthenticatedRequest.html">request.AuthenticatedRequest</a>}</span>
+          <b>del</b>(options)
+
+          </div>
+          <div class="description">
+            <p>Delete a blob.</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#del_end"><code>end(results, meta)</code></a></li>
+<li><a href="#del_error"><code>error(err)</code></a></li>
+</ul>
+
+<h2 id="notfoundblobs">Not Found Blobs</h2>
+
+<p>This method emits '<code>end</code>' and <strong>not</strong> '<code>error</code>' for a not found
+blob, reasoning that it becomes easier to have multiple deletes at
+the same time. Moreover, AWS S3 doesn't return a 404, so we can't really
+even detect this (although Google Storage does).</p>
+
+<p>On <code>end</code>, <code>result.notFound</code> is returned that at least for Google
+Storage indicates if the blob didn't exist.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/request.AuthenticatedRequest.html">request.AuthenticatedRequest</a>}</span> Request object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="get"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/stream.ReadStream.html">stream.ReadStream</a>}</span>
+          <b>get</b>(options)
+
+          </div>
+          <div class="description">
+            <p>Get blob data (and metadata).</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#get_data"><code>data(chunk)</code></a></li>
+<li><a href="#get_end"><code>end(results, meta)</code></a></li>
+<li><a href="#get_error"><code>error(err)</code></a></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.encoding</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Encoding to use (if set, a string
+                                     will be passed to 'data' or 'end'
+                                     instead of array of Buffer objects).</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{bool}</span> <b>options.validate</b>
+                  <i>Optional, Default: false</i>
+                </dt>
+                <dd>Validate?</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/stream.ReadStream.html">stream.ReadStream</a>}</span> Readable cloud stream object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="getToFile"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/request.DummyRequest.html">request.DummyRequest</a>}</span>
+          <b>getToFile</b>(filePath, options)
+
+          </div>
+          <div class="description">
+            <p>Get blob data to file.</p>
+
+<h2 id="note">Note</h2>
+
+<p>Just a wrapper around a writable file stream and a GET.
+Must still call <code>end()</code> to invoke.</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#get_end"><code>end(results, meta)</code></a></li>
+<li><a href="#get_error"><code>error(err)</code></a></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>filePath</b>
+                  
+                </dt>
+                <dd>Path to file.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.encoding</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Encoding to use.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/request.DummyRequest.html">request.DummyRequest</a>}</span> Request object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="head"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/request.AuthenticatedRequest.html">request.AuthenticatedRequest</a>}</span>
+          <b>head</b>(options)
+
+          </div>
+          <div class="description">
+            <p>HEAD blob (check blob exists and return metadata).</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#head_end"><code>end(results, meta)</code></a></li>
+<li><a href="#head_error"><code>error(err)</code></a></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/request.AuthenticatedRequest.html">request.AuthenticatedRequest</a>}</span> Request object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="put"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/stream.WriteStream.html">stream.WriteStream</a>}</span>
+          <b>put</b>(options)
+
+          </div>
+          <div class="description">
+            <p>Put blob data (and metadata).</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#get_end"><code>end(results, meta)</code></a></li>
+<li><a href="#get_error"><code>error(err)</code></a></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.encoding</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Encoding to use.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/stream.WriteStream.html">stream.WriteStream</a>}</span> Writable cloud stream object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          <hr />
+        
+          <a name="putFromFile"> </a>
+          <div class="fixedFont">
+
+          <span class="light">{<a href="../symbols/request.DummyRequest.html">request.DummyRequest</a>}</span>
+          <b>putFromFile</b>(filePath, options)
+
+          </div>
+          <div class="description">
+            <p>Put blob data from file.</p>
+
+<h2 id="note">Note</h2>
+
+<p>Just a wrapper around a readable file stream and a PUT.
+Must still call <code>end()</code> to invoke.</p>
+
+<h2 id="events">Events</h2>
+
+<ul>
+<li><a href="#get_end"><code>end(results, meta)</code></a></li>
+<li><a href="#get_error"><code>error(err)</code></a></li>
+</ul>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>filePath</b>
+                  
+                </dt>
+                <dd>Path to file.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Options object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{string}</span> <b>options.encoding</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Encoding to use.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Raw headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers to add.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>options.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata to add.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Returns:</dt>
+              
+                <dd><span class="light fixedFont">{<a href="../symbols/request.DummyRequest.html">request.DummyRequest</a>}</span> Request object.</dd>
+              
+              </dl>
+            
+            
+            
+
+          
+        
+      
+
+      
+        <div class="sectionTitle">
+          Event Detail
+        </div>
+        
+          <a name="event:del_end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>del_end</b>(results, meta)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+
+<p><strong>Note</strong>: Callback indicates the object no longer exists.</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{<a href="../symbols/base.blob.Blob.html">base.blob.Blob</a>}</span> <b>results.blob</b>
+                  
+                </dt>
+                <dd>Blob object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{boolean}</span> <b>results.notFound</b>
+                  
+                </dt>
+                <dd>True if object was not found.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:del_error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>del_error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:get_data"> </a>
+          <div class="fixedFont">
+
+          
+          <b>get_data</b>(chunk)
+
+          </div>
+          <div class="description">
+            <p>Data event ('<code>data</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Buffer|string}</span> <b>chunk</b>
+                  
+                </dt>
+                <dd>Data chunk.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:get_end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>get_end</b>(results, meta)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{<a href="../symbols/base.blob.Blob.html">base.blob.Blob</a>}</span> <b>results.blob</b>
+                  
+                </dt>
+                <dd>Blob object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:get_error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>get_error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:head_end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>head_end</b>(results, meta)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{<a href="../symbols/base.blob.Blob.html">base.blob.Blob</a>}</span> <b>results.blob</b>
+                  
+                </dt>
+                <dd>Blob object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:head_error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>head_error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:put_end"> </a>
+          <div class="fixedFont">
+
+          
+          <b>put_end</b>(results, meta)
+
+          </div>
+          <div class="description">
+            <p>Completion event ('<code>end</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>results</b>
+                  
+                </dt>
+                <dd>Results object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{<a href="../symbols/base.blob.Blob.html">base.blob.Blob</a>}</span> <b>results.blob</b>
+                  
+                </dt>
+                <dd>Blob object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          <hr />
+        
+          <a name="event:put_error"> </a>
+          <div class="fixedFont">
+
+          
+          <b>put_error</b>(err)
+
+          </div>
+          <div class="description">
+            <p>Error event ('<code>error</code>').</p>
+            
+            
+          </div>
+
+          
+
+            
+              <dl class="detailList">
+              <dt class="heading">Parameters:</dt>
+              
+                <dt>
+                  <span class="light fixedFont">{Error|<a href="../symbols/errors.CloudError.html">errors.CloudError</a>}</span> <b>err</b>
+                  
+                </dt>
+                <dd>Error object.</dd>
+              
+              </dl>
+            
+            
+            
+            
+            
+            
+            
+
+          
+        
+      
+    </div>
+  </div>
+  </body>
+</html>
