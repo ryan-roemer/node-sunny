@@ -74,7 +74,11 @@
 
 <h2 id='installation__getting_started'>Installation / Getting Started</h2>
 
-<p>Install Sunny directly from its <a href='https://github.com/ryan-roemer/node-sunny'>GitHub</a> repository::</p>
+<p>Install Sunny directly from <a href='http://npmjs.org/'>npm</a>:</p>
+
+<pre><code>$ npm install sunny</code></pre>
+
+<p>or the <a href='https://github.com/ryan-roemer/node-sunny'>GitHub</a> repository:</p>
 
 <pre><code>$ git clone git@github.com:ryan-roemer/node-sunny.git
 $ npm install ./node-sunny</code></pre>
@@ -106,13 +110,13 @@ $ npm install ./node-sunny</code></pre>
 <p>Sunny currently supports the following cloud operations:</p>
 
 <ul>
-<li>List containers: (<code>connection.getContainers()</code>)</li>
+<li>List containers: <code>connection.getContainers()</code></li>
 
-<li>PUT / DELETE container: (<code>container.put()</code>, <code>container.del()</code>)</li>
+<li>PUT / DELETE container: <code>container.put()</code>, <code>container.del()</code></li>
 
-<li>List blobs in a container: (<code>container.getBlobs()</code>)</li>
+<li>List blobs in a container: <code>container.getBlobs()</code></li>
 
-<li>PUT / HEAD / GET / DELETE blob: (<code>blob.put()</code>, <code>blob.head()</code>, <code>blob.get()</code>, <code>blob.del()</code>)</li>
+<li>PUT / HEAD / GET / DELETE blob: <code>blob.put()</code>, <code>blob.putFromFile()</code>, <code>blob.head()</code>, <code>blob.get()</code>, <code>blob.getToFile()</code>, <code>blob.del()</code></li>
 </ul>
 
 <h3 id='future'>Future</h3>
