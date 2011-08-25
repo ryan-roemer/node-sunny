@@ -12,6 +12,7 @@
 - Add 100-Continue support.
 - Add OpenStack support.
 - Add Rackspace support.
+- Switch to GSFD v2 API (instead of AWS legacy).
 - AWS / GSFD: Enumerate through the full REST API and add missing features,
   e.g.:
   - acl's
