@@ -251,7 +251,7 @@ namespace('build', function () {
 
   desc("Compile styles.");
   task('css', function () {
-    var mkdir = "mkdir -p " + DOCS_CSS_OUT + " && ", 
+    var mkdir = "mkdir -p " + DOCS_CSS_OUT + " && ",
       opts = STYLUS_OPTIONS.join(" "),
       stylus = [mkdir, STYLUS_BIN, opts, DOCS_CSS_SRC].join(" ");
     exec(stylus, function (error, stdout, stderr) {
@@ -271,7 +271,14 @@ namespace('build', function () {
   task('docs', ['build:siteDocs', 'build:apiDocs']);
 
   desc("Build Site documentation.");
-  task('siteDocs', ['build:_siteDocsRaw', 'build:css']);
+  task('siteDocs', ['build:_siteDocsRaw', 'build:_CNAME', 'build:css']);
+
+  desc("Copy CNAME file (internal).");
+  task('_CNAME', function () {
+    runProcess("cp", ["CNAME", DOCS_OUT + "/CNAME"], {
+      endFn: complete
+    });
+  }, true);
 
   desc("Build Site (internal).");
   task('_siteDocsRaw', function () {
