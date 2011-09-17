@@ -2,8 +2,8 @@ version:     0.0.1
 safe:        false
 auto:        false
 server:      false
-base-url:    .
 
+baseurl:     http://sunnyjs.org/
 source:      .
 destination: ../docs_html
 plugins:     ./_plugins
