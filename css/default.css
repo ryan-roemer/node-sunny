@@ -70,8 +70,6 @@ h3 {
   -webkit-box-shadow: 4px 6px 10px #999;
   -moz-box-shadow: 4px 6px 10px #999;
   box-shadow: 4px 6px 10px #999;
-  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
-  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
   margin: 0 2px;
   padding: 4px 15px;
   float: left;
@@ -94,6 +92,4 @@ pre {
   -webkit-box-shadow: 2px 5px 5px #999;
   -moz-box-shadow: 2px 5px 5px #999;
   box-shadow: 2px 5px 5px #999;
-  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
-  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
 }

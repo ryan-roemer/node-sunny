@@ -21,8 +21,6 @@ div.sectionTitle {
   -webkit-box-shadow: 2px 5px 5px #999;
   -moz-box-shadow: 2px 5px 5px #999;
   box-shadow: 2px 5px 5px #999;
-  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
-  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
 }
 div.fixedFont,
 .summaryTable td.attributes {
@@ -45,8 +43,6 @@ div.fixedFont,
   -webkit-box-shadow: 0px 4px 4px rgba(34,34,34,0.10);
   -moz-box-shadow: 0px 4px 4px rgba(34,34,34,0.10);
   box-shadow: 0px 4px 4px rgba(34,34,34,0.10);
-  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='rgba(34,34,34,0.10)');
-  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='rgba(34,34,34,0.10)')";
   text-align: left;
   list-style: none;
 }
@@ -90,8 +86,6 @@ div.fixedFont,
   -webkit-box-shadow: 2px 5px 5px #999;
   -moz-box-shadow: 2px 5px 5px #999;
   box-shadow: 2px 5px 5px #999;
-  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999');
-  -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=12px, OffY=12px, Color='#999')";
 }
 .summaryTable thead {
   display: none;
