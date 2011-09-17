@@ -4,6 +4,10 @@ Sunny aims for an efficient, event-based common interface to various cloud
 stores to enable cloud-agnostic programming that retains flexibility and
 speed.
 
+* [Sunny.js Documentation](http://sunnyjs.org): Guides and API documentation.
+* [Sunny.js GitHub Page](http://github.com/ryan-roemer/node-sunny): Source
+  repository and issue tracker.
+
 ## Features
 * Abstracts cloud provider differences. Focus on writing your application,
   not juggling "x-amz-" vs. "x-goog-" headers.
