@@ -7,6 +7,9 @@
   how-to-change-metadata-on-an-object-in-amazon-s3
 - Add more attributes (like created date, size, etc.) from cloud requests.
 
+- Retries: Add some intelligent wrapper / utility.
+- Throttling: Also handling throttling (along with retries).
+
 ## Cloud
 - Add keep-alive connection pooling.
 - Add 100-Continue support.
@@ -51,4 +54,12 @@
       <Message>A conflicting conditional operation is currently in progress against this resource. Please try again.</Message>
             <RequestId>93EEA161A40AD419</RequestId>>
             <HostId>NCVEcANu0ANdJvOlTQcXn31uUf01LLfjjUq5YISbaWNAGTzTYnlZn6xIfDo9lQN+</HostId>
+    </Error>
+
+### Throttling (Google v1):
+::
+
+    <Error>
+      <Code>SlowDown</Code>
+      <Message>Please reduce your request rate.</Message>
     </Error>
