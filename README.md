@@ -52,8 +52,6 @@ or the [GitHub][SGH] repository:
 [NPM]: http://npmjs.org/
 [SGH]: https://github.com/ryan-roemer/node-sunny
 
-Sunny will be added to [NPM](http://npmjs.org) soon.
-
 Please read the docs (in source at "docs/") and review the "live" tests
 (in source at "test/live") that perform the entire range of Sunny operations
 against real cloud datastores.
