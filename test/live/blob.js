@@ -257,11 +257,10 @@
 
       request = self.container.getBlobToFile(blobName, filePath);
 
-      test.expect(3);
+      test.expect(2);
       request.on('error', function (err) {
         // Local file error.
         test.ok(err, "Should have error.");
-        test.deepEqual(err.errno, 2);
         test.deepEqual(err.code, "ENOENT");
         test.done();
       });
@@ -285,19 +284,23 @@
     "GET non-existent blob.": function (test, opts) {
       var self = this,
         blobName = "this/blob/doesnt/exist",
-        request = self.container.getBlob(blobName);
+        stream = self.container.getBlob(blobName);
 
       test.expect(2);
-      request.on('error', function (err) {
+      stream.on('error', function (err) {
         test.deepEqual(err.statusCode, 404);
         test.deepEqual(err.isNotFound(), true);
         test.done();
       });
-      request.on('end', function (results) {
+      stream.on('data', function () {
+        test.ok(false, "Should not have data event.");
+        test.done();
+      });
+      stream.on('end', function (results) {
         test.ok(false, "Should not have completion. Got: " + results);
         test.done();
       });
-      request.end();
+      stream.end();
     },
     // Note: Duplicate near-in-time operations on same non-existent
     // blob could lead to: OperationAborted...
@@ -609,11 +612,10 @@
 
       request = self.container.putBlobFromFile(blobName, filePath);
 
-      test.expect(3);
+      test.expect(2);
       request.on('error', function (err) {
         // Expect local file not found error.
         test.ok(err, "Should have error.");
-        test.deepEqual(err.errno, 2);
         test.deepEqual(err.code, "ENOENT");
         test.done();
       });
@@ -631,11 +633,10 @@
 
       request = self.container.getBlobToFile(blobName, filePath);
 
-      test.expect(3);
+      test.expect(2);
       request.on('error', function (err) {
         // Local file error hits first.
         test.ok(err, "Should have error.");
-        test.deepEqual(err.errno, 2);
         test.deepEqual(err.code, "ENOENT");
         test.done();
       });
@@ -679,11 +680,10 @@
         }
       });
 
-      test.expect(3);
+      test.expect(2);
       request.on('error', function (err) {
         // Expect local file not found error.
         test.ok(err, "Should have error.");
-        test.deepEqual(err.errno, 2);
         test.deepEqual(err.code, "ENOENT");
         test.done();
       });

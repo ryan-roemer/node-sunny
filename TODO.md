@@ -1,6 +1,9 @@
 # To Do / Planning
 
 ## API
+- Streams: Add 'meta' event for when metadata is first available.
+  (Maybe: this doesn't totally solve the "need content-type" issue. Probably
+  need a full HEAD request).
 - COPY Blob.
 - UPDATE Blob Metadata only (no data). Really a COPY/REPLACE operation.
   See: http://stackoverflow.com/questions/4754383/
