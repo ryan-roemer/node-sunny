@@ -9,7 +9,7 @@
     <title>
       Sunny.js - base.blob.Blob
       
-        - v0.0.1
+        - v0.0.2
       
     </title>
 
@@ -252,7 +252,7 @@
             <tr>
               <td class="attributes">&nbsp;</td>
               <td class="nameDescription">
-                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:get_data">get_data</a></b>(chunk)
+                <div class="fixedFont"><b><a href="../symbols/base.blob.Blob.html#event:get_data">get_data</a></b>(chunk, meta)
                 </div>
                 <div class="description"><p>Data event ('<code>data</code>').</div>
               </td>
@@ -1045,7 +1045,7 @@ Must still call <code>end()</code> to invoke.</p>
           <div class="fixedFont">
 
           
-          <b>get_data</b>(chunk)
+          <b>get_data</b>(chunk, meta)
 
           </div>
           <div class="description">
@@ -1065,6 +1065,30 @@ Must still call <code>end()</code> to invoke.</p>
                   
                 </dt>
                 <dd>Data chunk.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta</b>
+                  
+                </dt>
+                <dd>Headers, meta object.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.headers</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>HTTP headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.cloudHeaders</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud provider headers.</dd>
+              
+                <dt>
+                  <span class="light fixedFont">{Object}</span> <b>meta.metadata</b>
+                  <i>Optional</i>
+                </dt>
+                <dd>Cloud metadata.</dd>
               
               </dl>
             
