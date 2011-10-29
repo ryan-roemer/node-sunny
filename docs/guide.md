@@ -529,6 +529,40 @@ There are also local file convenience methods:
 [Blob_getToFile]: ./api/symbols/base.blob.Blob.html#getToFile
 [getBlobToFile]: ./api/symbols/base.blob.Container.html#getBlobToFile
 
+## Headers / Metadata
+The above examples show custom headers / metadata that we can add in our
+``options`` argument and retrieve from cloud operations in the ``meta``
+parameter to our ``end`` event handlers.  In both cases, the format is:
+
+{% highlight javascript %}
+{
+  headers: {},
+  cloudHeaders: {},
+  metadata: {}
+}
+{% endhighlight %}
+
+So, for most cloud operations, we can call an operation like:
+
+{% highlight javascript %}
+var requestOrStream = containerOrBlob.operation(/* args */, {
+  headers: {},
+  cloudHeaders: {},
+  metadata: {}
+});
+{% endhighlight %}
+
+We can also get back returned headers, metadata in the same format with the
+``meta`` object:
+
+{% highlight javascript %}
+requestOrStream.on('end', function (results, meta) {
+  console.log("Non-cloud headers: %s", meta.headers);
+  console.log("Cloud headers: %s", meta.cloudHeaders);
+  console.log("Cloud metadata: %s", meta.metadata);
+});
+{% endhighlight %}
+
 ## Errors
 Sunny throws two types of errors: normal ``Error``'s and Sunny-specific
 [``CloudError``][CE]'s.  ``Error`` objects are thrown when there is a programmer
