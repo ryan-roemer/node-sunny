@@ -1,5 +1,8 @@
 # Changes
 
+## v.0.0.3
+* Fix header/metdata options bug for GET/PUT to/from file operations.
+
 ## v.0.0.2
 * Fix ReadStream status code bug.
 

@@ -1,7 +1,7 @@
 {
   "name": "sunny",
   "description": "Multi-cloud datastore client.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Ryan Roemer <ryan@loose-bits.com>",
   "url": "http://sunnyjs.org/",
   "main": "index",
