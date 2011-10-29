@@ -124,7 +124,7 @@ to execute all tests.
 ### JsLint
 We have a simple Jake target for JsLint checks:
 
-    # ./jake.sh dev:jslint
+    $ ./jake.sh dev:jslint
 
 The whole library and tests should pass.
 
