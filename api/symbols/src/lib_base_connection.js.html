@@ -148,128 +148,110 @@
 <span class='line'>141</span>    * @private
 <span class='line'>142</span>    */</span><span class="WHIT">
 <span class='line'>143</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype._isError</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">errItem</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">errItem.attrs</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>145</span> 
-<span class='line'>146</span> </span><span class="WHIT">    </span><span class="COMM">// Test error codes or html</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>148</span> </span><span class="WHIT">    </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">errorCodeMatches</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>149</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">attrs.errorCode</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>150</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">regex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">RegExp</span><span class="PUNC">(</span><span class="STRN">"&lt;Code>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">attrs.errorCode</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"&lt;/Code>"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>151</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">regex.test</span><span class="PUNC">(</span><span class="NAME">err.message</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>152</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>153</span> 
-<span class='line'>154</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>155</span> </span><span class="WHIT">    </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">errorHtmlMatches</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>156</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">attrs.errorHtml</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>157</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">regex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">RegExp</span><span class="PUNC">(</span><span class="STRN">"&lt;TITLE>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">attrs.errorHtml</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"&lt;/TITLE>"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>158</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">regex.test</span><span class="PUNC">(</span><span class="NAME">err.message</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>159</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>160</span> 
-<span class='line'>161</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">response</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">response.statusCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">attrs.statusCode</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT">
-<span class='line'>162</span> </span><span class="WHIT">      </span><span class="PUNC">(</span><span class="NAME">errorCodeMatches</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">errorHtmlMatches</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>163</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>164</span> 
-<span class='line'>165</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>166</span>    * Translate errors.
-<span class='line'>167</span>    *
-<span class='line'>168</span>    * @returns {Error|errors.CloudError} Translated error.
-<span class='line'>169</span>    * @private
-<span class='line'>170</span>    */</span><span class="WHIT">
-<span class='line'>171</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype._translateErrors</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">request</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>172</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>173</span> </span><span class="WHIT">      </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>174</span> </span><span class="WHIT">      </span><span class="NAME">errObj</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>175</span> </span><span class="WHIT">      </span><span class="NAME">error</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>176</span> 
-<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">self._ERRORS</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>178</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">self._ERRORS.hasOwnProperty</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>179</span> </span><span class="WHIT">        </span><span class="NAME">errObj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self._ERRORS</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>180</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">self._isError</span><span class="PUNC">(</span><span class="NAME">errObj</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>181</span> </span><span class="WHIT">          </span><span class="COMM">// Favor errorMap over default error.</span><span class="WHIT">
-<span class='line'>182</span> </span><span class="WHIT">          </span><span class="NAME">error</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">errObj.errorMap</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">            </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">errObj.errorMap</span><span class="PUNC">[</span><span class="NAME">request.method</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">errObj.error</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">            </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">errObj.error</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>185</span> 
-<span class='line'>186</span> </span><span class="WHIT">          </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">error</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>187</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Undefined error for errObj: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">errObj</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
-<span class='line'>188</span> </span><span class="WHIT">                            </span><span class="STRN">", err: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>189</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>190</span> 
-<span class='line'>191</span> </span><span class="WHIT">          </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">CloudError</span><span class="PUNC">(</span><span class="NAME">error.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>192</span> </span><span class="WHIT">            </span><span class="NAME">error</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>193</span> </span><span class="WHIT">            </span><span class="NAME">types</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">error.types</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>194</span> </span><span class="WHIT">            </span><span class="NAME">response</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">response</span><span class="WHIT">
-<span class='line'>195</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>196</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>197</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>198</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>199</span> 
-<span class='line'>200</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>201</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>202</span> 
-<span class='line'>203</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>204</span>    * Completion event ('``end``').
-<span class='line'>205</span>    *
-<span class='line'>206</span>    * @name base.Connection#getContainers_end
-<span class='line'>207</span>    * @event
-<span class='line'>208</span>    * @param   {Object}  results     Results object.
-<span class='line'>209</span>    * @config  {Array}   containers  List of container objects.
-<span class='line'>210</span>    */</span><span class="WHIT">
-<span class='line'>211</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>212</span>    * Error event ('``error``').
-<span class='line'>213</span>    *
-<span class='line'>214</span>    * @name base.Connection#getContainers_error
-<span class='line'>215</span>    * @event
-<span class='line'>216</span>    * @param   {Error|errors.CloudError} err Error object.
-<span class='line'>217</span>    */</span><span class="WHIT">
-<span class='line'>218</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>219</span>    * Get a list of Containers.
-<span class='line'>220</span>    *
-<span class='line'>221</span>    * ## Events
-<span class='line'>222</span>    *  - [``end(results, meta)``](#getContainers_end)
-<span class='line'>223</span>    *  - [``error(err)``](#getContainers_error)
-<span class='line'>224</span>    *
-<span class='line'>225</span>    * ## Note
-<span class='line'>226</span>    * Both AWS and GSFD only offer listing **all** containers, without
-<span class='line'>227</span>    * paging or prefix options.
-<span class='line'>228</span>    *
-<span class='line'>229</span>    * @param   {Object}  [options]         Options object.
-<span class='line'>230</span>    * @config  {Object}  [headers]         Raw headers to add.
-<span class='line'>231</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
-<span class='line'>232</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
-<span class='line'>233</span>    * @returns {AuthenticatedRequest} Request object.
+<span class='line'>144</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>146</span> 
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>148</span>    * Translate errors.
+<span class='line'>149</span>    *
+<span class='line'>150</span>    * @returns {Error|errors.CloudError} Translated error.
+<span class='line'>151</span>    * @private
+<span class='line'>152</span>    */</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype._translateErrors</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">request</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>155</span> </span><span class="WHIT">      </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>156</span> </span><span class="WHIT">      </span><span class="NAME">errObj</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">      </span><span class="NAME">error</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>158</span> 
+<span class='line'>159</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">self._ERRORS</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>160</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">self._ERRORS.hasOwnProperty</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">        </span><span class="NAME">errObj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self._ERRORS</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">self._isError</span><span class="PUNC">(</span><span class="NAME">errObj</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">          </span><span class="COMM">// Favor errorMap over default error.</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">          </span><span class="NAME">error</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">errObj.errorMap</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">            </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">errObj.errorMap</span><span class="PUNC">[</span><span class="NAME">request.method</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">errObj.error</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">            </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">errObj.error</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>167</span> 
+<span class='line'>168</span> </span><span class="WHIT">          </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">error</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Undefined error for errObj: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">errObj</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">                            </span><span class="STRN">", err: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>172</span> 
+<span class='line'>173</span> </span><span class="WHIT">          </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">CloudError</span><span class="PUNC">(</span><span class="NAME">error.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">            </span><span class="NAME">error</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">            </span><span class="NAME">types</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">error.types</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">            </span><span class="NAME">response</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">response</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>181</span> 
+<span class='line'>182</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>184</span> 
+<span class='line'>185</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>186</span>    * Completion event ('``end``').
+<span class='line'>187</span>    *
+<span class='line'>188</span>    * @name base.Connection#getContainers_end
+<span class='line'>189</span>    * @event
+<span class='line'>190</span>    * @param   {Object}  results     Results object.
+<span class='line'>191</span>    * @config  {Array}   containers  List of container objects.
+<span class='line'>192</span>    */</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>194</span>    * Error event ('``error``').
+<span class='line'>195</span>    *
+<span class='line'>196</span>    * @name base.Connection#getContainers_error
+<span class='line'>197</span>    * @event
+<span class='line'>198</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'>199</span>    */</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>201</span>    * Get a list of Containers.
+<span class='line'>202</span>    *
+<span class='line'>203</span>    * ## Events
+<span class='line'>204</span>    *  - [``end(results, meta)``](#getContainers_end)
+<span class='line'>205</span>    *  - [``error(err)``](#getContainers_error)
+<span class='line'>206</span>    *
+<span class='line'>207</span>    * ## Note
+<span class='line'>208</span>    * Both AWS and GSFD only offer listing **all** containers, without
+<span class='line'>209</span>    * paging or prefix options.
+<span class='line'>210</span>    *
+<span class='line'>211</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>212</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>213</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>214</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>215</span>    * @returns {AuthenticatedRequest} Request object.
+<span class='line'>216</span>    */</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.getContainers</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>220</span> 
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>222</span>    * Create container object and GET.
+<span class='line'>223</span>    *
+<span class='line'>224</span>    * @see base.blob.Container#get
+<span class='line'>225</span>    */</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.getContainer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createContainer</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>229</span> 
+<span class='line'>230</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>231</span>    * Create container object and PUT.
+<span class='line'>232</span>    *
+<span class='line'>233</span>    * @see base.blob.Container#put
 <span class='line'>234</span>    */</span><span class="WHIT">
-<span class='line'>235</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.getContainers</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>236</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>235</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.putContainer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>236</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createContainer</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">put</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>237</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>238</span> 
 <span class='line'>239</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>240</span>    * Create container object and GET.
+<span class='line'>240</span>    * Create container object and DELETE.
 <span class='line'>241</span>    *
-<span class='line'>242</span>    * @see base.blob.Container#get
+<span class='line'>242</span>    * @see base.blob.Container#del
 <span class='line'>243</span>    */</span><span class="WHIT">
-<span class='line'>244</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.getContainer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>245</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createContainer</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.delContainer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>245</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createContainer</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">del</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>246</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>247</span> 
-<span class='line'>248</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>249</span>    * Create container object and PUT.
-<span class='line'>250</span>    *
-<span class='line'>251</span>    * @see base.blob.Container#put
-<span class='line'>252</span>    */</span><span class="WHIT">
-<span class='line'>253</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.putContainer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>254</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createContainer</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">put</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>255</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>256</span> 
-<span class='line'>257</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>258</span>    * Create container object and DELETE.
-<span class='line'>259</span>    *
-<span class='line'>260</span>    * @see base.blob.Container#del
-<span class='line'>261</span>    */</span><span class="WHIT">
-<span class='line'>262</span> </span><span class="WHIT">  </span><span class="NAME">Connection.prototype.delContainer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>263</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._createContainer</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">del</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>264</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>265</span> 
-<span class='line'>266</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Connection</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Connection</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>267</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>268</span> </span></pre></body></html>
+<span class='line'>248</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Connection</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Connection</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>249</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>250</span> </span></pre></body></html>

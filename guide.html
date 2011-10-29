@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="description" content="Multi-cloud data store client." />
   <meta name="keywords" content="Sunny, Sunny.js, node-sunny, Node, Node.js, Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
-  <title>Sunny.js - User Guide - v0.0.2</title>
+  <title>Sunny.js - User Guide - v0.0.3</title>
   <link rel="stylesheet" type="text/css"
     href="http://sunnyjs.org/css/syntax.css"  />
   <link rel="stylesheet" type="text/css"
@@ -59,7 +59,7 @@
 <li><strong>Blob</strong>: Equivalent to an AWS S3 / Google Storage &#8220;key&#8221;, and a Rackspace/OpenStack &#8220;object&#8221;.</li>
 </ul>
 
-<p>This guide is for Sunny version: <strong>v0.0.2</strong>.</p>
+<p>This guide is for Sunny version: <strong>v0.0.3</strong>.</p>
 
 <h2 id='configuration'>Configuration</h2>
 
@@ -463,6 +463,32 @@ Metadata:
 <li><strong><a href='./api/symbols/base.blob.Blob.html#getToFile'><code>Blob.getToFile()</code></a></strong>: GET a blob from the cloud and write it to a local file. Also available as <a href='./api/symbols/base.blob.Container.html#getBlobToFile'><code>Container.getBlobToFile</code></a>.</li>
 </ul>
 
+<h2 id='headers__metadata'>Headers / Metadata</h2>
+
+<p>The above examples show custom headers / metadata that we can add in our <code>options</code> argument and retrieve from cloud operations in the <code>meta</code> parameter to our <code>end</code> event handlers. In both cases, the format is:</p>
+<div class='highlight'><pre><code class='javascript'><span class='p'>{</span>
+  <span class='nx'>headers</span><span class='o'>:</span> <span class='p'>{},</span>
+  <span class='nx'>cloudHeaders</span><span class='o'>:</span> <span class='p'>{},</span>
+  <span class='nx'>metadata</span><span class='o'>:</span> <span class='p'>{}</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
+<p>So, for most cloud operations, we can call an operation like:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>requestOrStream</span> <span class='o'>=</span> <span class='nx'>containerOrBlob</span><span class='p'>.</span><span class='nx'>operation</span><span class='p'>(</span><span class='cm'>/* args */</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>headers</span><span class='o'>:</span> <span class='p'>{},</span>
+  <span class='nx'>cloudHeaders</span><span class='o'>:</span> <span class='p'>{},</span>
+  <span class='nx'>metadata</span><span class='o'>:</span> <span class='p'>{}</span>
+<span class='p'>});</span>
+</code></pre>
+</div>
+<p>We can also get back returned headers, metadata in the same format with the <code>meta</code> object:</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>requestOrStream</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;end&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>results</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Non-cloud headers: %s&quot;</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>.</span><span class='nx'>headers</span><span class='p'>);</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Cloud headers: %s&quot;</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>.</span><span class='nx'>cloudHeaders</span><span class='p'>);</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Cloud metadata: %s&quot;</span><span class='p'>,</span> <span class='nx'>meta</span><span class='p'>.</span><span class='nx'>metadata</span><span class='p'>);</span>
+<span class='p'>});</span>
+</code></pre>
+</div>
 <h2 id='errors'>Errors</h2>
 
 <p>Sunny throws two types of errors: normal <code>Error</code>&#8217;s and Sunny-specific <a href='./api/symbols/errors.CloudError.html'><code>CloudError</code></a>&#8217;s. <code>Error</code> objects are thrown when there is a programmer or library error (like a missing or invalid parameter during a method call) and should generally be tracked down and eliminated. For operations like putting a local file, etc., if the underlying operation throws a normal <code>Error</code>, then that can be passed back too (and should be handled).</p>

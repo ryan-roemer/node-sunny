@@ -157,245 +157,251 @@
 <span class='line'>150</span> </span><span class="WHIT">      </span><span class="NAME">errHandler</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>151</span> </span><span class="WHIT">      </span><span class="NAME">endHandler</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>152</span> 
-<span class='line'>153</span> </span><span class="WHIT">    </span><span class="COMM">// Set up streams.</span><span class="WHIT">
-<span class='line'>154</span> </span><span class="WHIT">    </span><span class="NAME">getStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.get</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>155</span> </span><span class="WHIT">    </span><span class="NAME">writeStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">fs.createWriteStream</span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>156</span> 
-<span class='line'>157</span> </span><span class="WHIT">    </span><span class="COMM">// Request setup.</span><span class="WHIT">
-<span class='line'>158</span> </span><span class="WHIT">    </span><span class="COMM">// Request.end() starts the pipe, WriteStream:end completes request.</span><span class="WHIT">
-<span class='line'>159</span> </span><span class="WHIT">    </span><span class="NAME">request</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">DummyRequest</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>160</span> </span><span class="WHIT">      </span><span class="NAME">endFn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>161</span> </span><span class="WHIT">        </span><span class="COMM">// Start the pipe and call 'end()'.</span><span class="WHIT">
-<span class='line'>162</span> </span><span class="WHIT">        </span><span class="NAME">getStream.pipe</span><span class="PUNC">(</span><span class="NAME">writeStream</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>163</span> </span><span class="WHIT">        </span><span class="NAME">getStream.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>164</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>165</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>166</span> 
-<span class='line'>167</span> </span><span class="WHIT">    </span><span class="COMM">// Need to handle errors in **both** streams.</span><span class="WHIT">
-<span class='line'>168</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>169</span> </span><span class="WHIT">    </span><span class="NAME">errHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">err</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>170</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">errorEmitted</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>171</span> </span><span class="WHIT">        </span><span class="NAME">errorEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>172</span> </span><span class="WHIT">        </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>173</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>174</span> </span><span class="WHIT">      </span><span class="NAME">getStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>175</span> </span><span class="WHIT">      </span><span class="NAME">writeStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>176</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>177</span> 
-<span class='line'>178</span> </span><span class="WHIT">    </span><span class="COMM">// End when we have both (1) cloud results, and (2) closed file stream.</span><span class="WHIT">
-<span class='line'>179</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>180</span> </span><span class="WHIT">    </span><span class="NAME">endHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>181</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">getFinished</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">writeFinished</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">endEmitted</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>182</span> </span><span class="WHIT">        </span><span class="NAME">endEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">        </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">getResults</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">getMeta</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>185</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>186</span> 
-<span class='line'>187</span> </span><span class="WHIT">    </span><span class="COMM">// Stream handlers.</span><span class="WHIT">
-<span class='line'>188</span> </span><span class="WHIT">    </span><span class="NAME">getStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>189</span> </span><span class="WHIT">    </span><span class="NAME">getStream.on</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">results</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>190</span> </span><span class="WHIT">      </span><span class="COMM">// GET blob finishes, and we store values.</span><span class="WHIT">
-<span class='line'>191</span> </span><span class="WHIT">      </span><span class="NAME">getFinished</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>192</span> </span><span class="WHIT">      </span><span class="NAME">getResults</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">results</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>193</span> </span><span class="WHIT">      </span><span class="NAME">getMeta</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>194</span> </span><span class="WHIT">      </span><span class="NAME">endHandler</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>195</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>196</span> </span><span class="WHIT">    </span><span class="NAME">writeStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>197</span> </span><span class="WHIT">    </span><span class="NAME">writeStream.on</span><span class="PUNC">(</span><span class="STRN">'close'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>198</span> </span><span class="WHIT">      </span><span class="COMM">// File stream is closed.</span><span class="WHIT">
-<span class='line'>199</span> </span><span class="WHIT">      </span><span class="NAME">writeFinished</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>200</span> </span><span class="WHIT">      </span><span class="NAME">endHandler</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>201</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>202</span> 
-<span class='line'>203</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">request</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>204</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">    </span><span class="COMM">// Update encoding.</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">    </span><span class="NAME">options.encoding</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>155</span> 
+<span class='line'>156</span> </span><span class="WHIT">    </span><span class="COMM">// Set up streams.</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">    </span><span class="NAME">getStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.get</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">    </span><span class="NAME">writeStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">fs.createWriteStream</span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>159</span> 
+<span class='line'>160</span> </span><span class="WHIT">    </span><span class="COMM">// Request setup.</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">    </span><span class="COMM">// Request.end() starts the pipe, WriteStream:end completes request.</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">    </span><span class="NAME">request</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">DummyRequest</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">      </span><span class="NAME">endFn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">        </span><span class="COMM">// Start the pipe and call 'end()'.</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">        </span><span class="NAME">getStream.pipe</span><span class="PUNC">(</span><span class="NAME">writeStream</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">        </span><span class="NAME">getStream.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>169</span> 
+<span class='line'>170</span> </span><span class="WHIT">    </span><span class="COMM">// Need to handle errors in **both** streams.</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>172</span> </span><span class="WHIT">    </span><span class="NAME">errHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">err</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">errorEmitted</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">        </span><span class="NAME">errorEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">        </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">      </span><span class="NAME">getStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">      </span><span class="NAME">writeStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">    </span><span class="COMM">// End when we have both (1) cloud results, and (2) closed file stream.</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">    </span><span class="NAME">endHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">getFinished</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">writeFinished</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">endEmitted</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">        </span><span class="NAME">endEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">        </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">getResults</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">getMeta</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>189</span> 
+<span class='line'>190</span> </span><span class="WHIT">    </span><span class="COMM">// Stream handlers.</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">    </span><span class="NAME">getStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">    </span><span class="NAME">getStream.on</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">results</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">      </span><span class="COMM">// GET blob finishes, and we store values.</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">      </span><span class="NAME">getFinished</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">      </span><span class="NAME">getResults</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">results</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">      </span><span class="NAME">getMeta</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">      </span><span class="NAME">endHandler</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">    </span><span class="NAME">writeStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    </span><span class="NAME">writeStream.on</span><span class="PUNC">(</span><span class="STRN">'close'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">      </span><span class="COMM">// File stream is closed.</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">      </span><span class="NAME">writeFinished</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">      </span><span class="NAME">endHandler</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>205</span> 
-<span class='line'>206</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>207</span>    * Completion event ('``end``').
-<span class='line'>208</span>    *
-<span class='line'>209</span>    * @name base.blob.Blob#head_end
-<span class='line'>210</span>    * @event
-<span class='line'>211</span>    * @param  {Object}            results  Results object.
-<span class='line'>212</span>    * @config {base.blob.Blob}       blob  Blob object.
-<span class='line'>213</span>    * @param  {Object}               meta  Headers, meta object.
-<span class='line'>214</span>    * @config {Object}          [headers]  HTTP headers.
-<span class='line'>215</span>    * @config {Object}     [cloudHeaders]  Cloud provider headers.
-<span class='line'>216</span>    * @config {Object}         [metadata]  Cloud metadata.
-<span class='line'>217</span>    */</span><span class="WHIT">
-<span class='line'>218</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>219</span>    * Error event ('``error``').
-<span class='line'>220</span>    *
-<span class='line'>221</span>    * @name base.blob.Blob#head_error
-<span class='line'>222</span>    * @event
-<span class='line'>223</span>    * @param   {Error|errors.CloudError} err Error object.
-<span class='line'>224</span>    */</span><span class="WHIT">
-<span class='line'>225</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>226</span>    * HEAD blob (check blob exists and return metadata).
-<span class='line'>227</span>    *
-<span class='line'>228</span>    * ## Events
-<span class='line'>229</span>    *  - [``end(results, meta)``](#head_end)
-<span class='line'>230</span>    *  - [``error(err)``](#head_error)
-<span class='line'>231</span>    *
-<span class='line'>232</span>    * @param   {Object}  [options]         Options object.
-<span class='line'>233</span>    * @config  {Object}  [headers]         Raw headers to add.
-<span class='line'>234</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
-<span class='line'>235</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
-<span class='line'>236</span>    * @returns {request.AuthenticatedRequest} Request object.
-<span class='line'>237</span>    */</span><span class="WHIT">
-<span class='line'>238</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.head</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>239</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>240</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>241</span> 
-<span class='line'>242</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>243</span>    * Completion event ('``end``').
-<span class='line'>244</span>    *
-<span class='line'>245</span>    * @name base.blob.Blob#put_end
-<span class='line'>246</span>    * @event
-<span class='line'>247</span>    * @param  {Object}            results  Results object.
-<span class='line'>248</span>    * @config {base.blob.Blob}       blob  Blob object.
-<span class='line'>249</span>    * @param  {Object}               meta  Headers, meta object.
-<span class='line'>250</span>    * @config {Object}          [headers]  HTTP headers.
-<span class='line'>251</span>    * @config {Object}     [cloudHeaders]  Cloud provider headers.
-<span class='line'>252</span>    * @config {Object}         [metadata]  Cloud metadata.
-<span class='line'>253</span>    */</span><span class="WHIT">
-<span class='line'>254</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>255</span>    * Error event ('``error``').
-<span class='line'>256</span>    *
-<span class='line'>257</span>    * @name base.blob.Blob#put_error
-<span class='line'>258</span>    * @event
-<span class='line'>259</span>    * @param   {Error|errors.CloudError} err Error object.
-<span class='line'>260</span>    */</span><span class="WHIT">
-<span class='line'>261</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>262</span>    * Put blob data (and metadata).
-<span class='line'>263</span>    *
-<span class='line'>264</span>    * ## Events
-<span class='line'>265</span>    *  - [``end(results, meta)``](#get_end)
-<span class='line'>266</span>    *  - [``error(err)``](#get_error)
-<span class='line'>267</span>    *
-<span class='line'>268</span>    * @param   {Object}  [options]         Options object.
-<span class='line'>269</span>    * @config  {string}  [encoding]        Encoding to use.
-<span class='line'>270</span>    * @config  {Object}  [headers]         Raw headers to add.
-<span class='line'>271</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
-<span class='line'>272</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
-<span class='line'>273</span>    * @returns {stream.WriteStream}        Writable cloud stream object.
-<span class='line'>274</span>    */</span><span class="WHIT">
-<span class='line'>275</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.put</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>276</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>277</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>278</span> 
-<span class='line'>279</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>280</span>    * Put blob data from file.
-<span class='line'>281</span>    *
-<span class='line'>282</span>    * ## Note
-<span class='line'>283</span>    * Just a wrapper around a readable file stream and a PUT.
-<span class='line'>284</span>    * Must still call ``end()`` to invoke.
-<span class='line'>285</span>    *
-<span class='line'>286</span>    * ## Events
-<span class='line'>287</span>    *  - [``end(results, meta)``](#get_end)
-<span class='line'>288</span>    *  - [``error(err)``](#get_error)
-<span class='line'>289</span>    *
-<span class='line'>290</span>    * @param   {string}  filePath          Path to file.
-<span class='line'>291</span>    * @param   {Object}  [options]         Options object.
-<span class='line'>292</span>    * @config  {string}  [encoding]        Encoding to use.
-<span class='line'>293</span>    * @config  {Object}  [headers]         Raw headers to add.
-<span class='line'>294</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
-<span class='line'>295</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
-<span class='line'>296</span>    * @returns {request.DummyRequest}      Request object.
-<span class='line'>297</span>    */</span><span class="WHIT">
-<span class='line'>298</span> </span><span class="WHIT">  </span><span class="COMM">// TOOD: Blob.putFromFile - consider fs.readFile() implementation instead.</span><span class="WHIT">
-<span class='line'>299</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.putFromFile</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>300</span> </span><span class="WHIT">    </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>301</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>302</span> </span><span class="WHIT">      </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.encoding</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>303</span> </span><span class="WHIT">      </span><span class="NAME">errorEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>304</span> </span><span class="WHIT">      </span><span class="NAME">request</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>305</span> </span><span class="WHIT">      </span><span class="NAME">readStream</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>306</span> </span><span class="WHIT">      </span><span class="NAME">putStream</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>307</span> </span><span class="WHIT">      </span><span class="NAME">errHandler</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>308</span> 
-<span class='line'>309</span> </span><span class="WHIT">    </span><span class="COMM">// Set up streams.</span><span class="WHIT">
-<span class='line'>310</span> </span><span class="WHIT">    </span><span class="NAME">readStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">fs.createReadStream</span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>311</span> </span><span class="WHIT">    </span><span class="NAME">putStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.put</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>312</span> 
-<span class='line'>313</span> </span><span class="WHIT">    </span><span class="COMM">// Request setup.</span><span class="WHIT">
-<span class='line'>314</span> </span><span class="WHIT">    </span><span class="COMM">// Request.end() starts the pipe, PutStream:end completes request.</span><span class="WHIT">
-<span class='line'>315</span> </span><span class="WHIT">    </span><span class="NAME">request</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">DummyRequest</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>316</span> </span><span class="WHIT">      </span><span class="NAME">endFn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>317</span> </span><span class="WHIT">        </span><span class="COMM">// Start the pipe.</span><span class="WHIT">
-<span class='line'>318</span> </span><span class="WHIT">        </span><span class="NAME">readStream.pipe</span><span class="PUNC">(</span><span class="NAME">putStream</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>319</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>320</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>321</span> 
-<span class='line'>322</span> </span><span class="WHIT">    </span><span class="COMM">// Need to handle errors in **both** streams.</span><span class="WHIT">
-<span class='line'>323</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>324</span> </span><span class="WHIT">    </span><span class="NAME">errHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">err</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>325</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">errorEmitted</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>326</span> </span><span class="WHIT">        </span><span class="NAME">errorEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>327</span> </span><span class="WHIT">        </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>328</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>329</span> </span><span class="WHIT">      </span><span class="NAME">readStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>330</span> </span><span class="WHIT">      </span><span class="NAME">putStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>331</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>332</span> 
-<span class='line'>333</span> </span><span class="WHIT">    </span><span class="COMM">// Stream handlers.</span><span class="WHIT">
-<span class='line'>334</span> </span><span class="WHIT">    </span><span class="NAME">readStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>335</span> </span><span class="WHIT">    </span><span class="NAME">putStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>336</span> </span><span class="WHIT">    </span><span class="NAME">putStream.on</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">results</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>337</span> </span><span class="WHIT">      </span><span class="COMM">// PUT finishes, and we signal request.</span><span class="WHIT">
-<span class='line'>338</span> </span><span class="WHIT">      </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">results</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>339</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>340</span> 
-<span class='line'>341</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">request</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>342</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>343</span> 
-<span class='line'>344</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>345</span>    * Completion event ('``end``').
-<span class='line'>346</span>    *
-<span class='line'>347</span>    * **Note**: Callback indicates the object no longer exists.
-<span class='line'>348</span>    *
-<span class='line'>349</span>    * @name base.blob.Blob#del_end
-<span class='line'>350</span>    * @event
-<span class='line'>351</span>    * @param  {Object}            results  Results object.
-<span class='line'>352</span>    * @config {base.blob.Blob}       blob  Blob object.
-<span class='line'>353</span>    * @config {boolean}          notFound  True if object was not found.
-<span class='line'>354</span>    * @param  {Object}               meta  Headers, meta object.
-<span class='line'>355</span>    * @config {Object}          [headers]  HTTP headers.
-<span class='line'>356</span>    * @config {Object}     [cloudHeaders]  Cloud provider headers.
-<span class='line'>357</span>    * @config {Object}         [metadata]  Cloud metadata.
-<span class='line'>358</span>    */</span><span class="WHIT">
-<span class='line'>359</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>360</span>    * Error event ('``error``').
-<span class='line'>361</span>    *
-<span class='line'>362</span>    * @name base.blob.Blob#del_error
-<span class='line'>363</span>    * @event
-<span class='line'>364</span>    * @param   {Error|errors.CloudError} err Error object.
-<span class='line'>365</span>    */</span><span class="WHIT">
-<span class='line'>366</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>367</span>    * Delete a blob.
-<span class='line'>368</span>    *
-<span class='line'>369</span>    * ## Events
-<span class='line'>370</span>    *  - [``end(results, meta)``](#del_end)
-<span class='line'>371</span>    *  - [``error(err)``](#del_error)
-<span class='line'>372</span>    *
-<span class='line'>373</span>    * ## Not Found Blobs
-<span class='line'>374</span>    * This method emits '``end``' and **not** '``error``' for a not found
-<span class='line'>375</span>    * blob, reasoning that it becomes easier to have multiple deletes at
-<span class='line'>376</span>    * the same time. Moreover, AWS S3 doesn't return a 404, so we can't really
-<span class='line'>377</span>    * even detect this (although Google Storage does).
+<span class='line'>206</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">request</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> 
+<span class='line'>209</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>210</span>    * Completion event ('``end``').
+<span class='line'>211</span>    *
+<span class='line'>212</span>    * @name base.blob.Blob#head_end
+<span class='line'>213</span>    * @event
+<span class='line'>214</span>    * @param  {Object}            results  Results object.
+<span class='line'>215</span>    * @config {base.blob.Blob}       blob  Blob object.
+<span class='line'>216</span>    * @param  {Object}               meta  Headers, meta object.
+<span class='line'>217</span>    * @config {Object}          [headers]  HTTP headers.
+<span class='line'>218</span>    * @config {Object}     [cloudHeaders]  Cloud provider headers.
+<span class='line'>219</span>    * @config {Object}         [metadata]  Cloud metadata.
+<span class='line'>220</span>    */</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>222</span>    * Error event ('``error``').
+<span class='line'>223</span>    *
+<span class='line'>224</span>    * @name base.blob.Blob#head_error
+<span class='line'>225</span>    * @event
+<span class='line'>226</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'>227</span>    */</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>229</span>    * HEAD blob (check blob exists and return metadata).
+<span class='line'>230</span>    *
+<span class='line'>231</span>    * ## Events
+<span class='line'>232</span>    *  - [``end(results, meta)``](#head_end)
+<span class='line'>233</span>    *  - [``error(err)``](#head_error)
+<span class='line'>234</span>    *
+<span class='line'>235</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>236</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>237</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>238</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>239</span>    * @returns {request.AuthenticatedRequest} Request object.
+<span class='line'>240</span>    */</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.head</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>244</span> 
+<span class='line'>245</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>246</span>    * Completion event ('``end``').
+<span class='line'>247</span>    *
+<span class='line'>248</span>    * @name base.blob.Blob#put_end
+<span class='line'>249</span>    * @event
+<span class='line'>250</span>    * @param  {Object}            results  Results object.
+<span class='line'>251</span>    * @config {base.blob.Blob}       blob  Blob object.
+<span class='line'>252</span>    * @param  {Object}               meta  Headers, meta object.
+<span class='line'>253</span>    * @config {Object}          [headers]  HTTP headers.
+<span class='line'>254</span>    * @config {Object}     [cloudHeaders]  Cloud provider headers.
+<span class='line'>255</span>    * @config {Object}         [metadata]  Cloud metadata.
+<span class='line'>256</span>    */</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>258</span>    * Error event ('``error``').
+<span class='line'>259</span>    *
+<span class='line'>260</span>    * @name base.blob.Blob#put_error
+<span class='line'>261</span>    * @event
+<span class='line'>262</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'>263</span>    */</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>265</span>    * Put blob data (and metadata).
+<span class='line'>266</span>    *
+<span class='line'>267</span>    * ## Events
+<span class='line'>268</span>    *  - [``end(results, meta)``](#get_end)
+<span class='line'>269</span>    *  - [``error(err)``](#get_error)
+<span class='line'>270</span>    *
+<span class='line'>271</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>272</span>    * @config  {string}  [encoding]        Encoding to use.
+<span class='line'>273</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>274</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>275</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>276</span>    * @returns {stream.WriteStream}        Writable cloud stream object.
+<span class='line'>277</span>    */</span><span class="WHIT">
+<span class='line'>278</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.put</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>280</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>281</span> 
+<span class='line'>282</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>283</span>    * Put blob data from file.
+<span class='line'>284</span>    *
+<span class='line'>285</span>    * ## Note
+<span class='line'>286</span>    * Just a wrapper around a readable file stream and a PUT.
+<span class='line'>287</span>    * Must still call ``end()`` to invoke.
+<span class='line'>288</span>    *
+<span class='line'>289</span>    * ## Events
+<span class='line'>290</span>    *  - [``end(results, meta)``](#get_end)
+<span class='line'>291</span>    *  - [``error(err)``](#get_error)
+<span class='line'>292</span>    *
+<span class='line'>293</span>    * @param   {string}  filePath          Path to file.
+<span class='line'>294</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>295</span>    * @config  {string}  [encoding]        Encoding to use.
+<span class='line'>296</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>297</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>298</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>299</span>    * @returns {request.DummyRequest}      Request object.
+<span class='line'>300</span>    */</span><span class="WHIT">
+<span class='line'>301</span> </span><span class="WHIT">  </span><span class="COMM">// TOOD: Blob.putFromFile - consider fs.readFile() implementation instead.</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.putFromFile</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">    </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">      </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.encoding</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>306</span> </span><span class="WHIT">      </span><span class="NAME">errorEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>307</span> </span><span class="WHIT">      </span><span class="NAME">request</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">      </span><span class="NAME">readStream</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>309</span> </span><span class="WHIT">      </span><span class="NAME">putStream</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>310</span> </span><span class="WHIT">      </span><span class="NAME">errHandler</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>311</span> 
+<span class='line'>312</span> </span><span class="WHIT">    </span><span class="COMM">// Update encoding.</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">    </span><span class="NAME">options.encoding</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>314</span> 
+<span class='line'>315</span> </span><span class="WHIT">    </span><span class="COMM">// Set up streams.</span><span class="WHIT">
+<span class='line'>316</span> </span><span class="WHIT">    </span><span class="NAME">readStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">fs.createReadStream</span><span class="PUNC">(</span><span class="NAME">filePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">encoding</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">    </span><span class="NAME">putStream</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.put</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>318</span> 
+<span class='line'>319</span> </span><span class="WHIT">    </span><span class="COMM">// Request setup.</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="WHIT">    </span><span class="COMM">// Request.end() starts the pipe, PutStream:end completes request.</span><span class="WHIT">
+<span class='line'>321</span> </span><span class="WHIT">    </span><span class="NAME">request</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">DummyRequest</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="WHIT">      </span><span class="NAME">endFn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>323</span> </span><span class="WHIT">        </span><span class="COMM">// Start the pipe.</span><span class="WHIT">
+<span class='line'>324</span> </span><span class="WHIT">        </span><span class="NAME">readStream.pipe</span><span class="PUNC">(</span><span class="NAME">putStream</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>327</span> 
+<span class='line'>328</span> </span><span class="WHIT">    </span><span class="COMM">// Need to handle errors in **both** streams.</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">    </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">    </span><span class="NAME">errHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">err</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">errorEmitted</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">        </span><span class="NAME">errorEmitted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>333</span> </span><span class="WHIT">        </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">err</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>334</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>335</span> </span><span class="WHIT">      </span><span class="NAME">readStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">      </span><span class="NAME">putStream.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>338</span> 
+<span class='line'>339</span> </span><span class="WHIT">    </span><span class="COMM">// Stream handlers.</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">    </span><span class="NAME">readStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">    </span><span class="NAME">putStream.on</span><span class="PUNC">(</span><span class="STRN">'error'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errHandler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">    </span><span class="NAME">putStream.on</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">results</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">      </span><span class="COMM">// PUT finishes, and we signal request.</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">      </span><span class="NAME">request.emit</span><span class="PUNC">(</span><span class="STRN">'end'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">results</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">meta</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>346</span> 
+<span class='line'>347</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">request</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>349</span> 
+<span class='line'>350</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>351</span>    * Completion event ('``end``').
+<span class='line'>352</span>    *
+<span class='line'>353</span>    * **Note**: Callback indicates the object no longer exists.
+<span class='line'>354</span>    *
+<span class='line'>355</span>    * @name base.blob.Blob#del_end
+<span class='line'>356</span>    * @event
+<span class='line'>357</span>    * @param  {Object}            results  Results object.
+<span class='line'>358</span>    * @config {base.blob.Blob}       blob  Blob object.
+<span class='line'>359</span>    * @config {boolean}          notFound  True if object was not found.
+<span class='line'>360</span>    * @param  {Object}               meta  Headers, meta object.
+<span class='line'>361</span>    * @config {Object}          [headers]  HTTP headers.
+<span class='line'>362</span>    * @config {Object}     [cloudHeaders]  Cloud provider headers.
+<span class='line'>363</span>    * @config {Object}         [metadata]  Cloud metadata.
+<span class='line'>364</span>    */</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>366</span>    * Error event ('``error``').
+<span class='line'>367</span>    *
+<span class='line'>368</span>    * @name base.blob.Blob#del_error
+<span class='line'>369</span>    * @event
+<span class='line'>370</span>    * @param   {Error|errors.CloudError} err Error object.
+<span class='line'>371</span>    */</span><span class="WHIT">
+<span class='line'>372</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>373</span>    * Delete a blob.
+<span class='line'>374</span>    *
+<span class='line'>375</span>    * ## Events
+<span class='line'>376</span>    *  - [``end(results, meta)``](#del_end)
+<span class='line'>377</span>    *  - [``error(err)``](#del_error)
 <span class='line'>378</span>    *
-<span class='line'>379</span>    * On ``end``, ``result.notFound`` is returned that at least for Google
-<span class='line'>380</span>    * Storage indicates if the blob didn't exist.
-<span class='line'>381</span>    *
-<span class='line'>382</span>    * @param   {Object}  [options]         Options object.
-<span class='line'>383</span>    * @config  {Object}  [headers]         Raw headers to add.
-<span class='line'>384</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
-<span class='line'>385</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
-<span class='line'>386</span>    * @returns {request.AuthenticatedRequest} Request object.
-<span class='line'>387</span>    */</span><span class="WHIT">
-<span class='line'>388</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.del</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>389</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>390</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>391</span> 
-<span class='line'>392</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Blob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Blob</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>393</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>394</span> </span></pre></body></html>
+<span class='line'>379</span>    * ## Not Found Blobs
+<span class='line'>380</span>    * This method emits '``end``' and **not** '``error``' for a not found
+<span class='line'>381</span>    * blob, reasoning that it becomes easier to have multiple deletes at
+<span class='line'>382</span>    * the same time. Moreover, AWS S3 doesn't return a 404, so we can't really
+<span class='line'>383</span>    * even detect this (although Google Storage does).
+<span class='line'>384</span>    *
+<span class='line'>385</span>    * On ``end``, ``result.notFound`` is returned that at least for Google
+<span class='line'>386</span>    * Storage indicates if the blob didn't exist.
+<span class='line'>387</span>    *
+<span class='line'>388</span>    * @param   {Object}  [options]         Options object.
+<span class='line'>389</span>    * @config  {Object}  [headers]         Raw headers to add.
+<span class='line'>390</span>    * @config  {Object}  [cloudHeaders]    Cloud provider headers to add.
+<span class='line'>391</span>    * @config  {Object}  [metadata]        Cloud metadata to add.
+<span class='line'>392</span>    * @returns {request.AuthenticatedRequest} Request object.
+<span class='line'>393</span>    */</span><span class="WHIT">
+<span class='line'>394</span> </span><span class="WHIT">  </span><span class="NAME">Blob.prototype.del</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>395</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not implemented."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>396</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>397</span> 
+<span class='line'>398</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Blob</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Blob</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>399</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>400</span> </span></pre></body></html>

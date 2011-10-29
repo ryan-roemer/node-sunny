@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="description" content="Multi-cloud data store client." />
   <meta name="keywords" content="Sunny, Sunny.js, node-sunny, Node, Node.js, Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
-  <title>Sunny.js - Development - v0.0.2</title>
+  <title>Sunny.js - Development - v0.0.3</title>
   <link rel="stylesheet" type="text/css"
     href="http://sunnyjs.org/css/syntax.css"  />
   <link rel="stylesheet" type="text/css"
@@ -55,7 +55,7 @@
 
 <p>Development help is most welcome! There is a long task list in source at &#8220;./TODO.md&#8221; of improvements and enhancements that would be great to get going.</p>
 
-<p>This guide is for Sunny version: <strong>v0.0.2</strong>.</p>
+<p>This guide is for Sunny version: <strong>v0.0.3</strong>.</p>
 
 <h2 id='dev_installation'>Dev. Installation</h2>
 
@@ -103,7 +103,7 @@ jake build:docs           # Build all documentation.
 
 <p>The live unit tests perform cloud operations against <strong>real datastores</strong>. While unlikely to cause harm, you should <strong>not</strong> run the live tests against a production datastore. The live tests create test containers of the form: &#8221;<code>sunnyjs-livetest-&lt;RANDOM_GUID&gt;</code>&#8221; in a setup phase. These containers should be deleted on teardown, regardless of whether or not the unit tests passed, but the whole test framework sometimes breaks down on failures (particularly in development). So, developers may end up having to manually cleanup a cloud account and delete all &#8221;<code>sunnyjs-livetest-*</code>&#8221; containers.</p>
 
-<p>Note that live tests <em>can</em> randomly fail due to cloud provider service, network, throttling, etc. issues. For example, sometimes Google Storage will return &#8220;bucket not found&#8221; for containers that clearly exist (in a manner that other cloud clients like CyberDuck throw a similar error). Make sure to check your appropriate cloud status if the tests are failing in unusual or unexpected ways.</p>
+<p>Note that live tests <em>can</em> randomly fail due to cloud provider service, network, throttling, etc. issues. In particular, (anecdotally) Google Storage is much more apt to random failures than AWS. For example, sometimes Google Storage will return &#8220;bucket not found&#8221; for containers that clearly exist (in a manner that other cloud clients like CyberDuck throw a similar error). Also, Google Storage throws throttling errors (<code>SlowDown</code> error code) on occasion. Throttling retries are on the list of future enhancements, but for the present, the live tests just have to deal with intermittent failures. Finally, make sure to check your appropriate cloud status if the tests are failing in unusual or unexpected ways.</p>
 
 <p>To run the live tests, first create a configuration JavaScript file to be <code>require</code>&#8216;ed by Node:</p>
 <div class='highlight'><pre><code class='javascript'><span class='nx'>module</span><span class='p'>.</span><span class='nx'>exports</span><span class='p'>.</span><span class='nx'>Configuration</span> <span class='o'>=</span> <span class='p'>[</span>
@@ -147,7 +147,7 @@ jake build:docs           # Build all documentation.
 
 <p>We have a simple Jake target for JsLint checks:</p>
 
-<pre><code># ./jake.sh dev:jslint</code></pre>
+<pre><code>$ ./jake.sh dev:jslint</code></pre>
 
 <p>The whole library and tests should pass.</p>
 
