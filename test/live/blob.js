@@ -542,19 +542,24 @@
         test.done();
       });
     },
-    "PUT with putFromFile.": function (test, opts) {
+    "PUT with putFromFile and metadata.": function (test, opts) {
       var self = this,
         blobName = "test/live/putFromFile/blob.js",
-        filePath = __filename;
+        filePath = __filename,
+        metadata = {
+          'foo': "My foo metadata.",
+          'bar': 42
+        };
 
-      test.expect(8);
+      test.expect(12);
       async.series([
         // PUT blob from file.
         function (callback) {
           var request;
 
           request = self.container.putBlobFromFile(blobName, filePath, {
-            encoding: "utf8"
+            encoding: "utf8",
+            metadata: metadata
           });
 
           request.on('error', utils.errHandle(test));
@@ -589,6 +594,12 @@
             test.ok(blob, "Blob should not be empty.");
             test.deepEqual(blob.name, blobName);
             test.deepEqual(self.container, blob.container);
+
+            // Check custom metadata.
+            test.ok(meta);
+            test.ok(meta.metadata);
+            test.deepEqual(metadata['foo'], meta.metadata['foo']);
+            test.deepEqual(metadata['bar'].toString(), meta.metadata['bar']);
 
             // Here's our token to grep. It should now be in the returned
             // string as we've got this entire source file. How meta...
@@ -695,9 +706,9 @@
     }
   });
 
-  //Tests = {};
-  //Tests["TODO OVERRIDE"] = utils.createTestSetup(null, {
-  //});
+  // Tests = {};
+  // Tests["TODO OVERRIDE"] = utils.createTestSetup(null, {
+  // });
 
   module.exports.Tests = Tests;
 }());
