@@ -78,7 +78,7 @@ a common interface unpalatable.
 
 ### Strong bias for "one-shot" requests.
 Most cloud operations can be performed with a single HTTP request. However,
-many cloud client libraries add in extra HTTP calls along the day for say
+many cloud client libraries add in extra HTTP calls along the way for say
 a blob file GET request (perhaps first requesting an authorization URL,
 checking the container path for existence, etc.).
 
