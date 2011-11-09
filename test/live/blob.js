@@ -7,6 +7,7 @@
  */
 (function () {
   var assert = require('assert'),
+    crypto = require('crypto'),
     fs = require('fs'),
     async = require('async'),
     utils = require("./utils"),
@@ -328,6 +329,114 @@
         test.done();
       });
       request.end();
+    },
+    "PUT blob with md5 and metadata, and GET": function (test, opts) {
+      var self = this,
+        blobName = "my_test_blob/with_delim/file_md5_meta.txt",
+        blobData = "This is my data string.",
+        blobMd5 = crypto.createHash('md5').update(blobData).digest("base64"),
+        metadata = {
+          'baz': "My baz metadata.",
+          'bar': 44
+        };
+
+      test.expect(33);
+      async.series([
+        // PUT blob with md5.
+        function (callback) {
+          var stream = self.container.putBlob(blobName, {
+            encoding: "utf8",
+            metadata: metadata,
+            headers: {
+              'content-md5': blobMd5
+            }
+          });
+
+          test.deepEqual(stream.writable, true);
+          stream.on('error', utils.errHandle(test));
+          stream.on('end', function (results, meta) {
+            var blob = results.blob;
+
+            test.ok(blob, "Blob should not be empty.");
+            test.deepEqual(blob.name, blobName);
+            test.deepEqual(self.container, blob.container);
+            test.deepEqual(stream.writable, false);
+
+            // Check meta.
+            test.ok(meta.headers);
+            test.ok(meta.headers['date']);
+            test.ok(meta.headers['server']);
+            test.ok(meta.headers['etag']);
+            test.ok(meta.cloudHeaders);
+            test.ok(meta.metadata);
+            if (opts.config.isAws()) {
+              test.deepEqual(meta.headers['server'], "AmazonS3");
+              test.ok(meta.cloudHeaders['request-id']);
+            } else if (opts.config.isGoogle()) {
+              test.ok(meta.headers['server']);
+              test.ok(meta.headers['expires']);
+            }
+
+            callback(null);
+          });
+
+          stream.end(blobData);
+          test.deepEqual(stream.writable, false);
+        },
+        // GET blob with data and metadata.
+        function (callback) {
+          var buf = [],
+            stream = self.container.getBlob(blobName, {
+              encoding: 'utf8'
+            });
+
+          test.deepEqual(stream.readable, true);
+          stream.on('error', utils.errHandle(test));
+          stream.on('data', function (chunk) {
+            test.deepEqual(stream.readable, true);
+            buf.push(chunk);
+          });
+          stream.on('end', function (results, meta) {
+            var blob = results.blob;
+
+            // Check blob object.
+            test.ok(blob, "Blob should not be empty.");
+            test.deepEqual(blob.name, blobName);
+            test.deepEqual(self.container, blob.container);
+
+            // Check data.
+            test.deepEqual(buf.join(''), blobData);
+            test.deepEqual(stream.readable, false);
+
+            // Check meta.
+            test.ok(meta.headers);
+            test.ok(meta.headers['date']);
+            test.ok(meta.headers['last-modified']);
+            test.ok(meta.headers['server']);
+            test.ok(meta.headers['etag']);
+            test.ok(meta.cloudHeaders);
+            test.ok(meta.metadata);
+            if (opts.config.isAws()) {
+              test.deepEqual(meta.headers['server'], "AmazonS3");
+              test.ok(meta.cloudHeaders['request-id']);
+            } else if (opts.config.isGoogle()) {
+              test.ok(meta.headers['server']);
+              test.ok(meta.headers['expires']);
+            }
+
+            // Check custom metadata.
+            // Note: Everything is a string (hence, bar conversion).
+            test.deepEqual(metadata['foo'], meta.metadata['foo']);
+            test.deepEqual(metadata['bar'].toString(), meta.metadata['bar']);
+
+            callback(null);
+          });
+          stream.end();
+        }
+      ], function (err) {
+        test.ok(!err, "Should not have an error.");
+        test.done();
+      });
     },
     "PUT blob (multi-data, meta), GET, and HEAD.": function (test, opts) {
       var self = this,

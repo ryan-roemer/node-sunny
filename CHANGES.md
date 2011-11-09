@@ -1,5 +1,8 @@
 # Changes
 
+## v.0.0.4
+* Fix canonical headers order bug.
+
 ## v.0.0.3
 * Fix header/metdata options bug for GET/PUT to/from file operations.
 

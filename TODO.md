@@ -9,6 +9,8 @@
   See: http://stackoverflow.com/questions/4754383/
   how-to-change-metadata-on-an-object-in-amazon-s3
 - Add more attributes (like created date, size, etc.) from cloud requests.
+- Add ``withMd5`` option on PUT operations. Refactor to add headers after
+  ``end()`` is called.
 
 - Retries: Add some intelligent wrapper / utility.
 - Throttling: Also handling throttling (along with retries).
