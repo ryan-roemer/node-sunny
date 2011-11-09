@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="description" content="Multi-cloud data store client." />
   <meta name="keywords" content="Sunny, Sunny.js, node-sunny, Node, Node.js, Cloud, Amazon Simple Storage Service, Amazon S3, Google Storage for Developers" />
-  <title>Sunny.js - Home - v0.0.3</title>
+  <title>Sunny.js - Home - v0.0.4</title>
   <link rel="stylesheet" type="text/css"
     href="http://sunnyjs.org/css/syntax.css"  />
   <link rel="stylesheet" type="text/css"
@@ -120,7 +120,7 @@ $ npm install ./node-sunny</code></pre>
 
 <h3 id='strong_bias_for_oneshot_requests'>Strong bias for &#8220;one-shot&#8221; requests.</h3>
 
-<p>Most cloud operations can be performed with a single HTTP request. However, many cloud client libraries add in extra HTTP calls along the day for say a blob file GET request (perhaps first requesting an authorization URL, checking the container path for existence, etc.).</p>
+<p>Most cloud operations can be performed with a single HTTP request. However, many cloud client libraries add in extra HTTP calls along the way for say a blob file GET request (perhaps first requesting an authorization URL, checking the container path for existence, etc.).</p>
 
 <p>Sunny aims to perform the minimum amount of calls possible by default. That said, sometimes it is good to have a few sanity check intermediate operations, so Sunny can make calls with validation (e.g., checking a bucket exists first).</p>
 
