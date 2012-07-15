@@ -15,10 +15,10 @@
     "jake": "0.1.19",
     "findit": "0.1.1",
     "jslint": "0.1.0",
-    "nodeunit": "0.5.5",
+    "nodeunit": "0.7.4",
     "node-uuid": "1.2.0",
     "showdown": "0.0.1",
-    "async": "0.1.9",
+    "async": "0.1.22",
     "stylus": "0.15.1"
   },
   "repository": {
