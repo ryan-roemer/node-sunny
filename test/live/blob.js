@@ -330,15 +330,43 @@
       });
       request.end();
     },
+    "PUT blob with utf8 (Google)": function (test, opts) {
+      // Only test on Google.
+      if (!opts.config.isGoogle()) {
+        return test.done();
+      }
+
+      var self = this,
+        blobName = "my_test_blob/with_unicode/aquí.txt",
+        request = self.container.putBlob(blobName);
+
+      test.expect(1);
+      request.on('error', function (err) {
+        test.ok(err.message.indexOf("Google requires ascii path:") > -1);
+        test.done();
+      });
+      request.on('end', function (results) {
+        test.ok(false, "Should not have completion. Got: " + results);
+        test.done();
+      });
+      request.end();
+    },
     "PUT blob with utf8, md5 and metadata, and GET": function (test, opts) {
       var self = this,
-        blobName = "my_test_blob/with_delim/file_md5_meta_aquí.txt",
+        blobName = "my_test_blob/with_delim/file_md5_meta",
         blobData = "This is my data string.",
         blobMd5 = crypto.createHash('md5').update(blobData).digest("base64"),
         metadata = {
           'baz': "My baz metadata.",
           'bar': 44
         };
+
+      // Only add utf8 on non-Google.
+      if (!opts.config.isGoogle) {
+        blobName += "_aquí.txt"
+      } else {
+        blobName += ".txt"
+      }
 
       test.expect(33);
       async.series([
@@ -815,8 +843,20 @@
     }
   });
 
-  // Tests = {};
-  // Tests["TODO OVERRIDE"] = utils.createTestSetup(null, {
+  // // Limit tests.
+  // _group = 'Blob (w/ Cont)'
+  // _tests = [
+  //   'PUT blob with utf8, md5 and metadata, and GET',
+  //   'PUT blob with utf8 (Google)'
+  // ]
+  // _Tests = Tests
+  // Tests = {}
+  // Tests[_group] = {
+  //   setUp: _Tests[_group].setUp,
+  //   tearDown: _Tests[_group].tearDown
+  // }
+  // _tests.map(function (test) {
+  //   Tests[_group][test] = _Tests[_group][test]
   // });
 
   module.exports.Tests = Tests;

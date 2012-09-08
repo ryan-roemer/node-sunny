@@ -118,7 +118,6 @@
       request.end();
     },
     "GET weirder, invalid-named container.": function (test, opts) {
-      // Google has a problem with this. Manually check HTML + 404...
       var contName = "--SUNNYJS_WEIRDER_BAD_NAME_FOR_GET--",
         request;
 
@@ -129,14 +128,8 @@
       request = opts.conn.getContainer(contName, { validate: true });
       request.on('error', function (err) {
         test.deepEqual(err.isNotFound(), true);
-
-        // TODO: Google can't figure out certain weird names. Try to fix.
-        if (opts.config.isAws()) {
-          test.deepEqual(err.isInvalidName(), true);
-        } else if (opts.config.isGoogle()) {
-          test.deepEqual(err.isInvalidName(), false);
-        }
-
+        // Google used to have a problem with this. Now ok. (?)
+        test.deepEqual(err.isInvalidName(), true);
         test.done();
       });
       request.on('end', function (results) {
@@ -249,7 +242,7 @@
           test.deepEqual(meta.headers['server'], "AmazonS3");
           test.ok(meta.cloudHeaders['request-id']);
         } else if (opts.config.isGoogle()) {
-          test.deepEqual(meta.headers['server'], "GSE");
+          test.ok(meta.headers['server'].indexOf("HTTP Upload Server") > -1);
           test.ok(meta.headers['expires']);
         }
 
