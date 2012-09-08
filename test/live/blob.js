@@ -330,9 +330,9 @@
       });
       request.end();
     },
-    "PUT blob with md5 and metadata, and GET": function (test, opts) {
+    "PUT blob with utf8, md5 and metadata, and GET": function (test, opts) {
       var self = this,
-        blobName = "my_test_blob/with_delim/file_md5_meta.txt",
+        blobName = "my_test_blob/with_delim/file_md5_meta_aquí.txt",
         blobData = "This is my data string.",
         blobMd5 = crypto.createHash('md5').update(blobData).digest("base64"),
         metadata = {
