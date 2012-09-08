@@ -363,9 +363,9 @@
 
       // Only add utf8 on non-Google.
       if (!opts.config.isGoogle) {
-        blobName += "_aquí.txt"
+        blobName += "_aquí.txt";
       } else {
-        blobName += ".txt"
+        blobName += ".txt";
       }
 
       test.expect(33);

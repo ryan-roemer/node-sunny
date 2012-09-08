@@ -19,7 +19,8 @@
     "node-uuid": "1.2.0",
     "showdown": "0.0.1",
     "async": "0.1.22",
-    "stylus": "0.15.1"
+    "stylus": "0.15.1",
+    "cakepop": "0.1.0"
   },
   "repository": {
     "type": "git",

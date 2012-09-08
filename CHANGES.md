@@ -1,5 +1,11 @@
 # Changes
 
+## v.0.0.5
+* Add support for utf8 blob key (HTTP path) names for AWS. Google still has
+  problems with this, so throws an explicit error instead. (Patches for utf8
+  blob names in Google are welcome!)
+* Fix failing Google tests.
+
 ## v.0.0.4
 * Fix canonical headers order bug.
 

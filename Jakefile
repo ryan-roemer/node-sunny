@@ -8,7 +8,9 @@ var fs = require('fs'),
   path = require('path'),
   exec = require('child_process').exec,
   spawn = require('child_process').spawn,
-  findit = require('findit');
+  findit = require('findit'),
+  cakepop = require('cakepop'),
+  style = new cakepop.Style({ js: { config: "dev/jshint.json" }});
 
 ///////////////////////////////////////////////////////////////////////////////
 // Constants
@@ -29,14 +31,8 @@ var TESTS = {
   }
 };
 
-var JSLINT_BIN = "./node_modules/jslint/bin/jslint.js";
-var JSLINT_OPTIONS = [
-  "--goodparts",
-  "--indent=2",
-  "--maxlen=80",
-  "--nomen=false",
-  "--sub"
-];
+var JSHINT_BIN = "./node_modules/.bin/jshint";
+var JSHINT_CONF = "./dev/jshint.json";
 
 var CRUFT_RE = [
   "require\\(.*\\.js",
@@ -167,45 +163,18 @@ namespace('dev', function () {
   }, true);
 
   desc("Run style checks.");
-  task('jslint', function () {
+  task('jshint', function () {
     findFiles({
       root: ".",
       exclude: FILES_RE.EXCLUDE,
       include: FILES_RE.ALL_JS
     }, function (files) {
-      runProcess(JSLINT_BIN, [].concat(JSLINT_OPTIONS, files), {
-        stdoutFn: function () {},
-        stderrFn: function () {},
-        endFn: function (code, output) {
-          // Count up number of files, vs. number of "No errors found."
-          var numSuccess = 0,
-            successRe = new RegExp("^\\s*No errors found\\.\\s*$"),
-            removeRe = new RegExp("^\\s*$|^/\\*jslint|^No errors found.$"),
-            finalOut = [];
+      // Strip Jakefile...
+      files = files.filter(function (file) { return file !== "./Jakefile"; });
 
-          output.stdout.forEach(function (lines) {
-            lines.split("\n").forEach(function (line) {
-              // Success counter.
-              if (successRe.test(line)) {
-                numSuccess += 1;
-              }
-
-              // Remove unneeded final output lines.
-              if (!removeRe.test(line)) {
-                finalOut.push(line);
-              }
-            });
-          });
-
-          // Check for success.
-          console.log("\n" + finalOut.join("\n") + "\n");
-          if (output.stderr.length > 0 || files.length !== numSuccess) {
-            console.warn("JsLint failed!");
-          } else {
-            console.log("JsLint succeeded.");
-          }
-          complete();
-        }
+      style.jshint(files, function () {
+        console.log(arguments);
+        complete();
       });
     });
   }, true);
