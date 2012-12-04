@@ -67,6 +67,16 @@
 
 <p>For more information, see the <a href='./api/symbols/Configuration.html'>Configuration API documents</a>.</p>
 
+<h3 id='secrets'>Secrets</h3>
+
+<p>The first thing you need is your cloud data store account and secret keys. Here are some good starting points if you don&#8217;t already have these.</p>
+
+<ul>
+<li><strong>Amazon S3</strong>: A <a href='https://forums.aws.amazon.com/thread.jspa?threadID=42159'>forum post</a> walks through how to log in and find your key.</li>
+
+<li><strong>Google Storage</strong>: The GSFD <a href='https://developers.google.com/storage/docs/reference/v1/apiversion1'>Legacy API v1 spec</a> (which Sunny implements) is a good place to start, and <a href='https://developers.google.com/storage/docs/reference/v1/getting-startedv1#keys'>Getting Started Guide</a> helps point out what the keys look like and where to access them.</li>
+</ul>
+
 <h3 id='configuration_object__file'>Configuration Object / File</h3>
 
 <p>Sunny can be set up from a straight JavaScript object. However, for security, it is recommended that you have a separate &#8220;secrets&#8221; file that is not under version control. Here&#8217;s a basic scenario.</p>
