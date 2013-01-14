@@ -49,6 +49,7 @@ module.exports.MyConfiguration = {
   provider: ("aws"|"google"),
   account: "ACCOUNT_NAME",
   secretKey: "ACCOUNT_SECRET_KEY",
+  authUrl: "s3.amazonaws.com", // or other optional endpoint
   ssl: (true|false)
 };
 {% endhighlight %}
@@ -71,6 +72,7 @@ Sunny can be alternatively configured from environment variables:
 $ export SUNNY_PROVIDER=("aws"|"google")
 $ export SUNNY_ACCOUNT="ACCOUNT_NAME"
 $ export SUNNY_SECRET_KEY="ACCOUNT_SECRET_KEY"
+$ export SUNNY_AUTH_URL="s3.amazonaws.com"  # or other optional endpoint
 $ export SUNNY_SSL=("true"|"false")
 {% endhighlight %}
 
