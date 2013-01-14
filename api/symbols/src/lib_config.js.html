@@ -131,27 +131,29 @@
 <span class='line'>124</span>    * Get configuration from environment.
 <span class='line'>125</span>    *
 <span class='line'>126</span>    * ## Environment Variables
-<span class='line'>127</span>    * Sunny uses the following environment variables:
+<span class='line'>127</span>    * Sunny can use the following environment variables:
 <span class='line'>128</span>    *
 <span class='line'>129</span>    * - **SUNNY_PROVIDER**: ``"aws"`` or ``"google"``
 <span class='line'>130</span>    * - **SUNNY_ACCOUNT**: ``"ACCOUNT_NAME"``
 <span class='line'>131</span>    * - **SUNNY_SECRET_KEY**: ``"ACCOUNT_SECRET_KEY"``
-<span class='line'>132</span>    * - **SUNNY_SSL**: ``true`` or ``false``
-<span class='line'>133</span>    *
-<span class='line'>134</span>    * @returns {Configuration} Configuration object.
-<span class='line'>135</span>    */</span><span class="WHIT">
-<span class='line'>136</span> </span><span class="WHIT">  </span><span class="NAME">Configuration.fromEnv</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>137</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ssl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_SSL</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>138</span> </span><span class="WHIT">      </span><span class="NAME">useSsl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">ssl</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'string'</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">ssl.toLowerCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'true'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>139</span> 
-<span class='line'>140</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Configuration</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>141</span> </span><span class="WHIT">      </span><span class="NAME">provider</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_PROVIDER</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>142</span> </span><span class="WHIT">      </span><span class="NAME">account</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_ACCOUNT</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>143</span> </span><span class="WHIT">      </span><span class="NAME">secretKey</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_SECRET_KEY</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">      </span><span class="NAME">ssl</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">useSsl</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>147</span> 
-<span class='line'>148</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Configuration</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Configuration</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>149</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>150</span> </span></pre></body></html>
+<span class='line'>132</span>    * - **SUNNY_AUTH_URL**: ``"s3.amazonaws.com"``
+<span class='line'>133</span>    * - **SUNNY_SSL**: ``true`` or ``false``
+<span class='line'>134</span>    *
+<span class='line'>135</span>    * @returns {Configuration} Configuration object.
+<span class='line'>136</span>    */</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="NAME">Configuration.fromEnv</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ssl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_SSL</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">      </span><span class="NAME">useSsl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">ssl</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'string'</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">ssl.toLowerCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'true'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>140</span> 
+<span class='line'>141</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Configuration</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">      </span><span class="NAME">provider</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_PROVIDER</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">      </span><span class="NAME">account</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_ACCOUNT</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">      </span><span class="NAME">secretKey</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_SECRET_KEY</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">      </span><span class="NAME">authUrl</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">process.env.SUNNY_AUTH_URL</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">      </span><span class="NAME">ssl</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">useSsl</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> 
+<span class='line'>150</span> </span><span class="WHIT">  </span><span class="NAME">module.exports.Configuration</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Configuration</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>152</span> </span></pre></body></html>
