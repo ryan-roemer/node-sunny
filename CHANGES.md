@@ -1,5 +1,8 @@
 # Changes
 
+## v.0.0.6
+* Updated docs and env for `authUrl`.
+
 ## v.0.0.5
 * Add support for utf8 blob key (HTTP path) names for AWS. Google still has
   problems with this, so throws an explicit error instead. (Patches for utf8
