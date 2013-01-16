@@ -51,7 +51,7 @@
     <div id="content">
       <h1 id='development_guide'>Development Guide</h1>
 
-<p>Sunny development is mostly controlled by <a href='https://github.com/mde/jake'>Jake</a> tasks, uses <a href='https://github.com/caolan/nodeunit'>NodeUnit</a> and <a href='https://github.com/reid/node-jslint'>JsLint</a> for testing, and has a horribly contrived document build system.</p>
+<p>Sunny development is mostly controlled by <a href='https://github.com/mde/jake'>Jake</a> tasks, uses <a href='https://github.com/caolan/nodeunit'>NodeUnit</a> and <a href='https://github.com/jshint/jshint/'>JsHint</a> for testing, and has a horribly contrived document build system.</p>
 
 <p>Development help is most welcome! There is a long task list in source at &#8220;./TODO.md&#8221; of improvements and enhancements that would be great to get going.</p>
 
@@ -80,7 +80,7 @@ $ npm install</code></pre>
 <pre><code>$ ./jake.sh -T
 jake dev:cruft            # Check for debugging snippets and
                             bad code style.
-jake dev:jslint           # Run style checks.
+jake dev:style            # Run style checks.
 jake test:all             # Run all tests.
 jake test:core            # Run core module tests.
 jake test:live            # Run unit tests on real datastores
@@ -143,11 +143,11 @@ jake build:docs           # Build all documentation.
 
 <p>to execute all tests.</p>
 
-<h3 id='jslint'>JsLint</h3>
+<h3 id='style'>Style</h3>
 
-<p>We have a simple Jake target for JsLint checks:</p>
+<p>We have a simple Jake target for JsHint style checks:</p>
 
-<pre><code>$ ./jake.sh dev:jslint</code></pre>
+<pre><code>$ ./jake.sh dev:style</code></pre>
 
 <p>The whole library and tests should pass.</p>
 
