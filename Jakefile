@@ -163,7 +163,7 @@ namespace('dev', function () {
   }, true);
 
   desc("Run style checks.");
-  task('jshint', function () {
+  task('style', function () {
     findFiles({
       root: ".",
       exclude: FILES_RE.EXCLUDE,

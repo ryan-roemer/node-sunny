@@ -14,7 +14,7 @@
   "devDependencies": {
     "jake": "0.1.19",
     "findit": "0.1.1",
-    "jslint": "0.1.0",
+    "jshint": "0.9.1",
     "nodeunit": "0.7.4",
     "node-uuid": "1.2.0",
     "showdown": "0.0.1",

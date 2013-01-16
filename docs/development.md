@@ -5,12 +5,12 @@ title: Development
 
 # Development Guide
 Sunny development is mostly controlled by [Jake][jake] tasks, uses
-[NodeUnit][nu] and [JsLint][lint] for testing, and has a horribly contrived
+[NodeUnit][nu] and [JsHint][jshint] for testing, and has a horribly contrived
 document build system.
 
 [jake]: https://github.com/mde/jake
 [nu]: https://github.com/caolan/nodeunit
-[lint]: https://github.com/reid/node-jslint
+[jshint]: https://github.com/jshint/jshint/
 
 Development help is most welcome! There is a long task list in source at
 "./TODO.md" of improvements and enhancements that would be great to get
@@ -42,7 +42,7 @@ Here are some relevant Jake targets:
     $ ./jake.sh -T
     jake dev:cruft            # Check for debugging snippets and
                                 bad code style.
-    jake dev:jslint           # Run style checks.
+    jake dev:style            # Run style checks.
     jake test:all             # Run all tests.
     jake test:core            # Run core module tests.
     jake test:live            # Run unit tests on real datastores
@@ -125,10 +125,10 @@ If you have a live test configuration with the default path, you can run:
 
 to execute all tests.
 
-### JsLint
-We have a simple Jake target for JsLint checks:
+### Style
+We have a simple Jake target for JsHint style checks:
 
-    $ ./jake.sh dev:jslint
+    $ ./jake.sh dev:style
 
 The whole library and tests should pass.
 
