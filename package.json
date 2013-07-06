@@ -18,7 +18,7 @@
     "nodeunit": "0.7.4",
     "node-uuid": "1.2.0",
     "showdown": "0.0.1",
-    "async": "0.1.22",
+    "async": "0.2.9",
     "stylus": "0.15.1",
     "cakepop": "0.1.0"
   },
